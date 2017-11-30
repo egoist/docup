@@ -32,3 +32,5 @@ export default function docup(options) {
 if (process.env.NODE_ENV === 'development') {
   window.Docup = docup
 }
+
+window.DOCUP_VERSION = process.env.DOCUP_VERSION
