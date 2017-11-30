@@ -232,6 +232,7 @@ details > p {
 .Title {
   margin: 0;
   font-size: 18px;
+  text-transform: uppercase;
 }
 
 .Body {
