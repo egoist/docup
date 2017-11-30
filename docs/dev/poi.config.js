@@ -1,5 +1,4 @@
 const path = require('path')
-const express = require('express')
 
 module.exports = {
   entry: 'src/index.js',

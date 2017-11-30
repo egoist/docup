@@ -14,7 +14,7 @@
     "access": "public"
   },
   "scripts": {
-    "test": "npm run lint && echo 'no tests!'",
+    "test": "npm run lint && npm run build",
     "lint": "xo",
     "dev": "poi -c docs/dev/poi.config.js",
     "build": "poi build -c docs/dev/poi.config.js --component Docup"
@@ -39,6 +39,7 @@
     "xo": "^0.18.0"
   },
   "xo": {
-    "extends": "rem"
+    "extends": "rem",
+    "envs": ["browser"]
   }
 }
