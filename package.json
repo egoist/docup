@@ -28,8 +28,7 @@
     "prismjs": "^1.8.4",
     "slugo": "^0.2.1",
     "unfetch": "^3.0.0",
-    "vue": "^2.5.9",
-    "vue-router": "^3.0.1"
+    "vue": "^2.5.9"
   },
   "devDependencies": {
     "eslint-config-rem": "^3.0.0",

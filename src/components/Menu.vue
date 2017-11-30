@@ -10,10 +10,28 @@
 export default {
   props: ['menu'],
 
+  data() {
+    return {
+      hash: ''
+    }
+  },
+
   methods: {
     isActive(slug) {
-      return slug === this.$route.hash.slice(1)
+      return slug === this.hash.slice(1)
+    },
+
+    handleHashChange() {
+      this.hash = location.hash
     }
+  },
+
+  mounted() {
+    window.addEventListener('hashchange', this.handleHashChange)
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('hashchange', this.handleHashChange)
   }
 }
 </script>

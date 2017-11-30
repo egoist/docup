@@ -110,7 +110,7 @@ I will add support for IE10+ very soon.
 
 ### Prerender
 
-Prenrender `index.html`
+Prerender `index.html`
 
 ### Multi-route support
 

@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import createRouter from './router'
 import App from './components/App.vue'
 
 class Docup {
@@ -16,11 +15,9 @@ class Docup {
   }
 
   start(el) {
-    const router = createRouter(this.options)
     return new Vue({
       el,
-      router,
-      render: h => h(App)
+      render: h => h(App, { props: { opts: this.options } })
     })
   }
 }
