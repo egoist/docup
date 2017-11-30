@@ -61,7 +61,7 @@ Finally serve this directory as a static website:
 
 Simply put all your files in `docs` folder on `master` branch, or root directory on the `gh-pages` branch.
 
-Don't forget to `.nojekyll` file to tell GitHub to treat it as a normal static website.
+Don't forget to add `.nojekyll` file to tell GitHub to treat it as a normal static website.
 
 ## API
 
