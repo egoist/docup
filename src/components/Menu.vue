@@ -1,6 +1,10 @@
 <template>
   <div class="Menu">
-    <div class="item" :class="{active: isActive(item.slug)}" :key="item.slug" v-for="item in menu">
+    <div
+      class="Item"
+      :class="{active: isActive(item.slug)}"
+      :key="item.slug"
+      v-for="item in menu">
       <a :href="`#${item.slug}`">{{ item.title }}</a>
     </div>
   </div>
@@ -43,18 +47,18 @@ export default {
   color: var(--fg-dark);
 }
 
-.item {
+.Item {
   padding-bottom: 15px;
 }
 
-.item > a {
+.Item > a {
   position: relative;
   user-select: none;
   transition: color 200ms;
   color: var(--fg);
 }
 
-.item > a:before {
+.Item > a:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -68,12 +72,12 @@ export default {
   transition: all 250ms var(--ease);
 }
 
-.item > a:hover,
-.item.active > a {
+.Item > a:hover,
+.Item.active > a {
   color: var(--fg-dark);
 }
 
-.item > a:hover:before {
+.Item > a:hover:before {
   visibility: visible;
   transform: scaleX(1);
 }

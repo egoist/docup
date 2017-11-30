@@ -1,17 +1,17 @@
 <template>
   <div id="docup-root">
     <doc-loading v-if="loading" />
-    <div class="doc-page container" v-else>
-      <header class="doc-header" v-if="title">
-        <h1 class="doc-title">{{ title }}</h1>
+    <div class="Container" v-else>
+      <header class="Header" v-if="title">
+        <h1 class="Title">{{ title }}</h1>
       </header>
-      <div class="doc-body">
-        <div class="doc-sidebar">
+      <div class="Body">
+        <div class="Sidebar">
           <doc-menu :menu="menu" />
         </div>
-        <div class="doc-main">
-          <div class="doc-content" v-html="html"></div>
-          <div class="doc-footer"></div>
+        <div class="Main">
+          <div class="Content" v-html="html"></div>
+          <div class="Footer"></div>
         </div>
       </div>
     </div>
@@ -88,10 +88,6 @@ export default {
   --width: 800px;
   --header-height: 400px;
 
-  --tracking: 0.05rem;
-  --tracking-medium: 0.5rem;
-  --tracking-large: 0.8rem;
-
   --dark: #000;
   --blue: #33A9FF;
   --light-gray: #fafafa;
@@ -113,9 +109,9 @@ body {
   font-weight: 300;
 }
 
-.container {
+.Container {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: var(--width);
 }
 
 h2, h3, h4 {
@@ -138,11 +134,6 @@ h2:first-child {
   padding-top: 0;
 }
 
-/* h2 + p {
-  font-size: 1.5rem;
-  line-height: 1.6;
-} */
-
 a {
   color: inherit;
   text-decoration: none;
@@ -151,7 +142,6 @@ a {
 p {
   margin: 25px 0;
   line-height: 1.6;
-  color: var(--fg-color-light);
 }
 
 li strong,
@@ -174,10 +164,6 @@ p a:hover {
   border-bottom: none;
 }
 
-p a:hover {
-  border-bottom-color: var(--color);
-}
-
 ul {
   margin: 30px 0 30px 30px;
   padding: 0;
@@ -189,12 +175,10 @@ ul ul {
 
 ul li {
   margin: 5px 0;
-  color: var(--fg-color-light);
   line-height: 1.5em;
 }
 
 ul li strong {
-  color: var(--fg-color);
   font-weight: 500;
 }
 
@@ -238,45 +222,45 @@ details > p {
 </style>
 
 <style scoped>
-.doc-header {
+.Header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 400px;
+  height: var(--header-height);
 }
 
-.doc-title {
+.Title {
   margin: 0;
   font-size: 18px;
 }
 
-.doc-body {
+.Body {
   display: flex;
 }
 
-.doc-sidebar {
+.Sidebar {
   flex: 1 1 auto;
 }
 
-.doc-main {
+.Main {
   width: 75%;
 }
 
-.doc-footer {
+.Footer {
   height: 100px;
 }
 
 @media screen and (max-width: 768px) {
-  .doc-body {
+  .Body {
     flex-direction: column;
     padding: 0 20px;
   }
 
-  .doc-sidebar {
+  .Sidebar {
     margin-bottom: 40px;
   }
 
-  .doc-main {
+  .Main {
     width: 100%;
   }
 }

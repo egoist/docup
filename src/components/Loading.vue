@@ -1,9 +1,9 @@
 <template>
-  <div class="doc-loading">Loading...</div>
+  <div class="Loading">Loading...</div>
 </template>
 
 <style>
-.doc-loading {
+.Loading {
   font-size: 2rem;
   font-weight: 300;
   color: #b1b0b0;
