@@ -1,0 +1,44 @@
+{
+  "name": "@rem/docup",
+  "version": "0.0.0",
+  "description": "Simple yet elegant docs.",
+  "repository": {
+    "url": "https://github.com/egoist/docup.git",
+    "type": "git"
+  },
+  "main": "dist/docup",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "npm run lint && echo 'no tests!'",
+    "lint": "xo",
+    "dev": "poi -c docs/dev/poi.config.js",
+    "build": "poi build -c docs/dev/poi.config.js --component Docup"
+  },
+  "author": "egoist <0x142857@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "marked3": "^0.5.1",
+    "preact": "^8.2.6",
+    "prismjs": "^1.8.4",
+    "slugo": "^0.2.1",
+    "unfetch": "^3.0.0",
+    "vue": "^2.5.9",
+    "vue-router": "^3.0.1"
+  },
+  "devDependencies": {
+    "eslint-config-rem": "^3.0.0",
+    "express": "^4.16.2",
+    "poi": "^9.5.5",
+    "poi-preset-bundle-report": "^2.0.2",
+    "vue-template-compiler": "^2.5.9",
+    "xo": "^0.18.0"
+  },
+  "xo": {
+    "extends": "rem"
+  }
+}
