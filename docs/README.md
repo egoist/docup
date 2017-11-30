@@ -4,7 +4,7 @@
 
 Docup is a single script that you can use to create a beautiful one-page documentation without build process.
 
-The idea is inpired by my another project ([Docute](https://docute.js.org)) which in turns is inspired by [Flatdoc](http://ricostacruz.com/flatdoc/). And the design is inspired by [tj (TJ Holowaychuk)](https://github.com/tj)'s wonderful docs for [Apex Up](https://up.docs.apex.sh).
+The idea is inpired by my another project ([Docute](https://docute.js.org)) which in turn is inspired by [Flatdoc](http://ricostacruz.com/flatdoc/). And the design is inspired by [tj (TJ Holowaychuk)](https://github.com/tj)'s wonderful docs for [Apex Up](https://up.docs.apex.sh).
 
 ## Usage
 
