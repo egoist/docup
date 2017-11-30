@@ -3,7 +3,6 @@ const pkg = require('../../package')
 
 module.exports = {
   entry: 'src/index.js',
-  jsx: 'h',
   html: {
     template: path.join(__dirname, 'index.ejs'),
     inject: false
