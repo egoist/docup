@@ -1,6 +1,7 @@
 <template>
   <div id="docup-root">
-    <div class="doc-page container">
+    <doc-loading v-if="loading" />
+    <div class="doc-page container" v-else>
       <header class="doc-header" v-if="title">
         <h1 class="doc-title">{{ title }}</h1>
       </header>
@@ -24,6 +25,7 @@ import slugo from 'slugo'
 
 import highlight from '../utils/highlight'
 import DocMenu from './Menu.vue'
+import DocLoading from './Loading.vue'
 
 export default {
   props: ['opts'],
@@ -32,11 +34,13 @@ export default {
     return {
       title: null,
       html: '',
-      menu: []
+      menu: [],
+      loading: true
     }
   },
 
   async created() {
+    this.loading = true
     const content = await fetch(`${this.opts.root}${this.opts.indexFile}`).then(res => res.text())
     const renderer = new marked.Renderer()
     const orginalHeading = renderer.heading.bind(renderer)
@@ -62,10 +66,12 @@ export default {
     })
     this.title = title
     this.menu = menu
+    // this.loading = false
   },
 
   components: {
-    DocMenu
+    DocMenu,
+    DocLoading
   }
 }
 </script>
