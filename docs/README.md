@@ -102,6 +102,20 @@ Type: `string` `HTMLElement`
 
 The place to mount app to.
 
+## Roadmap
+
+### Browser support
+
+I will add support for IE10+ very soon.
+
+### Prerender
+
+Prenrender `index.html`
+
+### Multi-route support
+
+Maybe, maybe not.
+
 ## License
 
 MIT &copy; EGOIST

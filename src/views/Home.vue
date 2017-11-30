@@ -96,4 +96,19 @@ export default {
 .doc-footer {
   height: 100px;
 }
+
+@media screen and (max-width: 768px) {
+  .doc-body {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .doc-sidebar {
+    margin-bottom: 40px;
+  }
+
+  .doc-main {
+    width: 100%;
+  }
+}
 </style>
