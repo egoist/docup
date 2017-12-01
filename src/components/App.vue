@@ -59,6 +59,15 @@ export default {
       }
       return orginalHeading(text, depth, raw)
     }
+    const originalBlockquote = renderer.blockquote
+    renderer.blockquote = quote => {
+      const RE = /^<p><strong>(.+)<\/strong>:\s*/
+      if (RE.test(quote)) {
+        const TAG = RE.exec(quote)[1]
+        return `<div class="Message ${TAG.toLowerCase()}"><p>${quote.replace(RE, '')}</div>`
+      }
+      return originalBlockquote(quote)
+    }
     const highlightFn = typeof this.opts.highlight === 'function' ? this.opts.highlight : highlight
     this.html = marked(content, {
       renderer,
@@ -214,6 +223,14 @@ p > code {
   font-family: inherit;
 }
 
+hr {
+  border: none;
+  background-color: #f9f9f9;
+  height: 1px;
+  margin: 25px 0;
+  height: 1px;
+}
+
 details > summary {
   cursor: pointer;
   outline: none;
@@ -223,6 +240,55 @@ details > summary {
 details > p {
   border-left: 3px solid var(--dark);
   padding-left: 15px;
+}
+
+blockquote {
+  padding: 10px 15px;
+  border-left: 3px solid rgb(0, 0, 0);
+  margin: 20px 0px;
+}
+
+blockquote p,
+.Message p {
+  margin: 0;
+}
+
+blockquote p:not(:first-child),
+.Message p:not(:first-child) {
+  margin-top: 20px;
+}
+
+.Message {
+  background: whitesmoke;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  color: #4a4a4a;
+  padding: 1em 1.25em;
+  margin: 25px 0;
+}
+
+.Message.alert {
+  background: #fff5f7;
+  border-color: #ff3860;
+  color: #cd0930;
+}
+
+.Message.info {
+  background: #f6fbfe;
+  border-color: #209cee;
+  color: #12537e;
+}
+
+.Message.warning {
+  background: #fffdf5;
+  border-color: #ffdd57;
+  color: #3b3108;
+}
+
+.Message.success {
+  background: #f6fef9;
+  border-color: #23d160;
+  color: #0e301a;
 }
 </style>
 
