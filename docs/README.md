@@ -19,12 +19,12 @@ Create an HTML file: `index.html` which will be be homepage of your documentatio
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
   <title>My Awesome Doc</title>
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="https://unpkg.com/@rem/docup/dist/docup.css">
+  <link rel="stylesheet" href="https://unpkg.com/@egojump/docup/dist/docup.css">
 </head>
 <body>
   <div id="app"></div>
   <!-- Script -->
-  <script src="https://unpkg.com/@rem/docup/dist/docup.js"></script>
+  <script src="https://unpkg.com/@egojump/docup/dist/docup.js"></script>
   <!-- Start app -->
   <script>
     var doc = new Docup()
