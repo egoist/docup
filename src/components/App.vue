@@ -10,7 +10,7 @@
           <doc-menu :menu="menu" />
         </div>
         <div class="Main">
-          <div class="Content" v-html="html"></div>
+          <div class="Content" :class="{'highlightFirstParagraph': opts.highlightFirstParagraph}" v-html="html"></div>
           <div class="Footer"></div>
         </div>
       </div>
@@ -132,6 +132,11 @@ h2 {
 h2:first-child {
   margin-top: 0;
   padding-top: 0;
+}
+
+.highlightFirstParagraph h2 + p {
+  font-size: 1.6rem;
+  line-height: 1.6;
 }
 
 a {

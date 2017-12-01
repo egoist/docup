@@ -5,12 +5,14 @@ class Docup {
   constructor({
     indexFile = 'README.md',
     root = './',
-    highlight = true
+    highlight = true,
+    highlightFirstParagraph = false
   } = {}) {
     this.options = {
       indexFile,
       root,
-      highlight
+      highlight,
+      highlightFirstParagraph
     }
   }
 
