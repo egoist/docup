@@ -89,6 +89,10 @@ We also support other message types which are:
 <!-- -->
 
 > __Success__: This is ok!
+
+<!-- -->
+
+> __Note__: This is just a note!
 ```
 
 > __Warning__: Notice the `<!-- -->` here, we use it to write multiple blockquotes in sequence without them being merged into one blockquote. It's unnecessary if you only have one blockquote.
@@ -104,6 +108,10 @@ And they look like:
 <!-- -->
 
 > __Success__: This is ok!
+
+<!-- -->
+
+> __Note__: This is just a note!
 
 ## Deploy
 
