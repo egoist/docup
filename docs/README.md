@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Docup is a single script that you can use to create a beautiful one-page documentation without build process.
+Docup is a single JavaScript file that fetches Markdown file and renders it as a beautiful one-page documentation.
 
 The idea is inspired by my another project ([Docute](https://docute.js.org)) which in turn is inspired by [Flatdoc](http://ricostacruz.com/flatdoc/). And the design is inspired by [tj (TJ Holowaychuk)](https://github.com/tj)'s wonderful docs for [Apex Up](https://up.docs.apex.sh).
 
