@@ -59,7 +59,7 @@ Finally serve this directory as a static website:
 
 ### Site Title
 
-We use the value `h1` title as the site title.
+We use the value of `h1` title as the site title.
 
 ### Message Blocks
 
