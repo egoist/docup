@@ -5,12 +5,14 @@
       :class="{active: isActive(item.slug)}"
       :key="item.slug"
       v-for="item in menu">
-      <a :href="`#${item.slug}`">{{ item.title }}</a>
+      <a :href="`#${item.slug}`" @click="jumpTo(item.slug)">{{ item.title }}</a>
     </div>
   </div>
 </template>
 
 <script>
+import jump from 'jump.js'
+
 export default {
   props: ['menu'],
 
@@ -27,6 +29,10 @@ export default {
 
     handleHashChange() {
       this.hash = location.hash
+    },
+
+    jumpTo(id) {
+      jump(`#${id}`)
     }
   },
 

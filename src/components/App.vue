@@ -22,6 +22,7 @@
 import fetch from 'unfetch'
 import marked from 'marked3'
 import slugo from 'slugo'
+import jump from 'jump.js'
 
 import highlight from '../utils/highlight'
 import DocMenu from './Menu.vue'
@@ -111,6 +112,28 @@ export default {
     this.title = title
     this.menu = menu
     this.loading = false
+
+    await this.$nextTick()
+    this.tryJump()
+  },
+
+  methods: {
+    tryJump(attempts = 0) {
+      if (attempts > 30) return
+
+      const el = location.hash && document.getElementById(location.hash.slice(1))
+      if (el) {
+        jump(el, {
+          callback: () => {
+            if (el.getBoundingClientRect().y > 10) {
+              setTimeout(() => {
+                this.tryJump(attempts + 1)
+              }, 300)
+            }
+          }
+        })
+      }
+    }
   },
 
   components: {
@@ -181,6 +204,10 @@ h2:first-child {
 .highlightFirstParagraph h2 + p {
   font-size: 1.6rem;
   line-height: 1.6;
+}
+
+h2 + iframe, h3 + iframe, h4 + iframe {
+  margin-top: 25px;
 }
 
 a {

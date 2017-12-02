@@ -156,6 +156,18 @@ If you're on the Docup website, you can see an image down below.
 ![hide-image](https://media.giphy.com/media/e3GqXDAZhNsxG/giphy.gif)
 -->
 
+### Embeding
+
+Embeding and run code snippets is easy if your provider supports iframe, like [codesandbox.io](https://codesandbox.io):
+
+```html
+<iframe 
+  src="https://codesandbox.io/embed/vue" 
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" 
+  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin">
+</iframe>
+```
+
 ## Deploy
 
 ### GitHub Pages

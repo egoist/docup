@@ -23,6 +23,7 @@
   "author": "egoist <0x142857@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "jump.js": "^1.0.2",
     "marked3": "^0.5.1",
     "prismjs": "^1.8.4",
     "slugo": "^0.2.1",
