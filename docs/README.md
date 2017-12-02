@@ -118,17 +118,23 @@ And they look like:
 If you want to display some part on GitHub while keeping it invisible in Docup, you can use following html comment marks:
 
 ```html
+
 <!-- hide-on-docup-start -->
+
 This part is not visible while viewing as a Docup website.
+
 <!-- hide-on-docup-stop -->
+
 ```
 
-You can see an image down below while [viewing on GitHub](https://github.com/egojump/docup#hide-specific-content). 😜
+> __Warning__: There should be newlines wrapping the starting and ending mark, like what you see above.
+
+For example, you can see an image down below while [viewing on GitHub](https://github.com/egojump/docup#hide-specific-content). 😜
 
 <!-- hide-on-docup-start -->
 
 <!-- hi -->
-![hide-image](https://media.giphy.com/media/a5viI92PAF89q/giphy.gif)
+![hide-image](https://media.giphy.com/media/e3GqXDAZhNsxG/giphy.gif)
 
 <!-- hide-on-docup-stop -->
 
