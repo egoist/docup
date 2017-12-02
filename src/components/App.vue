@@ -112,6 +112,12 @@ export default {
     this.title = title
     this.menu = menu
     this.loading = false
+
+    await this.$nextTick()
+    const el = location.hash && document.getElementById(location.hash.slice(1))
+    if (el) {
+      jump(el)
+    }
   },
 
   components: {
