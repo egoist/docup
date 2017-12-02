@@ -126,7 +126,10 @@ This part is not visible while viewing as a Docup website.
 You can see an image down below while [viewing on GitHub](https://github.com/egojump/docup#hide-specific-content). 😜
 
 <!-- hide-on-docup-start -->
+
+<!-- hi -->
 ![hide-image](https://media.giphy.com/media/a5viI92PAF89q/giphy.gif)
+
 <!-- hide-on-docup-stop -->
 
 ## Deploy

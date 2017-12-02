@@ -70,23 +70,37 @@ export default {
       }
       return originalBlockquote(quote)
     }
+
+    let hideCount = 0
+    const HIDE_START = /<!--\s*hide-on-docup-start\s*-->/
+    const HIDE_STOP = /<!--\s*hide-on-docup-stop\s*-->/
+    const HIDE_START_HOLDER = '#!!!hide-start!!!'
+    const HIDE_STOP_HOLDER = '#!!!hide-stop!!!'
     renderer.html = html => {
-      const HIDE_START = /<!--\s*hide-on-docup-start\s*-->/
-      const HIDE_STOP = /<!--\s*hide-on-docup-stop\s*-->/
       if (HIDE_START.test(html)) {
-        return '<!-- hide-on-docup'
+        hideCount++
+        return HIDE_START_HOLDER + hideCount
       }
       if (HIDE_STOP.test(html)) {
-        return '-->'
+        return HIDE_STOP_HOLDER + hideCount
       }
       return html
     }
+
     const highlightFn = typeof this.opts.highlight === 'function' ? this.opts.highlight : highlight
-    this.html = marked(content, {
+    let html = marked(content, {
       renderer,
       highlight: this.opts.highlight && highlightFn,
       linksInNewTab: true
     })
+
+    // Strip out hidden contents
+    for (let i = 0; i < hideCount; i++) {
+      const RE = new RegExp(`${HIDE_START_HOLDER}${i+1}([\\s\\S]*)${HIDE_STOP_HOLDER}${i+1}`, 'gi')
+      html = html.replace(RE, '')
+    }
+
+    this.html = html
     this.title = title
     this.menu = menu
     this.loading = false
