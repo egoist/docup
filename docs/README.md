@@ -6,7 +6,7 @@ Docup is a single JavaScript file that fetches Markdown file and renders it as a
 
 The idea is inspired by my another project ([Docute](https://docute.js.org)) which in turn is inspired by [Flatdoc](http://ricostacruz.com/flatdoc/). And the design is inspired by [tj (TJ Holowaychuk)](https://github.com/tj)'s wonderful docs for [Apex Up](https://up.docs.apex.sh).
 
-## Usage
+## Quick Start
 
 Create an HTML file: `index.html` which will be be homepage of your documentation website:
 
@@ -55,7 +55,7 @@ Finally serve this directory as a static website:
 - golang: `cd ./docs` && `caddy`
 - ...etc, you can use any static file server, for real.
 
-## Conventions
+## Guide
 
 ### Site Title
 
