@@ -70,10 +70,22 @@ export default {
       }
       return originalBlockquote(quote)
     }
+    renderer.html = html => {
+      const HIDE_START = /<!--\s*hide-on-docup-start\s*-->/
+      const HIDE_STOP = /<!--\s*hide-on-docup-stop\s*-->/
+      if (HIDE_START.test(html)) {
+        return '<!-- hide-on-docup'
+      }
+      if (HIDE_STOP.test(html)) {
+        return '-->'
+      }
+      return html
+    }
     const highlightFn = typeof this.opts.highlight === 'function' ? this.opts.highlight : highlight
     this.html = marked(content, {
       renderer,
-      highlight: this.opts.highlight && highlightFn
+      highlight: this.opts.highlight && highlightFn,
+      linksInNewTab: true
     })
     this.title = title
     this.menu = menu
