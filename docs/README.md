@@ -1,4 +1,4 @@
-# Docup <b>ads</b>
+# Docup
 
 ## Introduction
 
@@ -130,6 +130,12 @@ const doc = new Docup(options)
 ```
 
 #### options
+
+##### title
+
+Type: `string`
+
+The title that is shown in the header. It defaults to the value of `h1` title in your markdown file.
 
 ##### indexFile
 

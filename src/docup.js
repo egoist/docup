@@ -3,12 +3,14 @@ import App from './components/App.vue'
 
 class Docup {
   constructor({
+    title,
     indexFile = 'README.md',
     root = './',
     highlight = true,
     highlightFirstParagraph = false
   } = {}) {
     this.options = {
+      title,
       indexFile,
       root,
       highlight,

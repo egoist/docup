@@ -44,11 +44,13 @@ export default {
     const content = await fetch(`${this.opts.root}${this.opts.indexFile}`).then(res => res.text())
     const renderer = new marked.Renderer()
     const orginalHeading = renderer.heading.bind(renderer)
-    let title
+    let title = this.opts.title
     const menu = []
     renderer.heading = (text, depth, raw) => {
       if (depth === 1) {
-        title = text
+        if (!title) {
+          title = text
+        }
         return ''
       }
       if (depth === 2) {
