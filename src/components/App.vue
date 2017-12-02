@@ -3,7 +3,7 @@
     <doc-loading v-if="loading" />
     <div class="Container" v-else>
       <header class="Header" v-if="title">
-        <h1 class="Title">{{ title }}</h1>
+        <h1 class="Title" v-html="title"></h1>
       </header>
       <div class="Body">
         <div class="Sidebar">
