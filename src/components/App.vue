@@ -72,10 +72,11 @@ export default {
     }
 
     let hideCount = 0
-    const HIDE_START = /<!--\s*hide-on-docup-start\s*-->/
-    const HIDE_STOP = /<!--\s*hide-on-docup-stop\s*-->/
+    const HIDE_START = /^<!--\s*hide-on-docup-start\s*-->/
+    const HIDE_STOP = /^<!--\s*hide-on-docup-stop\s*-->/
     const HIDE_START_HOLDER = '#!!!hide-start!!!'
     const HIDE_STOP_HOLDER = '#!!!hide-stop!!!'
+    const SHOW_START = /^<!--\s*show-on-docup\s*\n/
     renderer.html = html => {
       if (HIDE_START.test(html)) {
         hideCount++
@@ -83,6 +84,12 @@ export default {
       }
       if (HIDE_STOP.test(html)) {
         return HIDE_STOP_HOLDER + hideCount
+      }
+      if (SHOW_START.test(html)) {
+        return marked(html.replace(SHOW_START, '').replace(/^-->$/m, ''), {
+          highlight: this.opts.highlight && highlightFn,
+          linksInNewTab: true
+        })
       }
       return html
     }
