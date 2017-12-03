@@ -242,6 +242,10 @@ ul li strong {
   font-weight: 500;
 }
 
+img {
+  max-width: 100%;
+}
+
 pre {
   background: transparent;
   border: 1px solid #f0f0f0;
