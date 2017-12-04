@@ -174,6 +174,10 @@ Embeding and run code snippets is easy if your provider supports iframe, like [c
 
 Simply put all your files in `docs` folder on `master` branch, or root directory on the `gh-pages` branch.
 
+Then enable it on repo's `settings` page:
+
+![gh-pages enable](https://i.loli.net/2017/12/04/5a24edfb02a93.png)
+
 Don't forget to add `.nojekyll` file to tell GitHub to treat it as a normal static website.
 
 ## API
