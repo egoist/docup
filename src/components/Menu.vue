@@ -32,7 +32,9 @@ export default {
     },
 
     jumpTo(id) {
-      jump(`#${id}`)
+      jump(`#${id}`, {
+        duration: 0
+      })
     }
   },
 

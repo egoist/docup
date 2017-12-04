@@ -116,7 +116,9 @@ export default {
     await this.$nextTick()
     const el = location.hash && document.getElementById(location.hash.slice(1))
     if (el) {
-      jump(el)
+      jump(el, {
+        duration: 0
+      })
     }
   },
 
