@@ -22,13 +22,13 @@ Create an HTML file: `index.html` which will be be homepage of your documentatio
   <link rel="stylesheet" href="https://unpkg.com/@egojump/docup/dist/docup.css">
 </head>
 <body>
-  <div id="app"></div>
+  <div id="docup-root"></div>
   <!-- Script -->
   <script src="https://unpkg.com/@egojump/docup/dist/docup.js"></script>
   <!-- Start app -->
   <script>
     var doc = new Docup()
-    doc.start('#app')
+    doc.start()
   </script>
 </body>
 </html>

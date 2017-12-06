@@ -13,7 +13,7 @@
 <p>The idea is inspired by my another project (<a href="https://docute.js.org" target="_blank">Docute</a>) which in turn is inspired by <a href="http://ricostacruz.com/flatdoc/" target="_blank">Flatdoc</a>. And the design is inspired by <a href="https://github.com/tj" target="_blank">tj (TJ Holowaychuk)</a>'s wonderful docs for <a href="https://up.docs.apex.sh" target="_blank">Apex Up</a>.</p>
 <h2 id="quick-start">Quick Start</h2>
 <p>Create an HTML file: <code>index.html</code> which will be be homepage of your documentation website:</p>
-<pre class=" language-html"><code class=" language-html"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<pre class="  language-html"><code class="  language-html"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
@@ -36,7 +36,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
 </code></pre>
 <p>Then populate a <code>README.md</code> file to the same directory where <code>index.html</code> is located.</p>
-<pre class=" language-md"><code class=" language-md"># My Project
+<pre class="  language-md"><code class="  language-md"># My Project
 
 ## Introduction
 
@@ -58,14 +58,14 @@ How about that.
 <p>We use the value of <code>h1</code> title as the site title.</p>
 <h3 id="message-blocks">Message Blocks</h3>
 <p>To highlight some messages in your documentation, use the following format to write a <code>blockquote</code>:</p>
-<pre class=" language-md"><code class=" language-md">&gt; __Alert__: This is a very dangerous action!
+<pre class="  language-md"><code class="  language-md">&gt; __Alert__: This is a very dangerous action!
 </code></pre>
 <p>On GitHub it will be rendered as follows:</p>
 <p><img src="https://user-images.githubusercontent.com/8784712/33468930-b835cb64-d69a-11e7-8ab2-25585d61915d.png" alt="2017-12-01 1 22 20"></p>
 <p>And with Docup it renders:</p>
 <div class="Message alert"><p>This is a very dangerous action!</p>
 </div><p>We also support other message types which are:</p>
-<pre class=" language-md"><code class=" language-md">&gt; __Info__: This is a info!
+<pre class="  language-md"><code class="  language-md">&gt; __Info__: This is a info!
 
 &lt;!-- --&gt;
 
@@ -90,7 +90,7 @@ How about that.
 <div class="Message note"><p>This is just a note!</p>
 </div><h3 id="hide-specific-content">Hide specific content</h3>
 <p>If you want to display some part on GitHub while keeping it invisible in Docup, you can use following html comment marks:</p>
-<pre class=" language-html"><code class=" language-html">
+<pre class="  language-html"><code class="  language-html">
 <span class="token comment">&lt;!-- hide-on-docup-start --&gt;</span>
 
 This part is not visible while viewing as a Docup website.
@@ -101,7 +101,7 @@ This part is not visible while viewing as a Docup website.
 </div><p>For example, you can see an image down below while <a href="https://github.com/egojump/docup#hide-specific-content" target="_blank">viewing on GitHub</a>. 😜</p>
 <h3 id="show-specific-content">Show specific content</h3>
 <p>If you want to hide some part on GitHub while keeping it visible in Docup, you can use following html comment marks:</p>
-<pre class=" language-html"><code class=" language-html"><span class="token comment">&lt;!-- show-on-docup
+<pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- show-on-docup
 This part is not visible on github, as it's html comment :)
 But it's visible on your Docup website.
 All markdown features except html comments are supported here.
@@ -111,7 +111,7 @@ All markdown features except html comments are supported here.
 <p><img src="https://media.giphy.com/media/e3GqXDAZhNsxG/giphy.gif" alt="hide-image"></p>
 <h3 id="embeding">Embeding</h3>
 <p>Embeding and run code snippets is easy if your provider supports iframe, like <a href="https://codesandbox.io" target="_blank">codesandbox.io</a>:</p>
-<pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span>
+<pre class="  language-html"><code class="  language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span>
   <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://codesandbox.io/embed/vue<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name">
   <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">width</span><span class="token punctuation">:</span>100%<span class="token punctuation">;</span> <span class="token property">height</span><span class="token punctuation">:</span>500px<span class="token punctuation">;</span> <span class="token property">border</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span> <span class="token property">border-radius</span><span class="token punctuation">:</span> 4px<span class="token punctuation">;</span> <span class="token property">overflow</span><span class="token punctuation">:</span>hidden<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span>
   <span class="token attr-name">sandbox</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>allow-modals allow-forms allow-popups allow-scripts allow-same-origin<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -125,7 +125,7 @@ All markdown features except html comments are supported here.
 <p>Don't forget to add <code>.nojekyll</code> file to tell GitHub to treat it as a normal static website.</p>
 <h2 id="api">API</h2>
 <h3 id="constructor">Constructor</h3>
-<pre class=" language-js"><code class=" language-js"><span class="token keyword">const</span> doc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Docup</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span>
+<pre class="  language-js"><code class="  language-js"><span class="token keyword">const</span> doc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Docup</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span>
 </code></pre>
 <h4 id="options">options</h4>
 <h5 id="title">title</h5>
@@ -141,13 +141,13 @@ Default: <code>./</code></p>
 <p>Type: <code>boolean</code> <code>function</code><br>
 Default: <code>true</code></p>
 <p>Whether to highlight code blocks, you can supply a function to customize this:</p>
-<pre class=" language-js"><code class=" language-js"><span class="token keyword">function</span> <span class="token function">highlight</span><span class="token punctuation">(</span>code<span class="token punctuation">,</span> lang<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<pre class="  language-js"><code class="  language-js"><span class="token keyword">function</span> <span class="token function">highlight</span><span class="token punctuation">(</span>code<span class="token punctuation">,</span> lang<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 </code></pre>
 <h5 id="highlightfirstparagraph">highlightFirstParagraph</h5>
 <p>Type: <code>boolean</code><br>
 Default: <code>false</code></p>
 <p>Highlight the first paragraph after <code>h2</code> titles. Basically this option enables following CSS:</p>
-<pre class=" language-css"><code class=" language-css"><span class="token selector">h2 + p</span> <span class="token punctuation">{</span>
+<pre class="  language-css"><code class="  language-css"><span class="token selector">h2 + p</span> <span class="token punctuation">{</span>
   <span class="token property">font-size</span><span class="token punctuation">:</span> 1.6rem<span class="token punctuation">;</span>
   <span class="token property">line-height</span><span class="token punctuation">:</span> 1.6<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
@@ -174,6 +174,7 @@ Default: <code>false</code></p>
     var doc = new Docup()
     doc.start('#app')
   </script>
+
 
 
 </body></html>

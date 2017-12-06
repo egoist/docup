@@ -18,9 +18,9 @@ class Docup {
     }
   }
 
-  start(el) {
+  start(target = 'docup-root') {
     return new Vue({
-      el,
+      el: `#${target}`,
       render: h => h(App, { props: { opts: this.options } })
     })
   }
