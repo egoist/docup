@@ -248,7 +248,7 @@ img {
   max-width: 100%;
 }
 
-pre {
+.Content pre {
   background: transparent;
   border: 1px solid #f0f0f0;
   padding: 30px;
@@ -260,12 +260,12 @@ pre {
   margin: 40px 0;
 }
 
-code {
+.Content code {
   font-family: Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
 }
 
-li > code,
-p > code {
+.Content li > code,
+.Content p > code {
   border: 1px solid #DEE2E6;
   font-size: 0.75rem;
   padding: 3px 10px;

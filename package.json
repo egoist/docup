@@ -18,7 +18,8 @@
     "lint": "xo",
     "dev": "poi -c docs/dev/poi.config.js",
     "build": "poi build -c docs/dev/poi.config.js --component Docup",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "prerender": "presite"
   },
   "author": "egoist <0x142857@gmail.com>",
   "license": "MIT",
@@ -35,6 +36,7 @@
     "express": "^4.16.2",
     "poi": "^9.5.5",
     "poi-preset-bundle-report": "^2.0.2",
+    "presite": "^0.1.5",
     "vue-template-compiler": "^2.5.9",
     "xo": "^0.18.0"
   },
@@ -43,5 +45,9 @@
     "envs": [
       "browser"
     ]
+  },
+  "presite": {
+    "baseDir": "docs",
+    "outDir": "docs"
   }
 }

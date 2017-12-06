@@ -1,23 +1,179 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
+<!DOCTYPE html><html><head>
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>Docup</title>
   <meta name="description" content="Create a beautiful one-page documentation without build process.">
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@egojump/docup@0.0.21/dist/docup.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@egojump/docup@0.0.22/dist/docup.css">
 </head>
 <body>
-  <div id="app"></div>
+  <div data-v-f1455016="" id="docup-root"><div data-v-f1455016="" class="Container"><header data-v-f1455016="" class="Header"><h1 data-v-f1455016="" class="Title">Docup</h1></header> <div data-v-f1455016="" class="Body"><div data-v-f1455016="" class="Sidebar"><div data-v-4c86d82e="" data-v-f1455016="" class="Menu"><div data-v-4c86d82e="" class="Item"><a data-v-4c86d82e="" href="#introduction">Introduction</a></div><div data-v-4c86d82e="" class="Item"><a data-v-4c86d82e="" href="#quick-start">Quick Start</a></div><div data-v-4c86d82e="" class="Item"><a data-v-4c86d82e="" href="#guide">Guide</a></div><div data-v-4c86d82e="" class="Item"><a data-v-4c86d82e="" href="#deploy">Deploy</a></div><div data-v-4c86d82e="" class="Item"><a data-v-4c86d82e="" href="#api">API</a></div><div data-v-4c86d82e="" class="Item"><a data-v-4c86d82e="" href="#roadmap">Roadmap</a></div><div data-v-4c86d82e="" class="Item"><a data-v-4c86d82e="" href="#license">License</a></div></div></div> <div data-v-f1455016="" class="Main"><div data-v-f1455016="" class="Content"><h2 id="introduction">Introduction</h2>
+<p>Docup is a single JavaScript file that fetches Markdown file and renders it as a beautiful one-page documentation.</p>
+<p>The idea is inspired by my another project (<a href="https://docute.js.org" target="_blank">Docute</a>) which in turn is inspired by <a href="http://ricostacruz.com/flatdoc/" target="_blank">Flatdoc</a>. And the design is inspired by <a href="https://github.com/tj" target="_blank">tj (TJ Holowaychuk)</a>'s wonderful docs for <a href="https://up.docs.apex.sh" target="_blank">Apex Up</a>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<p>Create an HTML file: <code>index.html</code> which will be be homepage of your documentation website:</p>
+<pre class=" language-html"><code class=" language-html"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>My Awesome Doc<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token comment">&lt;!-- Stylesheet --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://unpkg.com/@egojump/docup/dist/docup.css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token comment">&lt;!-- Script --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://unpkg.com/@egojump/docup/dist/docup.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  <span class="token comment">&lt;!-- Start app --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+    <span class="token keyword">var</span> doc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Docup</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    doc<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span>
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>Then populate a <code>README.md</code> file to the same directory where <code>index.html</code> is located.</p>
+<pre class=" language-md"><code class=" language-md"># My Project
+
+## Introduction
+
+How about this.
+
+## Advanced
+
+How about that.
+</code></pre>
+<p>Finally serve this directory as a static website:</p>
+<ul>
+<li>node.js: <code>npm i -g serve</code> &amp;&amp; <code>serve ./docs</code></li>
+<li>python: <code>cd ./docs</code> &amp;&amp; <code>python -m SimpleHTTPServer</code></li>
+<li>golang: <code>cd ./docs</code> &amp;&amp; <code>caddy</code></li>
+<li>...etc, you can use any static file server, for real.</li>
+</ul>
+<h2 id="guide">Guide</h2>
+<h3 id="site-title">Site Title</h3>
+<p>We use the value of <code>h1</code> title as the site title.</p>
+<h3 id="message-blocks">Message Blocks</h3>
+<p>To highlight some messages in your documentation, use the following format to write a <code>blockquote</code>:</p>
+<pre class=" language-md"><code class=" language-md">&gt; __Alert__: This is a very dangerous action!
+</code></pre>
+<p>On GitHub it will be rendered as follows:</p>
+<p><img src="https://user-images.githubusercontent.com/8784712/33468930-b835cb64-d69a-11e7-8ab2-25585d61915d.png" alt="2017-12-01 1 22 20"></p>
+<p>And with Docup it renders:</p>
+<div class="Message alert"><p>This is a very dangerous action!</p>
+</div><p>We also support other message types which are:</p>
+<pre class=" language-md"><code class=" language-md">&gt; __Info__: This is a info!
+
+&lt;!-- --&gt;
+
+&gt; __Warning__: This is a warning!
+
+&lt;!-- --&gt;
+
+&gt; __Success__: This is ok!
+
+&lt;!-- --&gt;
+
+&gt; __Note__: This is just a note!
+</code></pre>
+<div class="Message warning"><p>Notice the <code>&lt;!-- --&gt;</code> here, we use it to write multiple blockquotes in sequence without them being merged into one blockquote. It's unnecessary if you only have one blockquote.</p>
+</div><p>And they look like:</p>
+<div class="Message info"><p>This is a info!</p>
+</div><!-- -->
+<div class="Message warning"><p>This is a warning!</p>
+</div><!-- -->
+<div class="Message success"><p>This is ok!</p>
+</div><!-- -->
+<div class="Message note"><p>This is just a note!</p>
+</div><h3 id="hide-specific-content">Hide specific content</h3>
+<p>If you want to display some part on GitHub while keeping it invisible in Docup, you can use following html comment marks:</p>
+<pre class=" language-html"><code class=" language-html">
+<span class="token comment">&lt;!-- hide-on-docup-start --&gt;</span>
+
+This part is not visible while viewing as a Docup website.
+
+<span class="token comment">&lt;!-- hide-on-docup-stop --&gt;</span>
+</code></pre>
+<div class="Message warning"><p>There should be newlines wrapping the starting and ending mark, like what you see above.</p>
+</div><p>For example, you can see an image down below while <a href="https://github.com/egojump/docup#hide-specific-content" target="_blank">viewing on GitHub</a>. 😜</p>
+<h3 id="show-specific-content">Show specific content</h3>
+<p>If you want to hide some part on GitHub while keeping it visible in Docup, you can use following html comment marks:</p>
+<pre class=" language-html"><code class=" language-html"><span class="token comment">&lt;!-- show-on-docup
+This part is not visible on github, as it's html comment :)
+But it's visible on your Docup website.
+All markdown features except html comments are supported here.
+--&gt;</span>
+</code></pre>
+<p>If you're on the Docup website, you can see an image down below.</p>
+<p><img src="https://media.giphy.com/media/e3GqXDAZhNsxG/giphy.gif" alt="hide-image"></p>
+<h3 id="embeding">Embeding</h3>
+<p>Embeding and run code snippets is easy if your provider supports iframe, like <a href="https://codesandbox.io" target="_blank">codesandbox.io</a>:</p>
+<pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span>
+  <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://codesandbox.io/embed/vue<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name">
+  <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">width</span><span class="token punctuation">:</span>100%<span class="token punctuation">;</span> <span class="token property">height</span><span class="token punctuation">:</span>500px<span class="token punctuation">;</span> <span class="token property">border</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span> <span class="token property">border-radius</span><span class="token punctuation">:</span> 4px<span class="token punctuation">;</span> <span class="token property">overflow</span><span class="token punctuation">:</span>hidden<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span>
+  <span class="token attr-name">sandbox</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>allow-modals allow-forms allow-popups allow-scripts allow-same-origin<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<h2 id="deploy">Deploy</h2>
+<h3 id="github-pages">GitHub Pages</h3>
+<p>Simply put all your files in <code>docs</code> folder on <code>master</code> branch, or root directory on the <code>gh-pages</code> branch.</p>
+<p>Then enable it on repo's <code>settings</code> page:</p>
+<p><img src="https://i.loli.net/2017/12/04/5a24edfb02a93.png" alt="gh-pages enable"></p>
+<p>Don't forget to add <code>.nojekyll</code> file to tell GitHub to treat it as a normal static website.</p>
+<h2 id="api">API</h2>
+<h3 id="constructor">Constructor</h3>
+<pre class=" language-js"><code class=" language-js"><span class="token keyword">const</span> doc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Docup</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span>
+</code></pre>
+<h4 id="options">options</h4>
+<h5 id="title">title</h5>
+<p>Type: <code>string</code></p>
+<p>The title that is shown in the header. It defaults to the value of <code>h1</code> title in your markdown file.</p>
+<h5 id="indexfile">indexFile</h5>
+<p>Type: <code>string</code><br>
+Default: <code>README.md</code></p>
+<h5 id="root">root</h5>
+<p>Type: <code>string</code><br>
+Default: <code>./</code></p>
+<h5 id="highlight">highlight</h5>
+<p>Type: <code>boolean</code> <code>function</code><br>
+Default: <code>true</code></p>
+<p>Whether to highlight code blocks, you can supply a function to customize this:</p>
+<pre class=" language-js"><code class=" language-js"><span class="token keyword">function</span> <span class="token function">highlight</span><span class="token punctuation">(</span>code<span class="token punctuation">,</span> lang<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre>
+<h5 id="highlightfirstparagraph">highlightFirstParagraph</h5>
+<p>Type: <code>boolean</code><br>
+Default: <code>false</code></p>
+<p>Highlight the first paragraph after <code>h2</code> titles. Basically this option enables following CSS:</p>
+<pre class=" language-css"><code class=" language-css"><span class="token selector">h2 + p</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 1.6rem<span class="token punctuation">;</span>
+  <span class="token property">line-height</span><span class="token punctuation">:</span> 1.6<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="doc-starttarget">doc.start(target)</h4>
+<h5 id="target">target</h5>
+<p>Type: <code>string</code> <code>HTMLElement</code></p>
+<p>The place to mount app to.</p>
+<h2 id="roadmap">Roadmap</h2>
+<h3 id="browser-support">Browser support</h3>
+<p>I will add support for IE10+ very soon.</p>
+<h3 id="prerender">Prerender</h3>
+<p>Prerender <code>index.html</code></p>
+<h3 id="multi-route-support">Multi-route support</h3>
+<p>Maybe, maybe not.</p>
+<h2 id="license">License</h2>
+<p>MIT © EGOIST</p>
+</div> <div data-v-f1455016="" class="Footer"></div></div></div></div></div>
   <a href="https://github.com/egoist/docup" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
   <!-- Script -->
-  <script src="https://cdn.jsdelivr.net/npm/@egojump/docup@0.0.21/dist/docup.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@egojump/docup@0.0.22/dist/docup.js"></script>
   <!-- Start app -->
   <script>
     var doc = new Docup()
     doc.start('#app')
   </script>
-</body>
-</html>
+
+
+</body></html>
