@@ -25,6 +25,7 @@ import slugo from 'slugo'
 import jump from 'jump.js'
 
 import highlight from '../utils/highlight'
+import linksInNewTab from '../utils/links-in-new-tab'
 import DocMenu from './Menu.vue'
 import DocLoading from './Loading.vue'
 
@@ -89,7 +90,7 @@ export default {
       if (SHOW_START.test(html)) {
         return marked(html.replace(SHOW_START, '').replace(/^-->$/m, ''), {
           highlight: this.opts.highlight && highlightFn,
-          linksInNewTab: true
+          linksInNewTab
         })
       }
       return html
@@ -99,7 +100,7 @@ export default {
     let html = marked(content, {
       renderer,
       highlight: this.opts.highlight && highlightFn,
-      linksInNewTab: true
+      linksInNewTab
     })
 
     // Strip out hidden contents
