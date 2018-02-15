@@ -3641,9 +3641,9 @@ markdown-escapes@^1.0.0:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/markdown-escapes/download/markdown-escapes-1.0.1.tgz#1994df2d3af4811de59a6714934c2b2292734518"
 
-marked3@^0.5.1:
-  version "0.5.1"
-  resolved "http://registry.npm.taobao.org/marked3/download/marked3-0.5.1.tgz#af006fe7d4f949d42f036c9a403094f7675d0db2"
+marked3@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/marked3/-/marked3-0.5.2.tgz#4570728cc4b58afb253e72aeb2a5acde1fc96f51"
   dependencies:
     slugo "^0.2.1"
 
