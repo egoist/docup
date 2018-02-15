@@ -24,7 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "jump.js": "^1.0.2",
-    "marked3": "^0.5.1",
+    "marked3": "^0.5.2",
     "prismjs": "^1.8.4",
     "slugo": "^0.2.1",
     "unfetch": "^3.0.0",
