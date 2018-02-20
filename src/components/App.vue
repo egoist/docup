@@ -4,6 +4,7 @@
     <div class="Container" v-else>
       <header class="Header" v-if="title">
         <h1 class="Title" v-html="title"></h1>
+        <h2 class="Description" v-if="description" v-html="description"></h2>
       </header>
       <div class="Body">
         <div class="Sidebar">
@@ -35,6 +36,7 @@ export default {
   data() {
     return {
       title: null,
+      description: this.opts.description,
       html: '',
       menu: [],
       loading: true
@@ -350,6 +352,7 @@ blockquote p:not(:first-child),
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: var(--header-height);
 }
 
@@ -357,6 +360,14 @@ blockquote p:not(:first-child),
   margin: 0;
   font-size: 18px;
   text-transform: uppercase;
+}
+
+.Description {
+  margin-top: 0;
+  padding-top: 10px;
+  font-size: 14px;
+  color: var(--fg);
+  font-weight: 400;
 }
 
 .Body {

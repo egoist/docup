@@ -4,6 +4,7 @@ import App from './components/App.vue'
 class Docup {
   constructor({
     title,
+    description,
     indexFile = 'README.md',
     root = './',
     highlight = true,
@@ -11,6 +12,7 @@ class Docup {
   } = {}) {
     this.options = {
       title,
+      description,
       indexFile,
       root,
       highlight,

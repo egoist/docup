@@ -196,6 +196,12 @@ Type: `string`
 
 The title that is shown in the header. It defaults to the value of `h1` title in your markdown file.
 
+##### description
+
+Type: `string`
+
+The description that is shown below the title.
+
 ##### indexFile
 
 Type: `string`<br>
