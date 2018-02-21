@@ -35,6 +35,7 @@
     "express": "^4.16.2",
     "poi": "^9.5.5",
     "poi-preset-bundle-report": "^2.0.2",
+    "raw-loader": "^0.5.1",
     "vue-template-compiler": "^2.5.9",
     "xo": "^0.18.0"
   },

@@ -1,5 +1,7 @@
 <template>
-  <div id="docup-root">
+  <div
+    id="docup-root"
+    :style="{'font-family': opts.customFont}">
     <doc-loading v-if="loading" />
     <div class="Container" v-else>
       <header class="Header" v-if="title">
@@ -30,6 +32,8 @@ import linksInNewTab from '../utils/links-in-new-tab'
 import DocMenu from './Menu.vue'
 import DocLoading from './Loading.vue'
 
+import anchorIcon from '!raw-loader!../svg/anchor.svg'
+
 export default {
   props: ['opts'],
 
@@ -57,12 +61,14 @@ export default {
         }
         return ''
       }
+      const slug = slugo(raw)
       if (depth === 2) {
         menu.push({
           title: text,
-          slug: slugo(raw)
+          slug
         })
       }
+      text = `<a class="Anchor" href="#${slug}">${anchorIcon}</a>${text}`
       return orginalHeading(text, depth, raw)
     }
     const originalBlockquote = renderer.blockquote
@@ -345,6 +351,32 @@ blockquote p:not(:first-child),
   border-color: #23d160;
   color: #0e301a;
 }
+
+.Anchor {
+  position: relative;
+  margin-left: -14px;
+  opacity: 0.15;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  visibility: hidden;
+}
+
+.Anchor:hover {
+  opacity: 1;
+}
+
+.Anchor svg {
+  position: absolute;
+  right: 5px;
+  top: 0;
+}
+
+h2:hover .Anchor,
+h3:hover .Anchor,
+h4:hover .Anchor {
+  visibility: visible;
+}
 </style>
 
 <style scoped>
@@ -358,16 +390,16 @@ blockquote p:not(:first-child),
 
 .Title {
   margin: 0;
-  font-size: 18px;
+  font-size: 20px;
   text-transform: uppercase;
 }
 
 .Description {
   margin-top: 0;
   padding-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--fg);
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .Body {

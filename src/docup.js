@@ -1,22 +1,24 @@
 import Vue from 'vue'
 import App from './components/App.vue'
 
+// import 'typeface-open-sans/index.css'
+// import 'typeface-source-sans-pro/index.css'
+
 class Docup {
-  constructor({
-    title,
-    description,
-    indexFile = 'README.md',
-    root = './',
-    highlight = true,
-    highlightFirstParagraph = false
-  } = {}) {
+  constructor(options) {
     this.options = {
-      title,
-      description,
-      indexFile,
-      root,
-      highlight,
-      highlightFirstParagraph
+      indexFile: 'README.md',
+      root: './',
+      highlight: true,
+      highlightFirstParagraph: false,
+      ...options
+    }
+
+    if (this.options.customFont) {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = `https://fonts.googleapis.com/css?family=${encodeURIComponent(this.options.customFont)}:300,400,600`
+      document.head.appendChild(link)
     }
   }
 

@@ -237,6 +237,15 @@ h2 + p {
 }
 ```
 
+##### customFont
+
+Type: `string`<br>
+Default: `undefined`
+
+Use a custom font from [Google Fonts](https://fonts.google.com/), we will automatically inject corresponding `<link>` tag into head if this is set.
+
+For example, try using `Source Sans Pro` or `Open Sans` here.
+
 #### doc.start(target)
 
 ##### target
