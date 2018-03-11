@@ -260,6 +260,10 @@ h2:first-child {
   padding-top: 0;
 }
 
+h4 {
+  font-size: 1rem;
+}
+
 .highlightFirstParagraph h2 + p {
   font-size: 1.6rem;
   line-height: 1.6;
