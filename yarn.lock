@@ -3641,12 +3641,6 @@ markdown-escapes@^1.0.0:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/markdown-escapes/download/markdown-escapes-1.0.1.tgz#1994df2d3af4811de59a6714934c2b2292734518"
 
-marked3@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/marked3/-/marked3-0.5.2.tgz#4570728cc4b58afb253e72aeb2a5acde1fc96f51"
-  dependencies:
-    slugo "^0.2.1"
-
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
   resolved "http://registry.npm.taobao.org/math-expression-evaluator/download/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
@@ -3657,6 +3651,12 @@ md5.js@^1.3.4:
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+
+md@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/md/-/md-0.6.0.tgz#5a42cebfc50ef09f87f694ddcff1e3dfc0ab6ca6"
+  dependencies:
+    slugo "^0.2.1"
 
 media-typer@0.3.0:
   version "0.3.0"

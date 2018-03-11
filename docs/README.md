@@ -10,7 +10,7 @@ The idea is inspired by my another project ([Docute](https://docute.js.org)) whi
 
 Create an HTML file: `index.html` which will be be homepage of your documentation website:
 
-```html
+```html{9,12,14,17-18}
 <!DOCTYPE html>
 <html>
 <head>

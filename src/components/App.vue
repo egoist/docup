@@ -23,7 +23,7 @@
 
 <script>
 import fetch from 'unfetch'
-import marked from 'marked3'
+import md from 'md'
 import slugo from 'slugo'
 import jump from 'jump.js'
 
@@ -49,8 +49,10 @@ export default {
 
   async created() {
     this.loading = true
-    const content = await fetch(`${this.opts.root}${this.opts.indexFile}`).then(res => res.text())
-    const renderer = new marked.Renderer()
+    const content = await fetch(`${this.opts.root}${this.opts.indexFile}`).then(
+      res => res.text()
+    )
+    const renderer = new md.Renderer()
     const orginalHeading = renderer.heading.bind(renderer)
     let title = this.opts.title
     const menu = []
@@ -76,7 +78,10 @@ export default {
       const RE = /^<p><strong>(.+)<\/strong>:\s*/
       if (RE.test(quote)) {
         const TAG = RE.exec(quote)[1]
-        return `<div class="Message ${TAG.toLowerCase()}"><p>${quote.replace(RE, '')}</div>`
+        return `<div class="Message ${TAG.toLowerCase()}"><p>${quote.replace(
+          RE,
+          ''
+        )}</div>`
       }
       return originalBlockquote(quote)
     }
@@ -96,7 +101,7 @@ export default {
         return HIDE_STOP_HOLDER + hideCount
       }
       if (SHOW_START.test(html)) {
-        return marked(html.replace(SHOW_START, '').replace(/^-->$/m, ''), {
+        return md(html.replace(SHOW_START, '').replace(/^-->$/m, ''), {
           highlight: this.opts.highlight && highlightFn,
           linksInNewTab
         })
@@ -104,8 +109,52 @@ export default {
       return html
     }
 
-    const highlightFn = typeof this.opts.highlight === 'function' ? this.opts.highlight : highlight
-    let html = marked(content, {
+    const highlightLinesRe = /{([\d,-]+)}/
+    const rendererCode = renderer.code.bind(renderer)
+    renderer.code = (code, lang, escaped) => {
+      code = rendererCode(code, lang, escaped)
+
+      if (lang && highlightLinesRe.test(lang)) {
+        const lineNumbers = highlightLinesRe
+          .exec(lang)[1]
+          .split(',')
+          .map(v => v.split('-').map(v => parseInt(v)))
+        const codeSplits = code.split('\n').map((split, index) => {
+          const lineNumber = index + 1
+          const inRange = lineNumbers.some(([start, end]) => {
+            if (start && end) {
+              return lineNumber >= start && lineNumber <= end
+            }
+            return lineNumber === start
+          })
+          if (inRange) {
+            return {
+              code: `<span class="docup-highlight-line">${split}</span>`,
+              highlighted: true
+            }
+          }
+          return {
+            code: split
+          }
+        })
+        let highlightedCode = ''
+        codeSplits.forEach(
+          split =>
+            split.highlighted
+              ? (highlightedCode += split.code)
+              : (highlightedCode += `${split.code}\n`)
+        )
+        return highlightedCode
+      }
+
+      return code
+    }
+
+    const highlightFn =
+      typeof this.opts.highlight === 'function'
+        ? this.opts.highlight
+        : highlight
+    let html = md(content, {
       renderer,
       highlight: this.opts.highlight && highlightFn,
       linksInNewTab
@@ -113,7 +162,10 @@ export default {
 
     // Strip out hidden contents
     for (let i = 0; i < hideCount; i++) {
-      const RE = new RegExp(`${HIDE_START_HOLDER}${i+1}([\\s\\S]*)${HIDE_STOP_HOLDER}${i+1}`, 'gi')
+      const RE = new RegExp(
+        `${HIDE_START_HOLDER}${i + 1}([\\s\\S]*)${HIDE_STOP_HOLDER}${i + 1}`,
+        'gi'
+      )
       html = html.replace(RE, '')
     }
 
@@ -146,16 +198,16 @@ export default {
 }
 
 :root {
-  --ease: cubic-bezier(.82, 0, .12, 1);
+  --ease: cubic-bezier(0.82, 0, 0.12, 1);
   --width: 800px;
   --header-height: 400px;
 
   --dark: #000;
-  --blue: #33A9FF;
+  --blue: #33a9ff;
   --light-gray: #fafafa;
 
   --bg: #fff;
-  --fg: #868E96;
+  --fg: #868e96;
   --fg-dark: #212529;
 
   --selection-bg: var(--blue);
@@ -164,10 +216,9 @@ export default {
 
 body {
   margin: 0;
-  font: 16px/1.4 -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font: 16px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   font-weight: 300;
 }
 
@@ -176,7 +227,20 @@ body {
   max-width: var(--width);
 }
 
-h2, h3, h4 {
+.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string {
+  background: transparent;
+}
+
+.docup-highlight-line {
+  background-color: #f7f8f9;
+  display: block;
+  margin: 0 -30px;
+  padding: 0 30px;
+}
+
+h2,
+h3,
+h4 {
   margin-top: 75px;
   margin-bottom: 0;
   font-size: 1.2rem;
@@ -201,7 +265,9 @@ h2:first-child {
   line-height: 1.6;
 }
 
-h2 + iframe, h3 + iframe, h4 + iframe {
+h2 + iframe,
+h3 + iframe,
+h4 + iframe {
   margin-top: 25px;
 }
 
@@ -261,21 +327,25 @@ pre {
   background: transparent;
   border: 1px solid #f0f0f0;
   padding: 30px;
-  border-radius: 2px;
+  border-radius: 3px;
   overflow-x: auto;
-  font: "Source Code Pro", Menlo, monospace;
-  font-size: .8em;
+  font-family: 'Source Code Pro', Menlo, monospace;
+  font-size: 0.8em;
   line-height: 1.5em;
   margin: 40px 0;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 code {
-  font-family: Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+  font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
+    'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace,
+    serif;
 }
 
 li > code,
 p > code {
-  border: 1px solid #DEE2E6;
+  border: 1px solid #dee2e6;
   font-size: 0.75rem;
   padding: 3px 10px;
   border-radius: 3px;
