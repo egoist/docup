@@ -168,6 +168,28 @@ Embeding and run code snippets is easy if your provider supports iframe, like [c
 </iframe>
 ```
 
+### Hightlight
+
+Docup uses [Prism.js](http://prismjs.com/) to highlight code blocks, by default only a few languages are supported, namely: `html` `css` `js` `markdown` `bash` `json`, you can manually load Prism language components to support more languages, e.g. for Go programming language:
+
+```html{3}
+<script src="https://unpkg.com/@egojump/docup/dist/docup.js"></script>
+<!-- Load languages after main Docup script -->
+<script src="https://unpkg.com/prismjs/components/prism-go.js"></script>
+```
+
+#### Highlight specific lines
+
+As you can see in the above section, the third line in the code block is highlighted with a background color, this is achieved by:
+
+````markdown{3}
+```html{2}
+<div>
+  This line will be highlighted!
+</div>
+```
+````
+
 ## Deploy
 
 ### GitHub Pages
