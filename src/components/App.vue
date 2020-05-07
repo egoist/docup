@@ -14,7 +14,7 @@
           <doc-menu :menu="menu" />
         </div>
         <div class="Main">
-          <div class="Content" :class="{'highlightFirstParagraph': opts.highlightFirstParagraph}" v-html="html"></div>
+          <div class="Content" v-html="html"></div>
           <div class="Footer"></div>
         </div>
       </div>
@@ -276,11 +276,6 @@ h4 {
 
 h5 {
   font-size: 1rem;
-}
-
-.highlightFirstParagraph h2 + p {
-  font-size: 1.6rem;
-  line-height: 1.6;
 }
 
 h2 + iframe,

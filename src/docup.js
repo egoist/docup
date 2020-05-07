@@ -10,7 +10,6 @@ class Docup {
       indexFile: 'README.md',
       root: './',
       highlight: true,
-      highlightFirstParagraph: false,
       ...options
     }
 

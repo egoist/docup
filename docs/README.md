@@ -277,20 +277,6 @@ Whether to highlight code blocks, you can supply a function to customize this:
 function highlight(code, lang) {}
 ```
 
-##### highlightFirstParagraph
-
-Type: `boolean`<br>
-Default: `false`
-
-Highlight the first paragraph after `h2` titles. Basically this option enables following CSS:
-
-```css
-h2 + p {
-  font-size: 1.6rem;
-  line-height: 1.6;
-}
-```
-
 ##### customFont
 
 Type: `string`<br>
