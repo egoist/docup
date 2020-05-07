@@ -16,8 +16,9 @@
   <script src="https://cdn.jsdelivr.net/npm/@egoist/docup@0.0.29/dist/docup.js"></script>
   <!-- Start app -->
   <script>
-    var doc = new Docup()
-    doc.start('#app')
+    docup.init({
+      target: '#app'
+    });
   </script>
 </body>
 </html>

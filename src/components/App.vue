@@ -211,8 +211,6 @@ export default {
 };
 </script>
 
-<style src="prismjs/themes/prism.css"></style>
-
 <style>
 * {
   box-sizing: border-box;
@@ -232,6 +230,10 @@ export default {
 
   --selection-bg: var(--blue);
   --selection-fg: white;
+  --highlight-line-bg: rgb(9, 39, 121);
+  --highlight-line-border-color: rgb(26, 159, 221);
+  --code-block-bg: #011627;
+  --code-block-color: #d6deeb;
 }
 
 body {
@@ -256,7 +258,8 @@ body {
 }
 
 .docup-highlight-line {
-  background-color: #f7f8f9;
+  background-color: var(--highlight-line-bg);
+  box-shadow: inset 4px 0 0 var(--highlight-line-border-color);
   display: block;
   margin: 0 -30px;
   padding: 0 30px;
@@ -351,10 +354,10 @@ img {
 }
 
 pre {
-  background: transparent;
-  border: 1px solid #f0f0f0;
+  color: var(--code-block-color);
+  background: var(--code-block-bg);
   padding: 30px;
-  border-radius: 3px;
+  border-radius: 12px;
   overflow-x: auto;
   font-family: "Source Code Pro", Menlo, monospace;
   font-size: 0.8em;
@@ -362,6 +365,8 @@ pre {
   margin: 40px 0;
   white-space: pre-wrap;
   word-break: break-word;
+  tab-size: 4;
+  hyphens: none;
 }
 
 code {

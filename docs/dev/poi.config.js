@@ -2,7 +2,7 @@ const express = require('express')
 const pkg = require('../../package')
 
 module.exports = {
-  entry: ['src/index.js', 'docs/dev/main.js'],
+  entry: ['docs/dev/main.js'],
   envs: {
     DOCUP_VERSION: pkg.version
   },

@@ -1,5 +1,8 @@
-const doc = new Docup({
+
+import {init} from '../../src'
+
+init({
+  target: '#app',
   logo: '<img src="logo.svg" width="60">',
-  description: 'simply beautiful documentation.'
+  description: 'Simply beautiful documentation.'
 })
-doc.start('#app')

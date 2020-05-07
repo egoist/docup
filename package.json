@@ -30,6 +30,7 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@types/jump.js": "^1.0.3",
     "express": "^4.16.2",
     "poi": "^12.8.0",
     "raw-loader": "^0.5.1",

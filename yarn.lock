@@ -957,6 +957,11 @@
   resolved "https://registry.yarnpkg.com/@types/html-minifier-terser/-/html-minifier-terser-5.1.0.tgz#551a4589b6ee2cc9c1dff08056128aec29b94880"
   integrity sha512-iYCgjm1dGPRuo12+BStjd1HiVQqhlRhWDOQigNxn023HcjnhsiFz9pc6CzJj4HwDCSQca9bxTL4PxJDbkdm3PA==
 
+"@types/jump.js@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@types/jump.js/-/jump.js-1.0.3.tgz#fa146aea4cbfdbe01bfc79f1d5c5d153459540e4"
+  integrity sha512-PPBrbkTL2Dfb7DWazS31wGJ9vYRvl6/FLYVQPZUO1DhWXA9AdulMPoWc2LAZdCdTLEGn+vFMYEHHUgXYzeQBXA==
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
