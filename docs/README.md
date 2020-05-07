@@ -14,7 +14,7 @@ The idea is inspired by my another project ([Docute](https://docute.js.org)) whi
 
 Create an HTML file: `index.html` which will be be homepage of your documentation website:
 
-```html{9,12,14,17-18}
+```html {highlightLines:[9,12,14,17-18]}
 <!DOCTYPE html>
 <html>
 <head>
@@ -194,7 +194,7 @@ Embeding and run code snippets is easy if your provider supports iframe, like [c
 
 Docup uses [Prism.js](http://prismjs.com/) to highlight code blocks, by default only a few languages are supported, namely: `html` `css` `js` `markdown` `bash` `json`, you can manually load Prism language components to support more languages, e.g. for Go programming language:
 
-```html{3}
+```html {highlightLines: 3}
 <script src="https://unpkg.com/@egoist/docup/dist/docup.js"></script>
 <!-- Load languages after main Docup script -->
 <script src="https://unpkg.com/prismjs/components/prism-go.js"></script>
@@ -204,8 +204,8 @@ Docup uses [Prism.js](http://prismjs.com/) to highlight code blocks, by default 
 
 As you can see in the above section, the third line in the code block is highlighted with a background color, this is achieved by:
 
-````markdown{3}
-```html{2}
+````markdown {highlightLines: 3}
+```html {highlightLines: 2}
 <div>
   This line will be highlighted!
 </div>

@@ -1,13 +1,15 @@
 <template>
-  <div
-    id="docup-root"
-    :style="{'font-family': opts.customFont}">
+  <div id="docup-root" :style="{ 'font-family': opts.customFont }">
     <doc-loading v-if="loading" />
     <div class="Container" v-else>
       <header class="Header" v-if="title">
         <div class="Logo" v-if="opts.logo" v-html="opts.logo"></div>
         <h1 class="Title" v-html="title"></h1>
-        <h2 class="Description" v-if="opts.description" v-html="opts.description"></h2>
+        <h2
+          class="Description"
+          v-if="opts.description"
+          v-html="opts.description"
+        ></h2>
       </header>
       <div class="Body">
         <div class="Sidebar">
@@ -23,180 +25,190 @@
 </template>
 
 <script>
-import fetch from 'unfetch'
-import md from 'md'
-import slugo from 'slugo'
-import jump from 'jump.js'
+import fetch from "unfetch";
+import marked from "marked";
+import jump from "jump.js";
 
-import highlight from '../utils/highlight'
-import linksInNewTab from '../utils/links-in-new-tab'
-import DocMenu from './Menu.vue'
-import DocLoading from './Loading.vue'
+import highlight from "../utils/highlight";
+import linksInNewTab from "../utils/links-in-new-tab";
+import { evaluate } from "../utils/evaluate";
+import DocMenu from "./Menu.vue";
+import DocLoading from "./Loading.vue";
 
-import anchorIcon from '!raw-loader!../svg/anchor.svg'
+import anchorIcon from "!raw-loader!../svg/anchor.svg";
 
 export default {
-  props: ['opts'],
+  props: ["opts"],
 
   data() {
     return {
       title: null,
-      html: '',
+      html: "",
       menu: [],
-      loading: true
-    }
+      loading: true,
+    };
   },
 
   async created() {
-    this.loading = true
-    const content = await fetch(`${this.opts.root}${this.opts.indexFile}`).then(
-      res => res.text()
-    )
-    const renderer = new md.Renderer()
-    const orginalHeading = renderer.heading.bind(renderer)
-    let title = this.opts.title
-    const menu = []
-    renderer.heading = (text, depth, raw) => {
+    this.loading = true;
+    const content = await fetch(
+      `${this.opts.root}${this.opts.indexFile}`
+    ).then((res) => res.text());
+    const renderer = new marked.Renderer();
+    const orginalHeading = renderer.heading.bind(renderer);
+    let title = this.opts.title;
+    const menu = [];
+    renderer.heading = (text, depth, raw, slugger) => {
       if (depth === 1) {
         if (!title) {
-          title = text
+          title = text;
         }
-        return ''
+        return "";
       }
-      const slug = slugo(raw)
+      const slug = slugger.slug(raw);
       if (depth === 2) {
         menu.push({
           title: text,
-          slug
-        })
+          slug,
+        });
       }
-      text = `<a class="Anchor" href="#${slug}">${anchorIcon}</a>${text}`
-      return orginalHeading(text, depth, raw)
-    }
-    const originalBlockquote = renderer.blockquote
-    renderer.blockquote = quote => {
-      const RE = /^<p><strong>(.+)<\/strong>:\s*/
+      text = `<a class="Anchor" href="#${slug}">${anchorIcon}</a>${text}`;
+      return orginalHeading(text, depth, raw, slugger);
+    };
+    const originalBlockquote = renderer.blockquote;
+    renderer.blockquote = (quote) => {
+      const RE = /^<p><strong>(.+)<\/strong>:\s*/;
       if (RE.test(quote)) {
-        const TAG = RE.exec(quote)[1]
+        const TAG = RE.exec(quote)[1];
         return `<div class="Message ${TAG.toLowerCase()}"><p>${quote.replace(
           RE,
-          ''
-        )}</div>`
+          ""
+        )}</div>`;
       }
-      return originalBlockquote(quote)
-    }
+      return originalBlockquote(quote);
+    };
 
-    let hideCount = 0
-    const HIDE_START = /^<!--\s*hide-on-docup-start\s*-->/
-    const HIDE_STOP = /^<!--\s*hide-on-docup-stop\s*-->/
-    const HIDE_START_HOLDER = '#!!!hide-start!!!'
-    const HIDE_STOP_HOLDER = '#!!!hide-stop!!!'
-    const SHOW_START = /^<!--\s*show-on-docup\s*\n/
-    const DIV_START = /<!--\s*<div([^>]+)+>\s*-->/
-    const DIV_END = /<!--\s*<\/div>\s*-->/
-    renderer.html = html => {
+    let hideCount = 0;
+    const HIDE_START = /^<!--\s*hide-on-docup-start\s*-->/;
+    const HIDE_STOP = /^<!--\s*hide-on-docup-stop\s*-->/;
+    const HIDE_START_HOLDER = "#!!!hide-start!!!";
+    const HIDE_STOP_HOLDER = "#!!!hide-stop!!!";
+    const SHOW_START = /^<!--\s*show-on-docup\s*\n/;
+    const DIV_START = /<!--\s*<div([^>]+)+>\s*-->/;
+    const DIV_END = /<!--\s*<\/div>\s*-->/;
+    renderer.html = (html) => {
       if (HIDE_START.test(html)) {
-        hideCount++
-        return HIDE_START_HOLDER + hideCount
+        hideCount++;
+        return HIDE_START_HOLDER + hideCount;
       }
       if (HIDE_STOP.test(html)) {
-        return HIDE_STOP_HOLDER + hideCount
+        return HIDE_STOP_HOLDER + hideCount;
       }
       if (SHOW_START.test(html)) {
-        return md(html.replace(SHOW_START, '').replace(/^-->$/m, ''), {
+        return marked(html.replace(SHOW_START, "").replace(/^-->$/m, ""), {
           highlight: this.opts.highlight && highlightFn,
-          linksInNewTab
-        })
+          linksInNewTab,
+        });
       }
       if (DIV_START.test(html)) {
-        const m = DIV_START.exec(html)
-        return `<div${m[1]}>`
+        const m = DIV_START.exec(html);
+        return `<div${m[1]}>`;
       }
       if (DIV_END.test(html)) {
-        return `</div>`
+        return `</div>`;
       }
-      return html
-    }
+      return html;
+    };
 
-    const highlightLinesRe = /{([\d,-]+)}/
-    const rendererCode = renderer.code.bind(renderer)
+    const CODE_BLOCK_OPTIONS_RE = /{([^}]+)}/;
+    const rendererCode = renderer.code.bind(renderer);
     renderer.code = (code, lang, escaped) => {
-      code = rendererCode(code, lang, escaped)
+      code = rendererCode(code, lang, escaped);
 
-      if (lang && highlightLinesRe.test(lang)) {
-        const lineNumbers = highlightLinesRe
-          .exec(lang)[1]
-          .split(',')
-          .map(v => v.split('-').map(v => parseInt(v)))
-        const codeSplits = code.split('\n').map((split, index) => {
-          const lineNumber = index + 1
+      const options =
+        lang &&
+        CODE_BLOCK_OPTIONS_RE.test(lang) &&
+        evaluate(CODE_BLOCK_OPTIONS_RE.exec(lang)[1]);
+      const lineNumbers =
+        options &&
+        options.highlightLines &&
+        []
+          .concat(options.highlightLines)
+          .map((value) => {
+            if (typeof value === 'string') {
+              return value.split("-").map((v) => parseInt(v))
+            }
+            return [value]
+          });
+      if (lineNumbers) {
+        const codeSplits = code.split("\n").map((split, index) => {
+          const lineNumber = index + 1;
           const inRange = lineNumbers.some(([start, end]) => {
             if (start && end) {
-              return lineNumber >= start && lineNumber <= end
+              return lineNumber >= start && lineNumber <= end;
             }
-            return lineNumber === start
-          })
+            return lineNumber === start;
+          });
           if (inRange) {
             return {
               code: `<span class="docup-highlight-line">${split}</span>`,
-              highlighted: true
-            }
+              highlighted: true,
+            };
           }
           return {
-            code: split
-          }
-        })
-        let highlightedCode = ''
-        codeSplits.forEach(
-          split =>
-            split.highlighted
-              ? (highlightedCode += split.code)
-              : (highlightedCode += `${split.code}\n`)
-        )
-        return highlightedCode
+            code: split,
+          };
+        });
+        let highlightedCode = "";
+        codeSplits.forEach((split) =>
+          split.highlighted
+            ? (highlightedCode += split.code)
+            : (highlightedCode += `${split.code}\n`)
+        );
+        return highlightedCode;
       }
 
-      return code
-    }
+      return code;
+    };
 
     const highlightFn =
-      typeof this.opts.highlight === 'function'
+      typeof this.opts.highlight === "function"
         ? this.opts.highlight
-        : highlight
-    let html = md(content, {
+        : highlight;
+    let html = marked(content, {
       renderer,
       highlight: this.opts.highlight && highlightFn,
-      linksInNewTab
-    })
+      linksInNewTab,
+    });
 
     // Strip out hidden contents
     for (let i = 0; i < hideCount; i++) {
       const RE = new RegExp(
         `${HIDE_START_HOLDER}${i + 1}([\\s\\S]*)${HIDE_STOP_HOLDER}${i + 1}`,
-        'gi'
-      )
-      html = html.replace(RE, '')
+        "gi"
+      );
+      html = html.replace(RE, "");
     }
 
-    this.html = html
-    this.title = title
-    this.menu = menu
-    this.loading = false
+    this.html = html;
+    this.title = title;
+    this.menu = menu;
+    this.loading = false;
 
-    await this.$nextTick()
-    const el = location.hash && document.getElementById(location.hash.slice(1))
+    await this.$nextTick();
+    const el = location.hash && document.getElementById(location.hash.slice(1));
     if (el) {
       jump(el, {
-        duration: 0
-      })
+        duration: 0,
+      });
     }
   },
 
   components: {
     DocMenu,
-    DocLoading
-  }
-}
+    DocLoading,
+  },
+};
 </script>
 
 <style src="prismjs/themes/prism.css"></style>
@@ -224,8 +236,8 @@ export default {
 
 body {
   margin: 0;
-  font: 16px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   font-weight: 300;
 }
@@ -235,7 +247,11 @@ body {
   max-width: var(--width);
 }
 
-.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string {
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
   background: transparent;
 }
 
@@ -340,7 +356,7 @@ pre {
   padding: 30px;
   border-radius: 3px;
   overflow-x: auto;
-  font-family: 'Source Code Pro', Menlo, monospace;
+  font-family: "Source Code Pro", Menlo, monospace;
   font-size: 0.8em;
   line-height: 1.5em;
   margin: 40px 0;
@@ -349,8 +365,8 @@ pre {
 }
 
 code {
-  font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
-    'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace,
+  font-family: Menlo, Monaco, "Lucida Console", "Liberation Mono",
+    "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace,
     serif;
 }
 

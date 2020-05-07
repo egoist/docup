@@ -14,7 +14,7 @@
     "access": "public"
   },
   "scripts": {
-    "test": "npm run lint && npm run build",
+    "test": "npm run build",
     "lint": "xo",
     "dev": "poi -s -c docs/dev/poi.config.js",
     "build": "",
@@ -24,24 +24,15 @@
   "license": "MIT",
   "dependencies": {
     "jump.js": "^1.0.2",
-    "md": "^0.6.0",
+    "marked": "^1.0.0",
     "prismjs": "^1.20.0",
-    "slugo": "^0.2.1",
     "unfetch": "^4.1.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "eslint-config-rem": "^3.0.0",
     "express": "^4.16.2",
     "poi": "^12.8.0",
     "raw-loader": "^0.5.1",
-    "vue-template-compiler": "^2.6.11",
-    "xo": "^0.18.0"
-  },
-  "xo": {
-    "extends": "rem",
-    "envs": [
-      "browser"
-    ]
+    "vue-template-compiler": "^2.6.11"
   }
 }
