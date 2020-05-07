@@ -2,9 +2,13 @@
 
 ## Introduction
 
+<!-- <div style="font-size:1.3rem"> -->
+
 Docup is a single JavaScript file that fetches Markdown file and renders it as a beautiful one-page documentation.
 
 The idea is inspired by my another project ([Docute](https://docute.js.org)) which in turn is inspired by [Flatdoc](http://ricostacruz.com/flatdoc/). And the design is inspired by [tj (TJ Holowaychuk)](https://github.com/tj)'s wonderful docs for [Apex Up](https://up.docs.apex.sh).
+
+<!-- </div> -->
 
 ## Quick Start
 
@@ -19,12 +23,12 @@ Create an HTML file: `index.html` which will be be homepage of your documentatio
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
   <title>My Awesome Doc</title>
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="https://unpkg.com/@egojump/docup/dist/docup.css">
+  <link rel="stylesheet" href="https://unpkg.com/@egoist/docup/dist/docup.css">
 </head>
 <body>
   <div id="app"></div>
   <!-- Script -->
-  <script src="https://unpkg.com/@egojump/docup/dist/docup.js"></script>
+  <script src="https://unpkg.com/@egoist/docup/dist/docup.js"></script>
   <!-- Start app -->
   <script>
     var doc = new Docup()
@@ -129,7 +133,7 @@ This part is not visible while viewing as a Docup website.
 
 > __Warning__: There should be newlines wrapping the starting and ending mark, like what you see above.
 
-For example, you can see an image down below while [viewing on GitHub](https://github.com/egojump/docup#hide-specific-content). 😜
+For example, you can see an image down below while [viewing on GitHub](https://github.com/egoist/docup#hide-specific-content). 😜
 
 <!-- hide-on-docup-start -->
 
@@ -156,6 +160,24 @@ If you're on the Docup website, you can see an image down below.
 ![hide-image](https://media.giphy.com/media/e3GqXDAZhNsxG/giphy.gif)
 -->
 
+### Custom HTML Wrapper
+
+```markdown
+<!-- <div style="color:red"> -->
+
+__bold and red__
+
+<!-- </div> -->
+```
+
+<!-- <div style="color:red"> -->
+
+__bold and red__
+
+<!-- </div> -->
+
+In fact you can directly wrap markdown inside HTML tags, you don't have to use HTML comments like what we did here. But if you don't want the Markdown file to render weirdly on GitHub or elsewhere you should use HTML comments to hide it.
+
 ### Embeding
 
 Embeding and run code snippets is easy if your provider supports iframe, like [codesandbox.io](https://codesandbox.io):
@@ -173,7 +195,7 @@ Embeding and run code snippets is easy if your provider supports iframe, like [c
 Docup uses [Prism.js](http://prismjs.com/) to highlight code blocks, by default only a few languages are supported, namely: `html` `css` `js` `markdown` `bash` `json`, you can manually load Prism language components to support more languages, e.g. for Go programming language:
 
 ```html{3}
-<script src="https://unpkg.com/@egojump/docup/dist/docup.js"></script>
+<script src="https://unpkg.com/@egoist/docup/dist/docup.js"></script>
 <!-- Load languages after main Docup script -->
 <script src="https://unpkg.com/prismjs/components/prism-go.js"></script>
 ```
@@ -223,6 +245,16 @@ The title that is shown in the header. It defaults to the value of `h1` title in
 Type: `string`
 
 The description that is shown below the title.
+
+##### logo
+
+Type: `string`
+
+Using HTML string to display logo, e.g.:
+
+```html
+<img src="logo.svg" width="60">
+```
 
 ##### indexFile
 
@@ -280,15 +312,23 @@ The place to mount app to.
 
 ### Browser support
 
-I will add support for IE10+ very soon.
+Last 2 versions of modern browsers.
 
 ### Prerender
 
 Prerender `index.html`
 
-### Multi-route support
+### Multi-page support
 
 Maybe, maybe not.
+
+### Global navigation bar
+
+Show a navigation bar below site title.
+
+### Multi-level sidebar menu
+
+Currently only `h2` headers are shown in the sidebar.
 
 ## License
 

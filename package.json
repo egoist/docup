@@ -1,5 +1,5 @@
 {
-  "name": "@egojump/docup",
+  "name": "@egoist/docup",
   "version": "0.0.29",
   "description": "Simple yet elegant docs.",
   "repository": {
@@ -16,8 +16,8 @@
   "scripts": {
     "test": "npm run lint && npm run build",
     "lint": "xo",
-    "dev": "poi -c docs/dev/poi.config.js",
-    "build": "poi build -c docs/dev/poi.config.js --component Docup",
+    "dev": "poi -s -c docs/dev/poi.config.js",
+    "build": "",
     "prepublishOnly": "npm run build"
   },
   "author": "egoist <0x142857@gmail.com>",
@@ -25,18 +25,17 @@
   "dependencies": {
     "jump.js": "^1.0.2",
     "md": "^0.6.0",
-    "prismjs": "^1.8.4",
+    "prismjs": "^1.20.0",
     "slugo": "^0.2.1",
-    "unfetch": "^3.0.0",
-    "vue": "^2.5.9"
+    "unfetch": "^4.1.0",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "eslint-config-rem": "^3.0.0",
     "express": "^4.16.2",
-    "poi": "^9.5.5",
-    "poi-preset-bundle-report": "^2.0.2",
+    "poi": "^12.8.0",
     "raw-loader": "^0.5.1",
-    "vue-template-compiler": "^2.5.9",
+    "vue-template-compiler": "^2.6.11",
     "xo": "^0.18.0"
   },
   "xo": {

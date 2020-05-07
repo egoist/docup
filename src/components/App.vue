@@ -5,8 +5,9 @@
     <doc-loading v-if="loading" />
     <div class="Container" v-else>
       <header class="Header" v-if="title">
+        <div class="Logo" v-if="opts.logo" v-html="opts.logo"></div>
         <h1 class="Title" v-html="title"></h1>
-        <h2 class="Description" v-if="description" v-html="description"></h2>
+        <h2 class="Description" v-if="opts.description" v-html="opts.description"></h2>
       </header>
       <div class="Body">
         <div class="Sidebar">
@@ -40,7 +41,6 @@ export default {
   data() {
     return {
       title: null,
-      description: this.opts.description,
       html: '',
       menu: [],
       loading: true
@@ -92,6 +92,8 @@ export default {
     const HIDE_START_HOLDER = '#!!!hide-start!!!'
     const HIDE_STOP_HOLDER = '#!!!hide-stop!!!'
     const SHOW_START = /^<!--\s*show-on-docup\s*\n/
+    const DIV_START = /<!--\s*<div([^>]+)+>\s*-->/
+    const DIV_END = /<!--\s*<\/div>\s*-->/
     renderer.html = html => {
       if (HIDE_START.test(html)) {
         hideCount++
@@ -105,6 +107,13 @@ export default {
           highlight: this.opts.highlight && highlightFn,
           linksInNewTab
         })
+      }
+      if (DIV_START.test(html)) {
+        const m = DIV_START.exec(html)
+        return `<div${m[1]}>`
+      }
+      if (DIV_END.test(html)) {
+        return `</div>`
       }
       return html
     }
@@ -208,7 +217,6 @@ export default {
 
   --bg: #fff;
   --fg: #868e96;
-  --fg-dark: #212529;
 
   --selection-bg: var(--blue);
   --selection-fg: white;
@@ -243,16 +251,14 @@ h3,
 h4 {
   margin-top: 75px;
   margin-bottom: 0;
-  font-size: 1.2rem;
   font-weight: 600;
   line-height: 1.5rem;
-  color: var(--fg-dark);
 }
 
 h2 {
   margin-top: 100px;
   padding-top: 50px;
-  font-size: 1.5rem;
+  font-size: 2.3rem;
 }
 
 h2:first-child {
@@ -260,7 +266,15 @@ h2:first-child {
   padding-top: 0;
 }
 
+h3 {
+  font-size: 1.7rem;
+}
+
 h4 {
+  font-size: 1.3rem;
+}
+
+h5 {
   font-size: 1rem;
 }
 
@@ -287,13 +301,11 @@ p {
 
 li strong,
 p strong {
-  color: var(--fg-dark);
   font-weight: 500;
 }
 
 li a,
 p a {
-  color: var(--fg-dark);
   font-weight: 400;
   padding-bottom: 3px;
   border-bottom: 1px dotted #ddd;
@@ -462,9 +474,14 @@ h4:hover .Anchor {
   height: var(--header-height);
 }
 
+.Logo img {
+  height: 60px;
+}
+
 .Title {
   margin: 0;
   font-size: 20px;
+  font-weight: bold;
   text-transform: uppercase;
 }
 

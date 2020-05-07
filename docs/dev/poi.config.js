@@ -1,17 +1,14 @@
-const path = require('path')
+const express = require('express')
 const pkg = require('../../package')
 
 module.exports = {
-  entry: 'src/index.js',
-  html: {
-    template: path.join(__dirname, 'index.ejs'),
-    inject: false
-  },
-  vendor: false,
-  presets: [
-    require('poi-preset-bundle-report')()
-  ],
-  env: {
+  entry: ['src/index.js', 'docs/dev/main.js'],
+  envs: {
     DOCUP_VERSION: pkg.version
+  },
+  devServer: {
+    after(app) {
+      app.use(express.static('docs'))
+    }
   }
 }
