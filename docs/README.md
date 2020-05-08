@@ -229,10 +229,16 @@ Don't forget to add `.nojekyll` file to tell GitHub to treat it as a normal stat
 ### Constructor
 
 ```js
-const doc = new Docup(options)
+docup.init(options)
 ```
 
 #### options
+
+##### target
+
+- Type: `string` `HTMLElement`
+
+Create app on the target element, could be a selector like `#app`.
 
 ##### title
 
@@ -285,14 +291,6 @@ Default: `undefined`
 Use a custom font from [Google Fonts](https://fonts.google.com/), we will automatically inject corresponding `<link>` tag into head if this is set.
 
 For example, try using `Source Sans Pro` or `Open Sans` here.
-
-#### doc.start(target)
-
-##### target
-
-Type: `string` `HTMLElement`
-
-The place to mount app to.
 
 ## Roadmap
 

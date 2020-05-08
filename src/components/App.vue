@@ -16,7 +16,7 @@
           <doc-menu :menu="menu" />
         </div>
         <div class="Main">
-          <div class="Content" v-html="html"></div>
+          <component v-if="Content" :is="Content" />
           <div class="Footer"></div>
         </div>
       </div>
@@ -25,190 +25,82 @@
 </template>
 
 <script>
-import fetch from "unfetch";
-import marked from "marked";
-import jump from "jump.js";
+import fetch from 'unfetch'
+import marked from 'marked'
+import jump from 'jump.js'
+import load from 'loadjs'
 
-import highlight from "../utils/highlight";
-import linksInNewTab from "../utils/links-in-new-tab";
-import { evaluate } from "../utils/evaluate";
-import DocMenu from "./Menu.vue";
-import DocLoading from "./Loading.vue";
-
-import anchorIcon from "!raw-loader!../svg/anchor.svg";
+import { renderMarkdown } from '../utils/markdown'
+import DocMenu from './Menu.vue'
+import DocLoading from './Loading.vue'
 
 export default {
-  props: ["opts"],
+  props: ['opts'],
 
   data() {
     return {
-      title: null,
-      html: "",
+      title: '',
+      html: '',
       menu: [],
-      loading: true,
-    };
+      loading: true
+    }
   },
 
   async created() {
-    this.loading = true;
-    const content = await fetch(
-      `${this.opts.root}${this.opts.indexFile}`
-    ).then((res) => res.text());
-    const renderer = new marked.Renderer();
-    const orginalHeading = renderer.heading.bind(renderer);
-    let title = this.opts.title;
-    const menu = [];
-    renderer.heading = (text, depth, raw, slugger) => {
-      if (depth === 1) {
-        if (!title) {
-          title = text;
-        }
-        return "";
-      }
-      const slug = slugger.slug(raw);
-      if (depth === 2) {
-        menu.push({
-          title: text,
-          slug,
-        });
-      }
-      text = `<a class="Anchor" href="#${slug}">${anchorIcon}</a>${text}`;
-      return orginalHeading(text, depth, raw, slugger);
-    };
-    const originalBlockquote = renderer.blockquote;
-    renderer.blockquote = (quote) => {
-      const RE = /^<p><strong>(.+)<\/strong>:\s*/;
-      if (RE.test(quote)) {
-        const TAG = RE.exec(quote)[1];
-        return `<div class="Message ${TAG.toLowerCase()}"><p>${quote.replace(
-          RE,
-          ""
-        )}</div>`;
-      }
-      return originalBlockquote(quote);
-    };
+    this.loading = true
 
-    let hideCount = 0;
-    const HIDE_START = /^<!--\s*hide-on-docup-start\s*-->/;
-    const HIDE_STOP = /^<!--\s*hide-on-docup-stop\s*-->/;
-    const HIDE_START_HOLDER = "#!!!hide-start!!!";
-    const HIDE_STOP_HOLDER = "#!!!hide-stop!!!";
-    const SHOW_START = /^<!--\s*show-on-docup\s*\n/;
-    const DIV_START = /<!--\s*<div([^>]+)+>\s*-->/;
-    const DIV_END = /<!--\s*<\/div>\s*-->/;
-    renderer.html = (html) => {
-      if (HIDE_START.test(html)) {
-        hideCount++;
-        return HIDE_START_HOLDER + hideCount;
-      }
-      if (HIDE_STOP.test(html)) {
-        return HIDE_STOP_HOLDER + hideCount;
-      }
-      if (SHOW_START.test(html)) {
-        return marked(html.replace(SHOW_START, "").replace(/^-->$/m, ""), {
-          highlight: this.opts.highlight && highlightFn,
-          linksInNewTab,
-        });
-      }
-      if (DIV_START.test(html)) {
-        const m = DIV_START.exec(html);
-        return `<div${m[1]}>`;
-      }
-      if (DIV_END.test(html)) {
-        return `</div>`;
-      }
-      return html;
-    };
-
-    const CODE_BLOCK_OPTIONS_RE = /{([^}]+)}/;
-    const rendererCode = renderer.code.bind(renderer);
-    renderer.code = (code, lang, escaped) => {
-      code = rendererCode(code, lang, escaped);
-
-      const options =
-        lang &&
-        CODE_BLOCK_OPTIONS_RE.test(lang) &&
-        evaluate(CODE_BLOCK_OPTIONS_RE.exec(lang)[1]);
-      const lineNumbers =
-        options &&
-        options.highlightLines &&
-        []
-          .concat(options.highlightLines)
-          .map((value) => {
-            if (typeof value === 'string') {
-              return value.split("-").map((v) => parseInt(v))
-            }
-            return [value]
-          });
-      if (lineNumbers) {
-        const codeSplits = code.split("\n").map((split, index) => {
-          const lineNumber = index + 1;
-          const inRange = lineNumbers.some(([start, end]) => {
-            if (start && end) {
-              return lineNumber >= start && lineNumber <= end;
-            }
-            return lineNumber === start;
-          });
-          if (inRange) {
-            return {
-              code: `<span class="docup-highlight-line">${split}</span>`,
-              highlighted: true,
-            };
+    const [content] = await Promise.all([
+      await fetch(`${this.opts.root}${this.opts.indexFile}`).then(res =>
+        res.text()
+      ),
+      Array.isArray(this.opts.highlightLanguages) &&
+        (await load(
+          this.opts.highlightLanguages.map(
+            lang =>
+              `https://cdn.jsdelivr.net/npm/prismjs/components/prism-${lang}.min.js`
+          ),
+          'prism-languages',
+          {
+            returnPromise: true
           }
-          return {
-            code: split,
-          };
-        });
-        let highlightedCode = "";
-        codeSplits.forEach((split) =>
-          split.highlighted
-            ? (highlightedCode += split.code)
-            : (highlightedCode += `${split.code}\n`)
-        );
-        return highlightedCode;
-      }
+        ))
+    ])
 
-      return code;
-    };
+    const { html, title, menu } = await renderMarkdown(content, {
+      highlight: this.opts.highlight,
+      linksInNewTab: this.opts.linksInNewTab
+    })
+    this.html = html
+    this.title = this.opts.title || title
 
-    const highlightFn =
-      typeof this.opts.highlight === "function"
-        ? this.opts.highlight
-        : highlight;
-    let html = marked(content, {
-      renderer,
-      highlight: this.opts.highlight && highlightFn,
-      linksInNewTab,
-    });
+    this.menu = menu
+    this.loading = false
 
-    // Strip out hidden contents
-    for (let i = 0; i < hideCount; i++) {
-      const RE = new RegExp(
-        `${HIDE_START_HOLDER}${i + 1}([\\s\\S]*)${HIDE_STOP_HOLDER}${i + 1}`,
-        "gi"
-      );
-      html = html.replace(RE, "");
-    }
-
-    this.html = html;
-    this.title = title;
-    this.menu = menu;
-    this.loading = false;
-
-    await this.$nextTick();
-    const el = location.hash && document.getElementById(location.hash.slice(1));
+    await this.$nextTick()
+    const el = location.hash && document.getElementById(location.hash.slice(1))
     if (el) {
       jump(el, {
-        duration: 0,
-      });
+        duration: 0
+      })
+    }
+  },
+
+  computed: {
+    Content() {
+      return (
+        this.html && {
+          template: `<div>${this.html}</div>`,
+          data: this.opts.data
+        }
+      )
     }
   },
 
   components: {
     DocMenu,
-    DocLoading,
-  },
-};
+    DocLoading
+  }
+}
 </script>
 
 <style>
@@ -227,6 +119,7 @@ export default {
 
   --bg: #fff;
   --fg: #868e96;
+  --fg-dark: var(--dark);
 
   --selection-bg: var(--blue);
   --selection-fg: white;
@@ -234,12 +127,13 @@ export default {
   --highlight-line-border-color: rgb(26, 159, 221);
   --code-block-bg: #011627;
   --code-block-color: #d6deeb;
+  --code-font-size: .875rem;
 }
 
 body {
   margin: 0;
-  font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font: 16px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   font-weight: 300;
 }
@@ -257,12 +151,58 @@ body {
   background: transparent;
 }
 
-.docup-highlight-line {
+.docup-highlight {
+  position: relative;
+  background: var(--code-block-bg);
+  font-family: 'Source Code Pro', Menlo, monospace;
+  font-size: var(--code-font-size);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 40px 0;
+  white-space: pre;
+}
+
+.docup-highlight-code,
+.docup-highlight-mask {
+  padding: 30px;
+}
+
+.docup-highlight-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  white-space: pre;
+}
+
+.docup-highlight-code {
+  position: relative;
+  z-index: 2;
+  overflow: auto;
+  font-size: 0;
+}
+
+.docup-highlight-code pre {
+  line-height: 1.5;
+}
+
+.docup-highlight-code pre code {
+  font-size: var(--code-font-size);
+}
+
+.code-line {
+  padding: 0 30px;
+  margin-bottom: 1.5px;
+}
+
+.code-line.is-highlighted {
   background-color: var(--highlight-line-bg);
   box-shadow: inset 4px 0 0 var(--highlight-line-border-color);
-  display: block;
-  margin: 0 -30px;
-  padding: 0 30px;
 }
 
 h2,
@@ -354,24 +294,19 @@ img {
 }
 
 pre {
+  margin: 0;
   color: var(--code-block-color);
-  background: var(--code-block-bg);
-  padding: 30px;
-  border-radius: 12px;
-  overflow-x: auto;
-  font-family: "Source Code Pro", Menlo, monospace;
-  font-size: 0.8em;
-  line-height: 1.5em;
-  margin: 40px 0;
-  white-space: pre-wrap;
-  word-break: break-word;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
   tab-size: 4;
   hyphens: none;
 }
 
 code {
-  font-family: Menlo, Monaco, "Lucida Console", "Liberation Mono",
-    "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace,
+  font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
+    'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace,
     serif;
 }
 

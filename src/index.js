@@ -1,5 +1,5 @@
 import './css/prism.css'
-import Vue from 'vue'
+import { createApp, h } from 'vue'
 import App from './components/App.vue'
 
 export class Docup {
@@ -26,10 +26,11 @@ export class Docup {
   }
 
   start(el) {
-    return new Vue({
-      el,
-      render: h => h(App, { props: { opts: this.options } })
+    const app = createApp({
+      render: () => h(App, { opts: this.options })
     })
+    app.mount(el)
+    return app
   }
 }
 
