@@ -100,7 +100,7 @@ And they look like:
 
 > **Note**: This is just a note!
 
-### Embeding
+### Embedding
 
 Embedding and running code snippets is easy if your provider supports iframe, like [codesandbox.io](https://codesandbox.io):
 
