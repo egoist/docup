@@ -20,28 +20,37 @@ const createConfig = ({ minify, format, dts } = {}) => {
     plugins: [
       commonjsPlugin({}),
       nodeResolvePlugin({
-        extensions: dts ? ['.d.ts', '.ts'] : ['.js', '.ts', '.json', '.tsx', '.mjs']
+        extensions: dts
+          ? ['.d.ts', '.ts']
+          : ['.js', '.ts', '.json', '.tsx', '.mjs'],
       }),
       postcssPlugin({
         extensions: ['.css'],
         extract: true,
         minimize: minify,
       }),
-      !dts && esbuildPlugin({
-        minify,
-        define: {
-          'process.env.DOCUP_VERSION': JSON.stringify(pkg.version),
-          'process.env.PRISM_VERSION': JSON.stringify(pkg.dependencies.prismjs),
-        },
-      }),
+      !dts &&
+        esbuildPlugin({
+          minify,
+          define: {
+            'process.env.DOCUP_VERSION': JSON.stringify(pkg.version),
+            'process.env.PRISM_VERSION': JSON.stringify(
+              pkg.dependencies.prismjs
+            ),
+          },
+        }),
       dts && dtsPlugin(),
     ].filter(Boolean),
   }
 }
 
 export default [
+  // Generate types
   createConfig({ dts: true }),
-  createConfig(),
-  createConfig({ minify: true }),
+  // UMD format
+  createConfig({ format: 'umd' }),
+  // Minified UMD format
+  createConfig({ format: 'umd', minify: true }),
+  // ESM format
   createConfig({ format: 'esm' }),
 ]
