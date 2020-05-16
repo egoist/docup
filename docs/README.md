@@ -290,7 +290,7 @@ docup.init(options)
 
 The title that is shown in the navbar. It defaults to `document.title`
 
-#### logo
+<!-- #### logo
 
 - Type: `string`
 
@@ -298,7 +298,7 @@ Using HTML string to display logo, e.g.:
 
 ```html
 <img src="logo.svg" width="60" />
-```
+``` -->
 
 #### navLinks
 
