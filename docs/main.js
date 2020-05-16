@@ -24,5 +24,9 @@ init({
       text: 'GitHub',
       link: 'https://github.com/egoist/docup',
     },
+    {
+      text: 'Donate',
+      link: 'https://github.com/sponsors/egoist'
+    }
   ],
 })
