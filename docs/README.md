@@ -359,7 +359,7 @@ Then you can inline component and use props in Markdown:
 ````markdown
 ```js preact
 export default ({ count }) => {
-  return html`<button>{count}</button>`
+  return html`<button>${count}</button>`
 }
 ```
 ````
