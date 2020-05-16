@@ -102,7 +102,7 @@ And they look like:
 
 ### Embeding
 
-Embeding and run code snippets is easy if your provider supports iframe, like [codesandbox.io](https://codesandbox.io):
+Embedding and running code snippets is easy if your provider supports iframe, like [codesandbox.io](https://codesandbox.io):
 
 ```html
 <iframe
