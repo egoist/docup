@@ -256,6 +256,13 @@ The root path we use to resolve files from.
 
 Extra languages to highlight.
 
+#### font
+
+- Type: `string`
+- Default: `Lato`
+
+Use a custom font from Google Fonts. We use [Lato](https://fonts.google.com/specimen/Lato) by default.
+
 #### props
 
 - Type: `any`

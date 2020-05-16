@@ -19,6 +19,7 @@ export interface Options {
   highlightLanguages?: string[]
   navLinks: NavLink[]
   props?: any
+  font?: string
 }
 
 export type InstanceOptions = SetRequired<Options, 'indexFile' | 'root' | 'highlight' | 'title'>
@@ -37,6 +38,12 @@ export class Docup {
   }
 
   init() {
+    const font = this.options.font || 'Lato'
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = `https://fonts.googleapis.com/css2?family=${font}:wght@400;700&display=swap`
+    document.head.appendChild(link)
+
     render(h(App, { options: this.options }), document.body)
   }
 }
