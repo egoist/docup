@@ -256,6 +256,32 @@ The root path we use to resolve files from.
 
 Extra languages to highlight.
 
+#### props
+
+- Type: `any`
+
+Inject props to inlined components.
+
+For example:
+
+```js
+docup.init({
+  props: {
+    count: 0
+  }
+})
+```
+
+Then you can inline component and use props in Markdown:
+
+````markdown
+```js preact
+export default ({ count }) => {
+  return html`<button>{count}</button>`
+}
+```
+````
+
 ## Browser support
 
 Last 2 versions of modern browsers.

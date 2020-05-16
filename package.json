@@ -24,6 +24,7 @@
     "test": "npm run build",
     "build": "rm -rf dist && NODE_ENV=production rollup -c",
     "dev": "poi -s -c docs/poi.config.js",
+    "build:website": "poi -c docs/poi.config.js --prod",
     "prepublishOnly": "npm run build"
   },
   "author": "egoist <0x142857@gmail.com>",

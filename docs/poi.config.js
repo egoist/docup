@@ -4,6 +4,12 @@ const pkg = require('../package')
 
 module.exports = {
   entry: ['docs/main.js'],
+  output: {
+    dir: 'docs/dist'
+  },
+  html: {
+    title: 'Docup'
+  },
   envs: {
     DOCUP_VERSION: pkg.version,
     PRISM_VERSION: require('prismjs/package').version,
