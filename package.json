@@ -1,6 +1,6 @@
 {
   "name": "@egoist/docup",
-  "version": "0.0.29",
+  "version": "1.0.0-rc.0",
   "description": "Simple yet elegant docs.",
   "repository": {
     "url": "https://github.com/egoist/docup.git",
