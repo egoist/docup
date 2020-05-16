@@ -7,7 +7,7 @@ module.exports = {
   output: {
     dir: 'docs/dist',
     html: {
-      title: 'Docup',
+      template: `${__dirname}/template.html`
     },
   },
   publicFolder: 'docs',
