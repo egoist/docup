@@ -4,7 +4,7 @@
 
 Docup is built with Preact, the entire bundle (with CSS) is just 30kB minified and gzipped.
 
-[View Documentation](https://docup.egoist.sh)
+[View Documentation](https://docup.now.sh)
 
 [Donate](https://github.com/sponsors/egoist)
 
