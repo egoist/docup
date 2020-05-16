@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+:root {
+  --navbar-bg: #3e2723;
+  --navbar-fg: white;
+  --navlink-fg: rgba(255,255,255,.5);
+  --navlink-hover-fg: rgba(255,255,255,.75);
+  --navlink-hover-bg: #4e342e;
+
+  --sidebar-bg: #efebe9;
+  --sidebar-width: 300px;
+  --sidebar-text-fg: #6b6867;
+
+  --sidebar-menu-item-active-fg: #3e2723;
+
+  --code-block-bg: #2f2625;
+  --code-span-bg: #f8f3f0;
+  --code-block-fg: #ccc;
+  --code-span-fg: inherit;
+  --code-font:  Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
+  --content-link-fg: rgb(20, 121, 20);
+  --content-link-hover-decoration: underline;
+}
+
+body {
+  font-family: Lato;
+}
+
+.navbar {
+  background: var(--navbar-bg);
+  color: var(--navbar-fg);
+  z-index: 999;
+}
+
+.navlink {
+  color: var(--navlink-fg);
+  @apply flex;
+  @apply items-center;
+  @apply px-5;
+  @apply h-8;
+}
+
+@screen md {
+  .navlink {
+    @apply p-2;
+    @apply rounded;
+    @apply h-8;
+  }
+}
+
+.navlink:hover {
+  color: var(--navlink-hover-fg);
+  background: var(--navlink-hover-bg);
+}
+
+.sidebar {
+  background: var(--sidebar-bg);
+  z-index: 9999;
+  width: 60%;
+  min-width: 300px;
+  color: var(--sidebar-text-fg);
+  overflow: auto;
+  transform: translateX(-100%);
+  transition: transform ease-in-out 150ms;
+}
+
+.sidebar_overlay {
+  z-index: 9990;
+}
+
+.sidebar_navbar {
+  background: var(--navbar-bg);
+  color: var(--navbar-fg);
+}
+
+@screen md {
+  .sidebar {
+    z-index: 990;
+    width: var(--sidebar-width);
+    transform: none;
+  }
+}
+
+.sidebar.sidebar_show {
+  display: block;
+  transform: translateX(0);
+}
+
+.main {
+  @apply px-5;
+  @apply py-5;
+}
+
+@screen md {
+  .main {
+    @apply px-8;
+    margin-left: var(--sidebar-width);
+  }
+}
+
+
+.menu_item__active {
+  color: var(--sidebar-menu-item-active-fg);
+}
+
+.menu_item[data-depth="3"] {
+  @apply pl-8;
+}
+
+.menu_item[data-depth="4"] {
+  @apply pl-8;
+}
+
+.menu_item[data-depth="4"]:before {
+  content: '-';
+  @apply opacity-25;
+  @apply pr-2;
+}

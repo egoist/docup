@@ -6,37 +6,52 @@
     "url": "https://github.com/egoist/docup.git",
     "type": "git"
   },
-  "main": "dist/docup",
   "files": [
-    "dist"
+    "dist",
+    "!dist/docup.d.css",
+    "!dist/docup.esm.css"
   ],
+  "types": "dist/docup.d.ts",
+  "unpkg": "dist/docup.min.js",
+  "cdn": "dist/docup.min.js",
+  "jsdelivr": "dist/docup.min.js",
+  "main": "dist/docup.js",
+  "module": "dist/docup.esm.js",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "test": "npm run build",
-    "lint": "xo",
-    "dev": "poi -s -c docs/dev/poi.config.js",
-    "build": "",
+    "build": "rm -rf dist && NODE_ENV=production rollup -c",
+    "dev": "poi -s -c docs/poi.config.js",
     "prepublishOnly": "npm run build"
   },
   "author": "egoist <0x142857@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "jump.js": "^1.0.2",
-    "loadjs": "^4.2.0",
+    "debounce": "^1.2.0",
+    "element-in-view": "^0.1.0",
+    "htm": "^3.0.4",
     "marked": "^1.0.0",
-    "prismjs": "^1.20.0",
-    "unfetch": "^4.1.0",
-    "vue": "^3.0.0-beta.10"
+    "preact": "^10.4.1",
+    "prismjs": "^1.20.0"
   },
   "devDependencies": {
-    "@types/jump.js": "^1.0.3",
+    "@rollup/plugin-babel": "^5.0.0",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "@types/debounce": "^1.2.0",
     "@types/marked": "^0.7.4",
-    "vue-loader": "^16.0.0-alpha.3",
-    "@vue/compiler-sfc": "^3.0.0-beta.10",
-    "express": "^4.16.2",
+    "@types/prismjs": "^1.16.1",
     "poi": "^12.8.0",
-    "raw-loader": "^0.5.1"
+    "prettier": "^2.0.5",
+    "rollup": "^2.10.2",
+    "rollup-plugin-dts": "^1.4.3",
+    "rollup-plugin-esbuild": "^1.4.1",
+    "rollup-plugin-postcss": "^3.1.1",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "tailwindcss": "^1.4.6",
+    "type-fest": "^0.13.1",
+    "typescript": "^3.9.2"
   }
 }
