@@ -32,6 +32,7 @@ const createConfig = ({ minify, format, dts } = {}) => {
       !dts &&
         esbuildPlugin({
           minify,
+          jsxFactory: 'h',
           define: {
             'process.env.DOCUP_VERSION': JSON.stringify(pkg.version),
             'process.env.PRISM_VERSION': JSON.stringify(
