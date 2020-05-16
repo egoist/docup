@@ -55,7 +55,7 @@ How about that.
 
 Finally serve this directory as a static website:
 
-- **node.js**: `npm i -g sirv-cli && sirv .`
+- **node.js**: `npm i -g static-server && static-server .`
 - **deno**: `deno install --allow-net --allow-read https://deno.land/std/http/file_server.ts && file_server .`
 - **python**: `python -m SimpleHTTPServer`
 - ...etc, you can use any static file server, for real.
@@ -156,9 +156,10 @@ const { useState } = hooks
 
 export default () => {
   const [count, setCount] = useState(0)
-  return html`<button 
+  return html`<button
     style="width:100px;background:#ccc;padding:5px"
-    onClick=${() => setCount(count + 1)}>
+    onClick=${() => setCount(count + 1)}
+  >
     ${count}
   </button>`
 }
@@ -172,14 +173,88 @@ const { useState } = hooks
 
 export default () => {
   const [count, setCount] = useState(0)
-  return html`<button style="width:100px;background:#ccc;padding:5px" 
-  onClick=${() => setCount(count + 1)}>
+  return html`<button
+    style="width:100px;background:#ccc;padding:5px"
+    onClick=${() => setCount(count + 1)}
+  >
     ${count}
   </button>`
 }
 ```
 
 > Warning: Note that you can't use JSX here, because it's not supported by browsers natively. But you can use the `html` function which is powered by [developit/htm](https://github.com/developit/htm).
+
+### CSS Variables
+
+```js preact
+const { useEffect, useState } = hooks
+
+// could pass in an array of specific stylesheets for optimization
+function getAllCSSVariableNames(styleSheets = document.styleSheets) {
+  var cssVars = []
+  // loop each stylesheet
+  for (var i = 0; i < styleSheets.length; i++) {
+    // loop stylesheet's cssRules
+    try {
+      // try/catch used because 'hasOwnProperty' doesn't work
+      for (var j = 0; j < styleSheets[i].cssRules.length; j++) {
+        try {
+          // loop stylesheet's cssRules' style (property names)
+          for (var k = 0; k < styleSheets[i].cssRules[j].style.length; k++) {
+            let name = styleSheets[i].cssRules[j].style[k]
+            // test name for css variable signiture and uniqueness
+            if (name.startsWith('--') && cssVars.indexOf(name) == -1) {
+              cssVars.push(name)
+            }
+          }
+        } catch (error) {}
+      }
+    } catch (error) {}
+  }
+  return cssVars
+}
+
+function getElementCSSVariables(allCSSVars, element = document.body, pseudo) {
+  var elStyles = window.getComputedStyle(element, pseudo)
+  var cssVars = {}
+  for (var i = 0; i < allCSSVars.length; i++) {
+    let key = allCSSVars[i]
+    let value = elStyles.getPropertyValue(key)
+    if (value) {
+      cssVars[key] = value.trim()
+    }
+  }
+  return cssVars
+}
+
+export default () => {
+  const vars = getElementCSSVariables(
+    getAllCSSVariableNames(),
+    document.documentElement
+  )
+
+  return html`
+    <ul>
+      ${Object.keys(vars).map((name) => {
+        const value = vars[name]
+        return html`<li key=${name}>
+          <code style="display:inline-block;margin-right:10px;">${name}</code>${/-(bg|fg)$/.test(name)
+            ? html`<span
+                style=${{
+                  background: value,
+                  height: 15,
+                  width: 15,
+                  display: 'inline-block',
+                  border: '1px solid #000'
+                }}
+              ></span>`
+            : html`<code>${value}</code>`}
+        </li>`
+      })}
+    </ul>
+  `
+}
+```
 
 ## Deploy
 
@@ -274,8 +349,8 @@ For example:
 ```js
 docup.init({
   props: {
-    count: 0
-  }
+    count: 0,
+  },
 })
 ```
 

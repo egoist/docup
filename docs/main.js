@@ -5,16 +5,16 @@ init({
   logo: '<img src="logo.svg" width="60">',
   description: 'Simply beautiful documentation.',
   props: {
-    langs: process.env.PRISM_LANGUAGES
+    langs: process.env.PRISM_LANGUAGES,
   },
   navLinks: [
     {
       text: 'Guide',
-      link: '#guide'
+      link: '#guide',
     },
     {
       text: 'API',
-      link: '#api'
+      link: '#api',
     },
     {
       text: 'Resources',
