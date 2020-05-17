@@ -17,7 +17,7 @@ export interface Options {
   root?: string
   highlight?: boolean
   highlightLanguages?: string[]
-  navLinks: NavLink[]
+  navLinks?: NavLink[]
   props?: any
   font?: string
 }
@@ -27,7 +27,7 @@ export type InstanceOptions = SetRequired<Options, 'indexFile' | 'root' | 'highl
 export class Docup {
   options: InstanceOptions
 
-  constructor(options: Options) {
+  constructor(options: Options = {}) {
     this.options = {
       title: options.title || document.title || 'Docup',
       indexFile: 'README.md',
