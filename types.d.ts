@@ -7,6 +7,9 @@ declare namespace NodeJS {
 
 
 declare module 'element-in-view' {
-  const inView: (el: Element) => boolean
+  type Options = {
+    offset?: number
+  }
+  const inView: (el: Element, options?: Options) => boolean
   export default inView
 }

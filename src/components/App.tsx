@@ -12,7 +12,11 @@ const handleScroll = throttle(() => {
   const headings = document.querySelectorAll('.content .heading')
   for (let i = 0; i < headings.length; i++) {
     const heading = headings[i]
-    if (inView(heading)) {
+    if (
+      inView(heading, {
+        offset: 58 /*  height of navbar + 10px */,
+      })
+    ) {
       const id = heading.id
       if (id) {
         // Updating URL in browser address without adding it to history
