@@ -272,6 +272,39 @@ export default () => {
 }
 ```
 
+### Multiple Pages
+
+If your doc is too long to display in a single page, you can split it into multiple Markdown files, that works because Docup [fetches Markdown file based on the current `pathname`](#how-files-are-resolved).
+
+Then all you need is to route all requests to the `index.html`. (Also known as SPA fallback)
+
+If you host your docs on [Netlify](https://netlify.com), use following rule in `_redirects` file:
+
+```
+/* /index.html 301
+```
+
+Or if you're using [Vercel](https://vercel.com), use following config in `vercel.json`:
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+```
+
+Or Nginx config:
+
+```nginx
+location / {
+    try_files /index.html =404;
+}
+```
+
 ## Deploy
 
 ### GitHub Pages

@@ -4,6 +4,7 @@ init({
   title: 'Docup',
   logo: '<img src="logo.svg" width="60">',
   description: 'Simply beautiful documentation.',
+  highlightLanguages: ['nginx'],
   props: {
     langs: process.env.PRISM_LANGUAGES,
   },
