@@ -126,3 +126,11 @@ blockquote p:not(:first-child),
 .content h4:hover .anchor {
   visibility: visible;
 }
+
+.task_list__item {
+  @apply list-none;
+}
+
+.task_list__item input[type=checkbox]:first-child {
+  @apply mr-2;
+}

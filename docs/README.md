@@ -71,7 +71,6 @@ Basically if the pathname ends with a slash, we treat it as a directory and try 
 
 You can also use [root](#root) option to set the origin of the files, for example if you want to load files from other domain, you can set `root: 'https://sub.domain.com/data'`.
 
-
 ## Guide
 
 ### Site Title
@@ -83,6 +82,10 @@ docup.init({
   title: 'My Website',
 })
 ```
+
+### Markdown Features
+
+We use the blazing fast [marked](https://marked.js.org) to parse Markdown, all [GitHub Flavored Markdown](https://github.github.com/gfm/) features are supported.
 
 ### Message Blocks
 
@@ -250,14 +253,15 @@ export default () => {
       ${Object.keys(vars).map((name) => {
         const value = vars[name]
         return html`<li key=${name}>
-          <code style="display:inline-block;margin-right:10px;">${name}</code>${/-(bg|fg)$/.test(name)
+          <code style="display:inline-block;margin-right:10px;">${name}</code
+          >${/-(bg|fg)$/.test(name)
             ? html`<span
                 style=${{
                   background: value,
                   height: 15,
                   width: 15,
                   display: 'inline-block',
-                  border: '1px solid #000'
+                  border: '1px solid #000',
                 }}
               ></span>`
             : html`<code>${value}</code>`}

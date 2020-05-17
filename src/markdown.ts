@@ -74,6 +74,11 @@ export function renderMarkdown(text: string, { props }: { props: any }) {
     return `<a${attrs}>${text}</a>`
   }
 
+  // @ts-ignore
+  renderer.listitem = (text, task) => {
+    return `<li${task ? ` class="task_list__item"` : ''}>${text}</li>`
+  }
+
   const menu: Array<SidebarMenuItem> = []
   const slugs: string[] = []
   renderer.heading = (text, depth, raw) => {
@@ -100,6 +105,7 @@ export function renderMarkdown(text: string, { props }: { props: any }) {
 
   const html = marked(text, {
     renderer,
+    gfm: true,
     highlight(code, lang) {
       const prismLang = Prism.languages[lang] || Prism.languages.markup
       return Prism.highlight(code, prismLang, prismLang ? lang : 'markup')
