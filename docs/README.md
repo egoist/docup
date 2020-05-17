@@ -28,7 +28,6 @@ Create an HTML file: `index.html` which will be be homepage of your documentatio
     />
   </head>
   <body>
-    <div id="app"></div>
     <!-- Script -->
     <script src="https://unpkg.com/@egoist/docup@1/dist/docup.min.js"></script>
     <!-- Start app -->
