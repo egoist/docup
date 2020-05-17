@@ -31,7 +31,7 @@ export class Docup {
     this.options = {
       title: options.title || document.title || 'Docup',
       indexFile: 'README.md',
-      root: './',
+      root: '',
       highlight: true,
       ...options,
     }

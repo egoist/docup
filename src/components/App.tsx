@@ -6,7 +6,7 @@ import { Navbar } from './Navbar'
 import { Sidebar } from './Sidebar'
 import { Main } from './Main'
 import { renderMarkdown, SidebarMenuItem } from '../markdown'
-import { loadLanguages, scrollToHash, updateURLHash, throttle } from '../utils'
+import { loadLanguages, scrollToHash, updateURLHash, throttle, getFileUrl } from '../utils'
 
 const handleScroll = throttle(() => {
   const headings = document.querySelectorAll('.content .heading')
@@ -42,7 +42,7 @@ export const App: FunctionComponent<{ options: InstanceOptions }> = ({
 
   useEffect(() => {
     Promise.all([
-      fetch(`${options.root}${options.indexFile}`),
+      fetch(getFileUrl(options.root, options.indexFile, location.pathname)),
       options.highlightLanguages && loadLanguages(options.highlightLanguages),
     ])
       .then(([res]) => {

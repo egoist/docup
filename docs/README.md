@@ -60,6 +60,19 @@ Finally serve this directory as a static website:
 - **python**: `python -m SimpleHTTPServer`
 - ...etc, you can use any static file server, for real.
 
+### How Files Are Resolved
+
+If current `location.pathname` is `/`, i.e. the homepage, it fetches `/README.md`.
+
+If current `location.pathname` is `/docs/`, it fetches `/docs/README.md`.
+
+If current `location.pathname` is `/docs/en`, it fetches `/docs/en.md`.
+
+Basically if the pathname ends with a slash, we treat it as a directory and try to load the `README.md` file under that path, you can also use [indexFile](#indexfile) option to change `README.md` to other file if you want. If the pathname does not end with slash, we would fetch `pathname + '.md'`.
+
+You can also use [root](#root) option to set the origin of the files, for example if you want to load files from other domain, you can set `root: 'https://sub.domain.com/data'`.
+
+
 ## Guide
 
 ### Site Title
@@ -318,10 +331,12 @@ interface NavLink {
 - Type: `string`
 - Default: `README.md`
 
+Used for path ending with a slash.
+
 #### root
 
 - Type: `string`
-- Default: `./`
+- Default: `''`
 
 The root path we use to resolve files from.
 

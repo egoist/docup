@@ -95,3 +95,22 @@ export function throttle<T extends Function>(func: T, wait: number) {
     args = undefined
   }
 }
+
+const TRAILING_SLASH_RE = /\/$/
+const MD_RE = /\.md$/
+
+export function getFileUrl(root: string, indexFile: string, pathname: string) {
+  let url = root
+  // Remove trailing slash
+  // Becuase pathname always starts with slash
+  .replace(TRAILING_SLASH_RE, '')
+  // `pathname` ends with slash
+  // this is a directory
+  // use `indexFile`
+  if (TRAILING_SLASH_RE.test(pathname)) {
+    url += `${pathname}${indexFile}`
+  } else if (!MD_RE.test(pathname)) {
+    url += `${pathname}.md`
+  }
+  return url
+}
