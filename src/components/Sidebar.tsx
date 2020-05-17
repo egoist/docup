@@ -11,12 +11,19 @@ export const Sidebar: FunctionComponent<{
 }> = ({ menu, title, showSidebar, navLinks }) => {
   const [hash, setHash] = useState('')
   const sidebarRef = useRef<HTMLDivElement | null>(null)
+  let sidebarItemClicked = false
+
+  const handleSidebarItemClick = () => {
+    sidebarItemClicked = true
+  }
 
   useEffect(() => {
     setHash(location.hash)
     const onHashChange = () => {
       setHash(location.hash)
-      if (location.hash) {
+
+      // Don't change scroll position when the hashchange is triggered click, that's bad user experience
+      if (location.hash && !sidebarItemClicked) {
         const el: HTMLAnchorElement | null = document.querySelector(
           `.sidebar .menu_item[href="${location.hash}"]`
         )
@@ -26,6 +33,7 @@ export const Sidebar: FunctionComponent<{
           }
         }
       }
+      sidebarItemClicked = false
     }
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
@@ -63,6 +71,7 @@ export const Sidebar: FunctionComponent<{
                 `flex px-5 h-8 items-center menu_item` +
                 (item.slug === hash.slice(1) ? ' menu_item__active' : '')
               }
+              onClick={handleSidebarItemClick}
               data-slug={item.slug}
               key={index}
               data-depth={item.depth}
