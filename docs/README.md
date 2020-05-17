@@ -332,6 +332,13 @@ interface NavLink {
 
 Used for path ending with a slash.
 
+#### base
+
+- Type: `string`
+- Default: `/`
+
+The base path your website is located at. If you are serving your docs under a sub path like `https://user.github.io/awesome-project`, you need to set this option to `/awesome-project`.
+
 #### root
 
 - Type: `string`

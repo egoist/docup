@@ -20,9 +20,13 @@ export interface Options {
   navLinks?: NavLink[]
   props?: any
   font?: string
+  base?: string
 }
 
-export type InstanceOptions = SetRequired<Options, 'indexFile' | 'root' | 'highlight' | 'title'>
+export type InstanceOptions = SetRequired<
+  Options,
+  'indexFile' | 'root' | 'highlight' | 'title' | 'base'
+>
 
 export class Docup {
   options: InstanceOptions
@@ -32,6 +36,7 @@ export class Docup {
       title: options.title || document.title || 'Docup',
       indexFile: 'README.md',
       root: '',
+      base: '/',
       highlight: true,
       ...options,
     }

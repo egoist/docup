@@ -6,9 +6,10 @@ import { NavLink } from '../docup'
 export const Sidebar: FunctionComponent<{
   menu: SidebarMenuItem[]
   title: string
+  base: string
   showSidebar: boolean
   navLinks: NavLink[]
-}> = ({ menu, title, showSidebar, navLinks }) => {
+}> = ({ menu, title, base, showSidebar, navLinks }) => {
   const [hash, setHash] = useState('')
   const sidebarRef = useRef<HTMLDivElement | null>(null)
   let sidebarItemClicked = false
@@ -48,7 +49,11 @@ export const Sidebar: FunctionComponent<{
       }
     >
       <div class="md:hidden sidebar_navbar pb-3">
-        <h1 class="text-2xl px-5 flex h-12 items-center">{title}</h1>
+        <h1 class="text-2xl px-5 flex h-12 items-center">
+          <a class="w-full" href={base}>
+            {title}
+          </a>
+        </h1>
         <div>
           <ul>
             {navLinks.map((link, index) => {

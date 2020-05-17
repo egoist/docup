@@ -3,14 +3,15 @@ import { NavLink } from '../docup'
 
 export const Navbar: FunctionComponent<{
   navLinks: NavLink[]
-  title?: string
+  title: string
+  base: string
   toggleSidebar: () => void
-}> = ({ title, navLinks, toggleSidebar }) => {
+}> = ({ title, base, navLinks, toggleSidebar }) => {
   return (
     <header class="fixed w-full top-0 left-0 h-12 navbar flex items-center justify-between px-5">
       <div class="flex items-center">
         <h1 class="mr-8 text-2xl">
-          <a href="/">{title || 'Docup'}</a>
+          <a href={base}>{title}</a>
         </h1>
         <ul class="hidden md:flex">
           {navLinks.map((link) => {

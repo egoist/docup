@@ -115,11 +115,13 @@ export const App: FunctionComponent<{ options: InstanceOptions }> = ({
       <Navbar
         toggleSidebar={toggleSidebar}
         title={options.title}
+        base={options.base}
         navLinks={navLinks}
       />
       <Sidebar
         navLinks={navLinks}
         title={options.title}
+        base={options.base}
         menu={menu}
         showSidebar={showSidebar}
       />
