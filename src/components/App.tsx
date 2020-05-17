@@ -1,15 +1,14 @@
 import { h, FunctionComponent } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
 import inView from 'element-in-view'
-import debounce from 'debounce'
 import { InstanceOptions } from '../docup'
 import { Navbar } from './Navbar'
 import { Sidebar } from './Sidebar'
 import { Main } from './Main'
 import { renderMarkdown, SidebarMenuItem } from '../markdown'
-import { loadLanguages, scrollToHash, updateURLHash } from '../utils'
+import { loadLanguages, scrollToHash, updateURLHash, throttle } from '../utils'
 
-const handleScroll = debounce(() => {
+const handleScroll = throttle(() => {
   const headings = document.querySelectorAll('.content .heading')
   for (let i = 0; i < headings.length; i++) {
     const heading = headings[i]

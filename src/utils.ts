@@ -59,3 +59,39 @@ export async function loadLanguages(langs: string[]) {
     )
   )
 }
+
+/**
+ * Returns a new function that, when invoked, invokes `func` at most once per `wait` milliseconds.
+ * Taken from https://github.com/component/throttle/blob/master/index.js MIT licensed
+ *
+ * @param func Function to wrap.
+ * @param wait Number of milliseconds that must elapse between `func` invocations.
+ * @return A new function that wraps the `func` function passed in.
+ */
+
+export function throttle<T extends Function>(func: T, wait: number) {
+  // caching
+  let ctx: any | undefined,
+    args: IArguments | undefined,
+    rtn: Function | undefined,
+    timeoutID: number | undefined
+  let last = 0
+
+  return function (this: any) {
+    ctx = this
+    args = arguments
+    var delta = Date.now() - last
+    if (!timeoutID)
+      if (delta >= wait) call()
+      else timeoutID = self.setTimeout(call, wait - delta)
+    return rtn
+  }
+
+  function call() {
+    timeoutID = 0
+    last = +new Date()
+    rtn = func.apply(ctx, args)
+    ctx = undefined
+    args = undefined
+  }
+}
