@@ -5855,9 +5855,9 @@ posthtml@^0.11.3:
     posthtml-render "^1.1.5"
 
 preact@^10.4.1:
-  version "10.4.1"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.4.1.tgz#9b3ba020547673a231c6cf16f0fbaef0e8863431"
-  integrity sha512-WKrRpCSwL2t3tpOOGhf2WfTpcmbpxaWtDbdJdKdjd0aEiTkvOmS4NBkG6kzlaAHI9AkQ3iVqbFWM3Ei7mZ4o1Q==
+  version "10.4.2"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.4.2.tgz#08d344e7b97dc8b6f416ef680c54d6c9eed672fc"
+  integrity sha512-AD+hCTD0uTRa9bnJIZI8ZDy7icnVJiLCntyYCWGM5qlXB+gVzmuTRpWHlVqkcnwpsX5aakEsNfj6Ot+b8Bhp8g==
 
 prepend-http@^1.0.0:
   version "1.0.4"
