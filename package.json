@@ -30,6 +30,7 @@
   "author": "egoist <0x142857@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "copy-text-to-clipboard": "^2.2.0",
     "element-in-view": "^0.1.0",
     "htm": "^3.0.4",
     "marked": "^1.0.0",

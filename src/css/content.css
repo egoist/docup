@@ -134,3 +134,44 @@ blockquote p:not(:first-child),
 .task_list__item input[type=checkbox]:first-child {
   @apply mr-2;
 }
+
+.code_block {
+  position: relative;
+}
+
+.code_block:hover .copy_button {
+  opacity: 1;
+  visibility: visible;
+}
+
+.copy_button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 24px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  color: #ccc;
+  background-color: hsla(0,0%,90.2%, .2);
+  box-shadow: 0 2px 0 0 rgba(0,0,0, .25);
+  outline: none;
+  opacity: 0;
+  visibility: hidden;
+  user-select: none;
+  transition: opacity .2s ease-in-out,visibility .2s ease-in-out;
+}
+.copy_button:focus {
+  outline: none;
+}
+.copy_icon {
+  display: inline-block;
+  line-height: 0;
+  text-align: center;
+}

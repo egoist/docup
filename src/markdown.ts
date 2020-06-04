@@ -6,7 +6,7 @@ import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-json'
 import 'prismjs/components/prism-css'
 import 'prismjs/components/prism-markdown'
-import { isExternalLink, slugify, ANCHOR_ICON } from './utils'
+import { isExternalLink, slugify, ANCHOR_ICON, COPY_ICON } from './utils'
 import htm from 'htm'
 import { render, h } from 'preact'
 import * as hooks from 'preact/hooks'
@@ -60,7 +60,7 @@ export function renderMarkdown(text: string, { props }: { props: any }) {
       })
       return `<div id="code-replacement-${index}"></div>`
     }
-    return originalCode.call(renderer, code, lang, escaped)
+    return `<div class="code_block"><button class="copy_button"><i class="copy_icon">${COPY_ICON}</i></button>${originalCode.call(renderer, code, lang, escaped)}</div>`
   }
 
   renderer.link = (href, title, text) => {

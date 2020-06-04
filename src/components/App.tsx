@@ -1,6 +1,7 @@
 import { h, FunctionComponent } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
 import inView from 'element-in-view'
+import copy from 'copy-text-to-clipboard'
 import { InstanceOptions } from '../docup'
 import { Navbar } from './Navbar'
 import { Sidebar } from './Sidebar'
@@ -75,8 +76,13 @@ export const App: FunctionComponent<{ options: InstanceOptions }> = ({
     const handleClick = (e: MouseEvent) => {
       let target = e.target as any
       if (target.closest) {
-        target = target.closest('a')
-        if (!target) {
+        const copyButton = target.closest('.copy_button');
+        if (copyButton) {
+          copy(copyButton.nextSibling.innerText)
+          return;
+        } 
+    
+        if (!target.closest('a')) {
           return
         }
       } else {
