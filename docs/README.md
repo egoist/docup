@@ -242,7 +242,7 @@ function getElementCSSVariables(allCSSVars, element = document.body, pseudo) {
   return cssVars
 }
 
-export default ({ isDarkColor }) => {
+export default () => {
   const vars = getElementCSSVariables(
     getAllCSSVariableNames(),
     document.documentElement
