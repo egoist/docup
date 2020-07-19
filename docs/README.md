@@ -6,10 +6,6 @@ Docup is built with Preact, the entire bundle (with CSS) is just 30kB minified a
 
 </div>
 
-| Docup is built wit                   | asd                |
-| ------------------------------------ | ------------------ |
-| Docup is built witDocup is built wit | Docup is built wit |
-
 ## Quick Start
 
 Create an HTML file: `index.html` which will be be homepage of your documentation website:
