@@ -396,6 +396,7 @@ Extra languages to highlight.
 
 Use a custom font from Google Fonts. We use [Lato](https://fonts.google.com/specimen/Lato) by default.
 
+
 #### props
 
 - Type: `any`
@@ -421,6 +422,13 @@ export default ({ count }) => {
 }
 ```
 ````
+
+#### theme
+
+- Type: `default` or `dark`
+- Default: `default`
+
+Choose a CSS theme.
 
 ## Browser support
 

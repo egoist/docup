@@ -21,8 +21,23 @@
   --content-link-hover-decoration: underline;
 }
 
+.theme-dark {
+  --bg: #131415;
+  --fg: #eaeaea;
+  --navbar-bg: var(--bg);
+  --sidebar-bg: var(--bg);
+  --sidebar-text-fg: var(--fg);
+  --code-block-bg: #1a1a1a;
+  --code-span-bg: #1a1a1a;
+  --navlink-hover-bg: rgba(103, 103, 103, 0.29);
+  --sidebar-menu-item-active-fg: #ffe77a;
+  --content-link-fg: #ffe77a;
+}
+
 body {
   font-family: Lato;
+  background: var(--bg);
+  color: var(--fg);
 }
 
 .navbar {

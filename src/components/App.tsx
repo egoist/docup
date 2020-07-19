@@ -98,14 +98,17 @@ export const App: FunctionComponent<{ options: InstanceOptions }> = ({
     return () => window.removeEventListener('click', handleClick)
   }, [])
 
-  // Update location.hash on scrolling
   useEffect(() => {
+    // Add theme class
+    document.documentElement.className = `theme-${options.theme}`
+
+    // Update location.hash on scrolling
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <div>
+    <div >
       {showSidebar && (
         <div
           onClick={() => setShowSidebar(false)}

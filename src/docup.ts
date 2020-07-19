@@ -21,6 +21,7 @@ export interface Options {
   props?: any
   font?: string
   base?: string
+  theme?: 'default' | 'dark'
 }
 
 export type InstanceOptions = SetRequired<
@@ -38,6 +39,7 @@ export class Docup {
       root: '',
       base: '/',
       highlight: true,
+      theme: 'default',
       ...options,
     }
   }
