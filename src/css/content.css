@@ -134,3 +134,34 @@ blockquote p:not(:first-child),
 .task_list__item input[type=checkbox]:first-child {
   @apply mr-2;
 }
+
+/** Stolen from https://github.com/arackaf/micro-graphql-react/blob/3f2420265ad88360d61472d4e79da43fa743d8bb/docs/overrides.css */
+table {
+  font-size: .95rem;
+}
+table code {
+  font-size: .85rem;
+}
+
+table > thead > tr > th {
+  border-bottom: 2px solid var(--table-header-border-fg);
+}
+
+table > tbody > tr > td {
+  border-bottom: 1px solid var(--table-body-border-fg);
+}
+table > tbody > tr > td:not(:last-child) {
+  border-right: 1px solid var(--table-body-border-fg);
+}
+
+table > tbody > tr > td:first-child {
+  padding-right: 5px;
+}
+table > tbody > tr > td:not(:first-child) {
+  padding-left: 5px;
+}
+
+table code {
+  background: unset;
+  padding: unset;
+}

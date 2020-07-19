@@ -1,4 +1,6 @@
 :root {
+  --fg: #000;
+  --bg: #fff;
   --navbar-bg: #3e2723;
   --navbar-fg: white;
   --navlink-fg: rgba(255,255,255,.5);
@@ -19,6 +21,9 @@
 
   --content-link-fg: rgb(20, 121, 20);
   --content-link-hover-decoration: underline;
+
+  --table-header-border-fg: var(--navbar-bg);
+  --table-body-border-fg: var(--sidebar-bg);
 }
 
 .theme-dark {
@@ -32,6 +37,8 @@
   --navlink-hover-bg: rgba(103, 103, 103, 0.29);
   --sidebar-menu-item-active-fg: #ffe77a;
   --content-link-fg: #ffe77a;
+  --table-header-border-fg: rgb(88, 88, 88);
+  --table-body-border-fg: rgba(88, 88, 88, 0.78);
 }
 
 body {

@@ -6,6 +6,10 @@ Docup is built with Preact, the entire bundle (with CSS) is just 30kB minified a
 
 </div>
 
+| Docup is built wit                   | asd                |
+| ------------------------------------ | ------------------ |
+| Docup is built witDocup is built wit | Docup is built wit |
+
 ## Quick Start
 
 Create an HTML file: `index.html` which will be be homepage of your documentation website:
@@ -242,32 +246,55 @@ function getElementCSSVariables(allCSSVars, element = document.body, pseudo) {
   return cssVars
 }
 
-export default () => {
+export default ({ isDarkColor }) => {
   const vars = getElementCSSVariables(
     getAllCSSVariableNames(),
     document.documentElement
   )
 
   return html`
-    <ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Variable Name</td>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
       ${Object.keys(vars).map((name) => {
         const value = vars[name]
-        return html`<li key=${name}>
-          <code style="display:inline-block;margin-right:10px;">${name}</code
-          >${/-(bg|fg)$/.test(name)
-            ? html`<span
-                style=${{
-                  background: value,
-                  height: 15,
-                  width: 15,
-                  display: 'inline-block',
-                  border: '1px solid #000',
-                }}
-              ></span>`
-            : html`<code>${value}</code>`}
-        </li>`
+        const isColor = /-(bg|fg)$/.test(name)
+        return html`<tr key=${name}>
+          <td>
+            <code style="display:inline-block;margin-right:10px;">${name}</code>
+          </td>
+          <td style=${{paddingTop: '4px'}}>
+            ${isColor
+              ? html`<div
+                  style=${{
+                    background: value,
+                    display: 'inline-flex',
+                    border: '1px solid #000',
+                    fontSize: '.875rem',
+                  }}
+                >
+                  <span
+                    style=${{
+                      padding: '0 5px',
+                      width: '20px',
+                      borderRight: '1px solid #000',
+                    }}
+                  ></span
+                  ><span style=${{ background: 'white', padding: '0 5px' }}
+                    >${value}</span
+                  >
+                </div>`
+              : html`<code>${value}</code>`}
+          </td>
+        </tr>`
       })}
-    </ul>
+      </tbody>
+    </table>
   `
 }
 ```
@@ -395,7 +422,6 @@ Extra languages to highlight.
 - Default: `Lato`
 
 Use a custom font from Google Fonts. We use [Lato](https://fonts.google.com/specimen/Lato) by default.
-
 
 #### props
 
