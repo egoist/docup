@@ -45,7 +45,7 @@
     "prettier": "^2.0.5",
     "rollup": "^2.10.2",
     "rollup-plugin-dts": "^1.4.3",
-    "rollup-plugin-esbuild": "^1.4.1",
+    "rollup-plugin-esbuild": "^2.2.0",
     "rollup-plugin-postcss": "^3.1.1",
     "tailwindcss": "^1.4.6",
     "type-fest": "^0.15.0",

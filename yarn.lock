@@ -1000,7 +1000,7 @@
     is-module "^1.0.0"
     resolve "^1.17.0"
 
-"@rollup/pluginutils@^3.0.10", "@rollup/pluginutils@^3.0.8", "@rollup/pluginutils@^3.1.0":
+"@rollup/pluginutils@^3.0.8", "@rollup/pluginutils@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.1.0.tgz#706b4524ee6dc8b103b3c995533e5ad680c02b9b"
   integrity sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==
@@ -3048,10 +3048,10 @@ es6-object-assign@^1.1.0:
   resolved "https://registry.yarnpkg.com/es6-object-assign/-/es6-object-assign-1.1.0.tgz#c2c3582656247c39ea107cb1e6652b6f9f24523c"
   integrity sha1-wsNYJlYkfDnqEHyx5mUrb58kUjw=
 
-esbuild@^0.3.0:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.3.2.tgz#3f6bdfbf51b2e776bb57952691930097b3770705"
-  integrity sha512-sm5o2D/nHhXSrs2D4UySNeyjSxJlgxQ6Ze2Cy6OOIJqbuDd/u6sMtiSn243bAEiyyYzlazueeryrrWJJCkv8lA==
+esbuild@^0.5.9:
+  version "0.5.26"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.5.26.tgz#0868e8f3e0938c6cb9a8c93e74f85900eff1a071"
+  integrity sha512-OopLmIbQNOWBWMBoOtHjDEaIiTI2okEpRkbiKccfatnXJtsGazwWhR0dmvY8ynjLx/BOPS9mQ6QFl7J1BQCcaQ==
 
 escape-html@~1.0.3:
   version "1.0.3"
@@ -6435,13 +6435,13 @@ rollup-plugin-dts@^1.4.3:
   optionalDependencies:
     "@babel/code-frame" "^7.10.4"
 
-rollup-plugin-esbuild@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-esbuild/-/rollup-plugin-esbuild-1.4.1.tgz#b388ebd4cda1198208d7746feea7656d485019b0"
-  integrity sha512-gTzKtVo/OiOOe6pwRFHQCyCtEeYxcxLmjpqMiT4TnwXtPdF8RNP9c5wh/NZPztQydcMdEe1W+TO7poXwbLQekw==
+rollup-plugin-esbuild@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-esbuild/-/rollup-plugin-esbuild-2.2.0.tgz#3363a4e39f022fa15d364b22c22a5b1bd2cc75c9"
+  integrity sha512-xQGk6c6dt4WiC3LEjTaMhwP7Z3/+5YiSsdvWwU1GQ1lZjGA/aYLB9qzZv0LoXZhnNySeWTZqhuG60L65Ik2PFg==
   dependencies:
-    "@rollup/pluginutils" "^3.0.10"
-    esbuild "^0.3.0"
+    "@rollup/pluginutils" "^3.1.0"
+    esbuild "^0.5.9"
 
 rollup-plugin-postcss@^3.1.1:
   version "3.1.8"
