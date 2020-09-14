@@ -7111,9 +7111,9 @@ svgo@^1.0.0:
     util.promisify "~1.0.0"
 
 tailwindcss@^1.4.6:
-  version "1.8.4"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.8.4.tgz#867a831640b0edf26517a691f6b6f5bd09aa3adf"
-  integrity sha512-UW1giHUBuMVUwzff0vVbvGOdx1r8+4onN8LCblzncstdFVyuiZ2wCnkv2RQiSAlMTHaNu8vAAhm/fw3flmCi0Q==
+  version "1.8.10"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.8.10.tgz#945ef151c401c04a1c95e6a6bc747387a8d1b9dc"
+  integrity sha512-7QkERG/cWCzsuMqHMwjOaLMVixOGLNBiXsrkssxlE1aWfkxVbGqiuMokR2162xRyaH2mBIHKxmlf1qb3DvIPqw==
   dependencies:
     "@fullhuman/postcss-purgecss" "^2.1.2"
     autoprefixer "^9.4.5"
