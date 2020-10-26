@@ -5446,9 +5446,9 @@ pkg-up@^3.1.0:
     find-up "^3.0.0"
 
 poi@^12.8.0:
-  version "12.10.2"
-  resolved "https://registry.yarnpkg.com/poi/-/poi-12.10.2.tgz#7cdc0f80596bf24bd6a9fc866bc811b68a683726"
-  integrity sha512-iTr5hTVC/Lvm/69l51dY6vW8sTBq84b5FjR8ToOjGIcZPXL8nnFF4y0/416Kp3ogsqZXOSZb3a1KFvPfbVroVQ==
+  version "12.10.3"
+  resolved "https://registry.yarnpkg.com/poi/-/poi-12.10.3.tgz#a6dcace79145b7bfffcd7f3c96619e8b7ea2d226"
+  integrity sha512-u+HBhgEDtQjUXBIGJfkpNpG1DIDdCJiThcxvWe0QflrQX1F+C7Ht7+CuwpnNGeFVV/JDk9R0DoqPTLRydjmEsQ==
   dependencies:
     "@babel/core" "^7.1.6"
     "@babel/plugin-proposal-class-properties" "^7.1.0"
