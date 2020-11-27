@@ -41,7 +41,7 @@
     "@rollup/plugin-node-resolve": "^8.0.0",
     "@types/marked": "^0.7.4",
     "@types/prismjs": "^1.16.1",
-    "poi": "^12.8.0",
+    "poi": "^12.10.3",
     "prettier": "^2.0.5",
     "rollup": "^2.10.2",
     "rollup-plugin-dts": "^1.4.3",

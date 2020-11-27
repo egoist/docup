@@ -24,6 +24,9 @@
 
   --table-header-border-fg: var(--navbar-bg);
   --table-body-border-fg: var(--sidebar-bg);
+
+  --loader-start-bg: #eeeeee;
+  --loader-end-bg: #e4e2e1;
 }
 
 .theme-dark {
@@ -39,6 +42,9 @@
   --content-link-fg: #ffe77a;
   --table-header-border-fg: rgb(88, 88, 88);
   --table-body-border-fg: rgba(88, 88, 88, 0.78);
+
+  --loader-start-bg: #2b2c2e;
+  --loader-end-bg: #252525;
 }
 
 body {
@@ -119,6 +125,21 @@ body {
   }
 }
 
+.loader {
+  animation: loader 3s infinite ease-in-out;
+}
+
+@keyframes loader {
+  0% {
+    background-color: var(--loader-start-bg);
+  }
+  50% {
+    background-color: var(--loader-end-bg);
+  }
+  100% {
+    background-color: var(--loader-start-bg);
+  }
+}
 
 .menu_item__active {
   color: var(--sidebar-menu-item-active-fg);

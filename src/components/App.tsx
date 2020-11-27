@@ -6,7 +6,13 @@ import { Navbar } from './Navbar'
 import { Sidebar } from './Sidebar'
 import { Main } from './Main'
 import { renderMarkdown, SidebarMenuItem } from '../markdown'
-import { loadLanguages, scrollToHash, updateURLHash, throttle, getFileUrl } from '../utils'
+import {
+  loadLanguages,
+  scrollToHash,
+  updateURLHash,
+  throttle,
+  getFileUrl,
+} from '../utils'
 
 const handleScroll = throttle(() => {
   const headings = document.querySelectorAll('.content .heading')
@@ -27,14 +33,14 @@ const handleScroll = throttle(() => {
   }
 }, 200)
 
+export type LoadingState = 'loading' | 'success' | 'error'
+
 export const App: FunctionComponent<{ options: InstanceOptions }> = ({
   options,
 }) => {
   const navLinks = options.navLinks || []
   const [html, setHtml] = useState('')
-  const [loadingState, setLoadingState] = useState<
-    'loading' | 'success' | 'error'
-  >('loading')
+  const [loadingState, setLoadingState] = useState<LoadingState>('loading')
   const [menu, setMenu] = useState<SidebarMenuItem[]>([])
   const [showSidebar, setShowSidebar] = useState(false)
 
@@ -108,7 +114,7 @@ export const App: FunctionComponent<{ options: InstanceOptions }> = ({
   }, [])
 
   return (
-    <div >
+    <div>
       {showSidebar && (
         <div
           onClick={() => setShowSidebar(false)}
@@ -128,7 +134,7 @@ export const App: FunctionComponent<{ options: InstanceOptions }> = ({
         menu={menu}
         showSidebar={showSidebar}
       />
-      <Main html={html} />
+      <Main html={html} loadingState={loadingState} />
     </div>
   )
 }
