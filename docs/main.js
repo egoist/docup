@@ -5,7 +5,6 @@ init({
   logo: '<img src="logo.svg" width="60">',
   description: 'Simply beautiful documentation.',
   highlightLanguages: ['nginx'],
-  theme: 'dark',
   props: {
     langs: process.env.PRISM_LANGUAGES,
   },

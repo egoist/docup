@@ -33,13 +33,18 @@ export class Docup {
   options: InstanceOptions
 
   constructor(options: Options = {}) {
+    const matchedDarkTheme =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+
     this.options = {
       title: options.title || document.title || 'Docup',
       indexFile: 'README.md',
       root: '',
       base: '/',
       highlight: true,
-      theme: 'default',
+      theme: matchedDarkTheme ? 'dark' : 'default',
       ...options,
     }
   }
