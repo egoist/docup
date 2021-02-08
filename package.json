@@ -32,7 +32,7 @@
   "dependencies": {
     "element-in-view": "^0.1.0",
     "htm": "^3.0.4",
-    "marked": "^1.0.0",
+    "marked": "^2.0.0",
     "preact": "^10.4.1",
     "prismjs": "^1.20.0"
   },
