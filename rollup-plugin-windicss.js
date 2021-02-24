@@ -5,6 +5,7 @@ import {
   WindiPluginUtils,
   createUtils,
 } from '@windicss/plugin-utils'
+import CleanCSS from 'clean-css'
 
 const NAME = 'rollup-plugin-windicss'
 const MODULE_ID = 'windi.css'
@@ -38,6 +39,8 @@ function WindiCssRollupPlugin(userOptions = {}) {
 
   const options = resolveOptions(userOptions)
   let chunks = []
+
+  const cleanCSS = new CleanCSS()
 
   return {
     name: NAME,
@@ -82,10 +85,10 @@ function WindiCssRollupPlugin(userOptions = {}) {
       }
     },
 
-    generateBundle(_, bundle, isWrite) {
+    generateBundle() {
       let code = chunks.join('\n')
       if (userOptions.minify) {
-        code = require('csso').minify(code).css
+        code = cleanCSS.minify(code).styles
       }
       this.emitFile({
         type: 'asset',
