@@ -73,7 +73,7 @@ export const Sidebar: FunctionComponent<{
           return (
             <a
               class={
-                `inline-block px-5 py-1 menu_item` +
+                `block px-5 py-1 menu_item` +
                 (item.slug === hash.slice(1) ? ' menu_item__active' : '')
               }
               onClick={handleSidebarItemClick}
