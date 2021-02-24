@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Docup</title>
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+      name="description"
+      content="Docup is a single JavaScript file that fetches Markdown file and renders it as a beautiful one-page documentation."
     />
-    <title>My Awesome Doc</title>
-    <!-- Stylesheet -->
-    <link
-      rel="stylesheet"
-      href="../dist/docup.css"
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@_egoistlily" />
+    <meta property="og:title" content="Docup" />
+    <meta
+      property="og:description"
+      content="Docup is a single JavaScript file that fetches Markdown file and renders it as a beautiful one-page documentation."
     />
   </head>
   <body>
     <div id="app"></div>
-    <!-- Script -->
-    <script src="../dist/docup.js"></script>
-    <!-- Start app -->
-    <script>
-      docup.init({
-        root: 'docs/',
-        props: {
-          langs: ['rust']
-        }
-      });
-    </script>
+    <script type="module" src="/main.ts"></script>
   </body>
 </html>

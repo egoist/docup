@@ -2,11 +2,9 @@ import { init } from '../src/docup'
 
 init({
   title: 'Docup',
-  logo: '<img src="logo.svg" width="60">',
-  description: 'Simply beautiful documentation.',
   highlightLanguages: ['nginx'],
   props: {
-    langs: process.env.PRISM_LANGUAGES,
+    langs: PRISM_LANGUAGES,
   },
   navLinks: [
     {

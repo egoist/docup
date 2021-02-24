@@ -5,6 +5,9 @@ declare namespace NodeJS {
   }
 }
 
+declare const DOCUP_VERSION: string
+declare const PRISM_VERSION: string
+declare const PRISM_LANGUAGES: string
 
 declare module 'element-in-view' {
   type Options = {

@@ -22,9 +22,9 @@
   },
   "scripts": {
     "test": "echo skip",
-    "build": "rm -rf dist && NODE_ENV=production rollup -c",
-    "dev": "poi -s -c docs/poi.config.js",
-    "build:website": "poi -c docs/poi.config.js --prod",
+    "build": "NODE_ENV=production rollup -c",
+    "dev": "vite docs",
+    "build:website": "vite build docs && cp docs/README.md docs/dist/",
     "prepublishOnly": "npm run build"
   },
   "author": "egoist <0x142857@gmail.com>",
@@ -32,23 +32,27 @@
   "dependencies": {
     "element-in-view": "^0.1.0",
     "htm": "^3.0.4",
-    "marked": "^1.0.0",
-    "preact": "^10.4.1",
-    "prismjs": "^1.20.0"
+    "marked": "^2.0.0",
+    "preact": "^10.5.12",
+    "prismjs": "^1.23.0"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^12.0.0",
-    "@rollup/plugin-node-resolve": "^8.0.0",
-    "@types/marked": "^0.7.4",
-    "@types/prismjs": "^1.16.1",
-    "poi": "^12.10.3",
-    "prettier": "^2.0.5",
-    "rollup": "^2.10.2",
-    "rollup-plugin-dts": "^1.4.3",
-    "rollup-plugin-esbuild": "^1.4.1",
-    "rollup-plugin-postcss": "^3.1.1",
-    "tailwindcss": "^1.4.6",
-    "type-fest": "^0.15.0",
-    "typescript": "^3.9.2"
+    "@prefresh/vite": "^2.1.0",
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@types/debug": "^4.1.5",
+    "@types/marked": "^1.2.2",
+    "@types/prismjs": "^1.16.3",
+    "csso": "^4.2.0",
+    "debug": "^4.3.1",
+    "esbuild": "^0.8.51",
+    "prettier": "^2.2.1",
+    "rollup": "^2.39.1",
+    "rollup-plugin-dts": "^2.0.1",
+    "rollup-plugin-esbuild": "^2.6.1",
+    "type-fest": "^0.21.2",
+    "typescript": "^4.2.2",
+    "vite": "^2.0.2",
+    "vite-plugin-windicss": "^0.4.12"
   }
 }

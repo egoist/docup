@@ -54,7 +54,7 @@ export async function loadLanguages(langs: string[]) {
   await Promise.all(
     langs.map((lang) =>
       loadScript(
-        `https://cdn.jsdelivr.net/npm/prismjs@${process.env.PRISM_VERSION}/components/prism-${lang}.min.js`
+        `https://cdn.jsdelivr.net/npm/prismjs@${PRISM_VERSION}/components/prism-${lang}.min.js`
       )
     )
   )
@@ -101,9 +101,9 @@ const MD_RE = /\.md$/
 
 export function getFileUrl(root: string, indexFile: string, pathname: string) {
   let url = root
-  // Remove trailing slash
-  // Becuase pathname always starts with slash
-  .replace(TRAILING_SLASH_RE, '')
+    // Remove trailing slash
+    // Becuase pathname always starts with slash
+    .replace(TRAILING_SLASH_RE, '')
   // `pathname` ends with slash
   // this is a directory
   // use `indexFile`

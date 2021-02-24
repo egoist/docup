@@ -1,4 +1,4 @@
-import './css/tailwind.css'
+import 'windi.css'
 import './css/prism.css'
 import './css/main.css'
 import './css/content.css'
@@ -65,4 +65,4 @@ export function init(options: Options) {
   docup.init()
 }
 
-export const version = process.env.DOCUP_VERSION
+export const version = DOCUP_VERSION
