@@ -81,9 +81,8 @@ export const Sidebar: FunctionComponent<{
               key={index}
               data-depth={item.depth}
               href={`#${item.slug}`}
-            >
-              {item.text}
-            </a>
+              dangerouslySetInnerHTML={{ __html: item.text }}
+            ></a>
           )
         })}
       </div>
