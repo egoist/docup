@@ -45,7 +45,7 @@
     "@types/prismjs": "^1.16.3",
     "clean-css": "^5.1.0",
     "debug": "^4.3.1",
-    "esbuild": "^0.8.51",
+    "esbuild": "^0.9.6",
     "prettier": "^2.2.1",
     "rollup": "^2.39.1",
     "rollup-plugin-dts": "^2.0.1",
