@@ -21,6 +21,12 @@ export interface Options {
   props?: any
   font?: string
   base?: string
+  /**
+   * @alpha
+   * Use a custom theme
+   *
+   * the `dark` theme is now very experimental, expected many bugs
+   */
   theme?: 'default' | 'dark'
 }
 
@@ -33,18 +39,12 @@ export class Docup {
   options: InstanceOptions
 
   constructor(options: Options = {}) {
-    const matchedDarkTheme =
-      typeof window !== 'undefined' &&
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-
     this.options = {
       title: options.title || document.title || 'Docup',
       indexFile: 'README.md',
       root: '',
       base: '/',
       highlight: true,
-      theme: matchedDarkTheme ? 'dark' : 'default',
       ...options,
     }
   }
