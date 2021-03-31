@@ -56,7 +56,7 @@ export class Docup {
     link.href = `https://fonts.googleapis.com/css2?family=${font}:wght@400;700&display=swap`
     document.head.appendChild(link)
 
-    render(h(App, { options: this.options }), document.body)
+    render(h(App, { options: this.options }), document.getElementById('app'))
   }
 }
 

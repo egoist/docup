@@ -1,4 +1,4 @@
-import { h, useEffect, useState, useRef  } from 'fre'
+import { h, useEffect, useState, useRef } from 'fre'
 
 export const Sidebar = ({ menu, title, base, showSidebar, navLinks }) => {
   const [hash, setHash] = useState('')
@@ -72,7 +72,9 @@ export const Sidebar = ({ menu, title, base, showSidebar, navLinks }) => {
               key={index}
               data-depth={item.depth}
               href={`#${item.slug}`}
-              dangerouslySetInnerHTML={{ __html: item.text }}
+              ref={(dom) => {
+                dom.innerHTML = item.text
+              }}
             ></a>
           )
         })}
