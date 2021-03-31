@@ -28,10 +28,10 @@ Create an HTML file: `index.html` which will be be homepage of your documentatio
     />
   </head>
   <body>
-    <!-- Script -->
-    <script src="https://unpkg.com/@egoist/docup@1/dist/docup.min.js"></script>
     <!-- Start app -->
-    <script>
+    <script type="module">
+      import * as docup from 'https://unpkg.com/@egoist/docup@1/dist/docup.min.js'
+
       docup.init({
         // ..options
       })
@@ -255,7 +255,7 @@ export default () => {
           <td>
             <code style="display:inline-block;margin-right:10px;">${name}</code>
           </td>
-          <td style=${{paddingTop: '4px'}}>
+          <td style=${{ paddingTop: '4px' }}>
             ${isColor
               ? html`<div
                   style=${{

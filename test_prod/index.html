@@ -9,9 +9,12 @@
   </head>
   <body>
     <div id="app"></div>
-    <script src="../dist/docup.js"></script>
-    <script>
-      docup.init({})
+    <script type="module">
+      import * as docup from '../dist/docup.min.js'
+
+      docup.init({
+        // ..options
+      })
     </script>
   </body>
 </html>
