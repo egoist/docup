@@ -1,5 +1,7 @@
 import { init } from '../src/docup'
 
+export * from '../src/docup'
+
 init({
   title: 'Docup',
   highlightLanguages: ['nginx'],
