@@ -44,6 +44,7 @@ const config: UserConfig = {
     }),
   ],
   build: {
+    target: ['es2020', 'safari14', 'chrome88'],
     minify: !process.env.DEBUG,
     polyfillDynamicImport: false,
     rollupOptions: {
