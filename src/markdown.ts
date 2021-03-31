@@ -8,7 +8,7 @@ import 'prismjs/components/prism-css'
 import 'prismjs/components/prism-markdown'
 import { isExternalLink, slugify, ANCHOR_ICON } from './utils'
 import htm from 'htm'
-import { render } from 'fre'
+import { render, h } from 'fre'
 import * as hooks from 'fre'
 
 const BLOCKQUOTE_TAG_RE = /^<p>(?:<strong>)?(Note|Alert|Info|Warning|Success|Alert)(?:<\/strong>)?\:\s*/i
