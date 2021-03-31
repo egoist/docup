@@ -22,8 +22,9 @@
   },
   "scripts": {
     "test": "echo skip",
-    "build": "NODE_ENV=production rollup -c",
+    "build": "cross-env NODE_ENV=production rollup -c",
     "dev": "vite docs",
+    "dev:fre": "cross-env vite docs NODE_ENV=fre",
     "build:website": "vite build docs && cp docs/README.md docs/dist/",
     "prepublishOnly": "npm run build"
   },
@@ -55,6 +56,7 @@
     "type-fest": "^0.21.2",
     "typescript": "^4.2.3",
     "vite": "^2.1.3",
-    "vite-plugin-windicss": "^0.9.11"
+    "vite-plugin-windicss": "^0.9.11",
+    "cross-env": "7.0.3"
   }
 }
