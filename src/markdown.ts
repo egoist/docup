@@ -53,10 +53,12 @@ export function renderMarkdown(text: string, { props }: { props: any }) {
           console.error(`Error compiling code block`)
           throw error
         }
-        const el = document.getElementById(`code-replacement-${index}`)
-        if (el) {
-          render(h(Component, props), el)
-        }
+        setTimeout(() => {
+          const el = document.getElementById(`code-replacement-${index}`)
+          if (el) {
+            render(h(Component, props), el)
+          }
+        }, 0)
       })
       return `<div id="code-replacement-${index}"></div>`
     }
