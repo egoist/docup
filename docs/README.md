@@ -245,7 +245,11 @@ function getAllCSSVariableNames(styleSheets = document.styleSheets) {
           for (var k = 0; k < styleSheets[i].cssRules[j].style.length; k++) {
             let name = styleSheets[i].cssRules[j].style[k]
             // test name for css variable signature and uniqueness
-            if (name.startsWith('--') && cssVars.indexOf(name) == -1) {
+            if (
+              name.startsWith('--') &&
+              cssVars.indexOf(name) == -1 &&
+              !name.startsWith('--tw-')
+            ) {
               cssVars.push(name)
             }
           }
