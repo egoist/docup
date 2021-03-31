@@ -45,18 +45,22 @@ export function renderMarkdown(text: string, { props }: { props: any }) {
       const index = codeReplacementIndex++
       fns.push(() => {
         const newCode = `${code.replace(/export\s+default\s/, 'return ')}`
-        const getComponent = new Function('html', 'hooks', `with(hooks){${newCode}}`)
-        let Component
-        try {
-          Component = getComponent(htm.bind(h), hooks)
-        } catch (error) {
-          console.error(`Error compiling code block`)
-          throw error
-        }
-        const el = document.getElementById(`code-replacement-${index}`)
-        if (el) {
-          render(h(Component, props), el)
-        }
+        const getComponent = new Function(
+          'html',
+          'hooks',
+          `with(hooks){${newCode}}`
+        )
+        setTimeout(() => {
+          let Component
+          try {
+            Component = getComponent(htm.bind(h), hooks)
+          } catch (error) {
+            console.error(`Error compiling code block`)
+            throw error
+          }
+          const el = document.getElementById(`code-replacement-${index}`)
+          if (el) render(h(Component, props), el)
+        }, 0)
       })
       return `<div id="code-replacement-${index}"></div>`
     }
