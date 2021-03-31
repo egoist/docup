@@ -18,7 +18,9 @@ export const Main: FC<{
         {loadingState !== 'loading' && (
           <div
             className="content"
-            dangerouslySetInnerHTML={{ __html: html }}
+            ref={(dom) => {
+              dom && (dom.innerHTML = html)
+            }}
           ></div>
         )}
       </div>

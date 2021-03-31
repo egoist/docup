@@ -80,7 +80,9 @@ export const Sidebar: FC<{
               key={index}
               data-depth={item.depth}
               href={`#${item.slug}`}
-              dangerouslySetInnerHTML={{ __html: item.text }}
+              ref={(dom)=>{
+                dom && (dom.innerHTML = item.text)
+              }}
             ></a>
           )
         })}
