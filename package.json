@@ -16,7 +16,7 @@
   "cdn": "dist/docup.min.js",
   "jsdelivr": "dist/docup.min.js",
   "main": "dist/docup.js",
-  "module": "dist/docup.esm.js",
+  "module": "dist/docup.js",
   "publishConfig": {
     "access": "public"
   },
