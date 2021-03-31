@@ -18,7 +18,6 @@ export const Main: FC<{
           <div
             className="content"
             ref={(dom) => {
-              console.log(dom)
               dom && (dom.innerHTML = html)
             }}
           ></div>
