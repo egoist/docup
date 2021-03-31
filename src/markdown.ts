@@ -41,11 +41,11 @@ export function renderMarkdown(text: string, { props }: { props: any }) {
 
   renderer.code = (code, _lang = '', escaped) => {
     const [lang, info] = _lang.split(' ')
-    if (info === 'preact') {
+    if (info === 'preact' || info === 'fre') {
       const index = codeReplacementIndex++
       fns.push(() => {
         const newCode = `${code.replace(/export\s+default\s/, 'return ')}`
-        const getComponent = new Function('html', 'hooks', newCode)
+        const getComponent = new Function('html', 'hooks', `with(hooks){${newCode}}`)
         let Component
         try {
           Component = getComponent(htm.bind(h), hooks)

@@ -141,8 +141,6 @@ docup.init({
 Available languages:
 
 ```js preact
-const { useState } = hooks
-
 export default ({ langs }) => {
   const [showAll, setShowAll] = useState(false)
   return html`<div>
@@ -167,8 +165,6 @@ You can inline Preact components inside Markdown file like this:
 
 ````markdown
 ```js preact
-const { useState } = hooks
-
 export default () => {
   const [count, setCount] = useState(0)
   return html`<button
@@ -184,8 +180,6 @@ export default () => {
 Write `preact` next to the language name and we will render the code as a Preact component in place:
 
 ```js preact
-const { useState } = hooks
-
 export default () => {
   const [count, setCount] = useState(0)
   return html`<button
@@ -202,8 +196,6 @@ export default () => {
 ### CSS Variables
 
 ```js preact
-const { useEffect, useState } = hooks
-
 // could pass in an array of specific stylesheets for optimization
 function getAllCSSVariableNames(styleSheets = document.styleSheets) {
   var cssVars = []
