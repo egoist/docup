@@ -59,7 +59,6 @@
 
 .content ul {
   @apply list-disc;
-  @apply list-outside;
   margin-left: 1.25rem;
 }
 
