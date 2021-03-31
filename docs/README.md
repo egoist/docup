@@ -24,13 +24,13 @@ Create an HTML file: `index.html` which will be be homepage of your documentatio
     <!-- Stylesheet -->
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@egoist/docup@1/dist/docup.min.css"
+      href="https://unpkg.com/@egoist/docup@2/dist/docup.min.css"
     />
   </head>
   <body>
     <!-- Start app -->
     <script type="module">
-      import * as docup from 'https://unpkg.com/@egoist/docup@1/dist/docup.min.js'
+      import * as docup from 'https://unpkg.com/@egoist/docup@2/dist/docup.min.js'
 
       docup.init({
         // ..options
