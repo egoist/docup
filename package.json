@@ -31,6 +31,7 @@
   "license": "MIT",
   "dependencies": {
     "element-in-view": "^0.1.0",
+    "fre": "^2.0.4",
     "htm": "^3.0.4",
     "marked": "^2.0.0",
     "preact": "^10.5.12",

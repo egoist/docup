@@ -1,15 +1,6 @@
-import { h, FunctionComponent } from 'preact'
-import { SidebarMenuItem } from '../markdown'
-import { useEffect, useState, useRef } from 'preact/hooks'
-import { NavLink } from '../docup'
+import { h, useEffect, useState, useRef  } from 'fre'
 
-export const Sidebar: FunctionComponent<{
-  menu: SidebarMenuItem[]
-  title: string
-  base: string
-  showSidebar: boolean
-  navLinks: NavLink[]
-}> = ({ menu, title, base, showSidebar, navLinks }) => {
+export const Sidebar = ({ menu, title, base, showSidebar, navLinks }) => {
   const [hash, setHash] = useState('')
   const sidebarRef = useRef<HTMLDivElement | null>(null)
   let sidebarItemClicked = false

@@ -1,5 +1,4 @@
-import { h, FunctionComponent } from 'preact'
-import { useEffect, useState } from 'preact/hooks'
+import { h,useEffect, useState } from 'fre'
 import inView from 'element-in-view'
 import { InstanceOptions } from '../docup'
 import { Navbar } from './Navbar'
@@ -35,7 +34,7 @@ const handleScroll = throttle(() => {
 
 export type LoadingState = 'loading' | 'success' | 'error'
 
-export const App: FunctionComponent<{ options: InstanceOptions }> = ({
+export const App  = ({
   options,
 }) => {
   const navLinks = options.navLinks || []

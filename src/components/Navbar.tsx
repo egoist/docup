@@ -1,12 +1,6 @@
-import { FunctionComponent, h } from 'preact'
-import { NavLink } from '../docup'
+import { h } from 'fre'
 
-export const Navbar: FunctionComponent<{
-  navLinks: NavLink[]
-  title: string
-  base: string
-  toggleSidebar: () => void
-}> = ({ title, base, navLinks, toggleSidebar }) => {
+export const Navbar = ({ title, base, navLinks, toggleSidebar }) => {
   return (
     <header class="fixed w-full top-0 left-0 h-12 navbar flex items-center justify-between px-5">
       <div class="flex items-center">
