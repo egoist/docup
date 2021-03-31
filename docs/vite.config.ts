@@ -28,7 +28,10 @@ const config: UserConfig = {
   },
   resolve: {
     alias: {
-      renderer: path.resolve('src/renderer/preact.ts'),
+      renderer:
+        process.env.NODE_ENV === 'fre'
+          ? path.resolve('src/renderer/fre.ts')
+          : path.resolve('src/renderer/preact.ts'),
     },
   },
   plugins: [

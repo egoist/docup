@@ -24,6 +24,7 @@
     "test": "echo skip",
     "build": "cross-env NODE_ENV=production rollup -c",
     "dev": "vite docs",
+    "dev:fre": "cross-env vite docs NODE_ENV=fre",
     "build:website": "vite build docs && cp docs/README.md docs/dist/",
     "prepublishOnly": "npm run build"
   },
