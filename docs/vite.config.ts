@@ -43,6 +43,21 @@ const config: UserConfig = {
       },
     }),
   ],
+  build: {
+    minify: !process.env.DEBUG,
+    polyfillDynamicImport: false,
+    rollupOptions: {
+      input: [
+        path.join(__dirname, 'main.ts'),
+        path.join(__dirname, 'index.html'),
+      ],
+      preserveEntrySignatures: 'strict',
+      output: {
+        // Disable vendor chunk, make everything bundled in a single file
+        manualChunks: undefined,
+      },
+    },
+  },
 }
 
 export default config
