@@ -8,7 +8,6 @@ import windicss from './rollup-plugin-windicss'
 import pkg from './package.json'
 
 const createConfig = ({ minify, format, dts, renderer } = {}) => {
-  console.log(renderer)
   renderer = renderer || 'preact'
   const isFre = renderer === 'fre'
   let filename = `[name]${format === 'esm' ? '.esm' : ''}${
