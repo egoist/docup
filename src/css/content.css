@@ -59,7 +59,7 @@
 
 .content ul {
   @apply list-disc;
-  @apply list-inside;
+  margin-left: 1.25rem;
 }
 
 .content blockquote {
