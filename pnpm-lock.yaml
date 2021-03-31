@@ -5,6 +5,7 @@ dependencies:
   preact: 10.5.13
   prismjs: 1.23.0
 devDependencies:
+  '@egoist/rollup-plugin-ts-resolve': 0.1.0
   '@prefresh/vite': 2.1.1_c9376b4c3d4a42f913703c014bd70d0e
   '@rollup/plugin-alias': 3.1.2_rollup@2.42.4
   '@rollup/plugin-commonjs': 17.1.0_rollup@2.42.4
@@ -207,6 +208,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-K4nY2xFN4QMvQwkQ+zmBDp6ANMbVNw6BbxWmYA4qNjhR9W+Lj/8ky5MEY2Me5r+B2c6/v6F53oMndG+f9s3IiA==
+  /@egoist/rollup-plugin-ts-resolve/0.1.0:
+    dependencies:
+      debug: 4.3.1
+      resolve: 1.20.0
+    dev: true
+    resolution:
+      integrity: sha512-phXCP0MXwRL0S01IbmuAXa2oVqcJZVhs9xyPsIh3oO6A6FCb9xyfMwbe7Zq93/+S8bplx0/7BicOFAKOJlIxvw==
   /@nodelib/fs.scandir/2.1.4:
     dependencies:
       '@nodelib/fs.stat': 2.0.4
@@ -1144,6 +1152,7 @@ packages:
     resolution:
       integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 specifiers:
+  '@egoist/rollup-plugin-ts-resolve': ^0.1.0
   '@prefresh/vite': ^2.1.0
   '@rollup/plugin-alias': ^3.1.2
   '@rollup/plugin-commonjs': ^17.1.0

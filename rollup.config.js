@@ -3,6 +3,7 @@ import path from 'path'
 import dtsPlugin from 'rollup-plugin-dts'
 import esbuildPlugin from 'rollup-plugin-esbuild'
 import nodeResolvePlugin from '@rollup/plugin-node-resolve'
+import tsResolvePlugin from '@egoist/rollup-plugin-ts-resolve'
 import commonjsPlugin from '@rollup/plugin-commonjs'
 import aliasPlugin from '@rollup/plugin-alias'
 import windicss from './rollup-plugin-windicss'
@@ -28,17 +29,6 @@ const createConfig = ({ minify, dts, renderer } = {}) => {
       entryFileNames: dts ? '[name].d.ts' : filename,
     },
     plugins: [
-      commonjsPlugin({}),
-      nodeResolvePlugin({
-        extensions: dts
-          ? ['.d.ts', '.ts']
-          : ['.js', '.ts', '.json', '.tsx', '.mjs'],
-      }),
-      aliasPlugin({
-        entries: {
-          renderer: path.resolve('src/renderer/' + renderer + '.ts'),
-        },
-      }),
       windicss({
         minify,
         scan: {
@@ -48,6 +38,22 @@ const createConfig = ({ minify, dts, renderer } = {}) => {
         transformCSS: true,
         transformGroups: false,
       }),
+
+      commonjsPlugin({}),
+
+      aliasPlugin({
+        entries: {
+          renderer: path.resolve('src/renderer/' + renderer + '.ts'),
+        },
+      }),
+      dts
+        ? tsResolvePlugin({
+            ignore(source) {
+              return source === 'preact' || source === 'windi.css'
+            },
+          })
+        : nodeResolvePlugin(),
+
       !dts &&
         esbuildPlugin({
           minify,
