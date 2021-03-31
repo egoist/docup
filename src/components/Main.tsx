@@ -1,4 +1,4 @@
-import { h, FC } from 'renderer'
+import { h, FC, setHtml } from 'renderer'
 import { LoadingState } from './App'
 
 export const Main: FC<{
@@ -15,12 +15,7 @@ export const Main: FC<{
             <div class="loader rounded h-4 w-48 mt-3"></div>
           </section>
         ) : (
-          <div
-            className="content"
-            ref={(dom) => {
-              dom && (dom.innerHTML = html)
-            }}
-          ></div>
+          <div className="content" {...setHtml(html)}></div>
         )}
       </div>
     </div>

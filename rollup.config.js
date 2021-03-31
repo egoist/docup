@@ -54,6 +54,7 @@ const createConfig = ({ minify, format, dts, renderer } = {}) => {
             DOCUP_VERSION: JSON.stringify(pkg.version),
             PRISM_VERSION: JSON.stringify(pkg.dependencies.prismjs),
           },
+          target: ['es2020', 'edge88', 'safari14', 'chrome88'],
         }),
       dts && dtsPlugin(),
     ].filter(Boolean),

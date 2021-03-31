@@ -1,4 +1,4 @@
-import { h, FC, useEffect, useState, useRef } from 'renderer'
+import { h, FC, useEffect, useState, useRef, setHtml } from 'renderer'
 import { SidebarMenuItem } from '../markdown'
 import { NavLink } from '../docup'
 
@@ -80,9 +80,7 @@ export const Sidebar: FC<{
               key={index}
               data-depth={item.depth}
               href={`#${item.slug}`}
-              ref={(dom)=>{
-                dom && (dom.innerHTML = item.text)
-              }}
+              {...setHtml(item.text)}
             ></a>
           )
         })}
