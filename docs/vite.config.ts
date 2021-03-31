@@ -3,6 +3,7 @@ import path from 'path'
 import { UserConfig } from 'vite'
 import prefresh from '@prefresh/vite'
 import windicss from 'vite-plugin-windicss'
+import { bundleDocsPlugin } from '../scripts/bundle-docs'
 
 const pkg = require('../package.json')
 
@@ -42,6 +43,7 @@ const config: UserConfig = {
         dirs: [path.resolve('src')],
       },
     }),
+    bundleDocsPlugin,
   ],
 }
 
