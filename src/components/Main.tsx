@@ -1,7 +1,7 @@
-import { h, FunctionComponent } from 'preact'
+import { h, FC } from 'renderer'
 import { LoadingState } from './App'
 
-export const Main: FunctionComponent<{
+export const Main: FC<{
   html: string
   loadingState: LoadingState
 }> = ({ html, loadingState }) => {

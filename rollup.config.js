@@ -3,13 +3,19 @@ import dtsPlugin from 'rollup-plugin-dts'
 import esbuildPlugin from 'rollup-plugin-esbuild'
 import nodeResolvePlugin from '@rollup/plugin-node-resolve'
 import commonjsPlugin from '@rollup/plugin-commonjs'
+import aliasPlugin from '@rollup/plugin-alias'
 import windicss from './rollup-plugin-windicss'
 import pkg from './package.json'
 
-const createConfig = ({ minify, format, dts } = {}) => {
-  const filename = `[name]${format === 'esm' ? '.esm' : ''}${
+const createConfig = ({ minify, format, dts, renderer } = {}) => {
+  renderer = renderer || 'preact'
+  const isFre = renderer === 'fre'
+  let filename = `[name]${format === 'esm' ? '.esm' : ''}${
     minify ? '.min' : ''
   }.js`
+  if (isFre) {
+    filename = filename.replace('[name]', '[name].fre')
+  }
   return {
     input: 'src/docup.ts',
     output: {
@@ -24,6 +30,11 @@ const createConfig = ({ minify, format, dts } = {}) => {
         extensions: dts
           ? ['.d.ts', '.ts']
           : ['.js', '.ts', '.json', '.tsx', '.mjs'],
+      }),
+      aliasPlugin({
+        entries: {
+          renderer: path.resolve('src/renderer/' + renderer + '.ts'),
+        },
       }),
       windicss({
         minify,
@@ -54,8 +65,10 @@ export default [
   createConfig({ dts: true }),
   // UMD format
   createConfig({ format: 'umd' }),
+  createConfig({ format: 'umd', renderer: 'fre' }),
   // Minified UMD format
   createConfig({ format: 'umd', minify: true }),
+  createConfig({ format: 'umd', minify: true, renderer: 'fre' }),
   // ESM format
   createConfig({ format: 'esm' }),
 ]

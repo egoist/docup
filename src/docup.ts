@@ -3,7 +3,7 @@ import './css/prism.css'
 import './css/main.css'
 import './css/content.css'
 import { SetRequired } from 'type-fest'
-import { h, render } from 'preact'
+import { h, render } from 'renderer'
 import { App } from './components/App'
 
 export interface NavLink {

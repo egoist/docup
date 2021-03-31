@@ -1,7 +1,7 @@
-import { FunctionComponent, h } from 'preact'
+import { FC, h } from 'renderer'
 import { NavLink } from '../docup'
 
-export const Navbar: FunctionComponent<{
+export const Navbar: FC<{
   navLinks: NavLink[]
   title: string
   base: string

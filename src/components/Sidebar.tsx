@@ -1,9 +1,8 @@
-import { h, FunctionComponent } from 'preact'
+import { h, FC, useEffect, useState, useRef } from 'renderer'
 import { SidebarMenuItem } from '../markdown'
-import { useEffect, useState, useRef } from 'preact/hooks'
 import { NavLink } from '../docup'
 
-export const Sidebar: FunctionComponent<{
+export const Sidebar: FC<{
   menu: SidebarMenuItem[]
   title: string
   base: string
