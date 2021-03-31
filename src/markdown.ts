@@ -8,8 +8,8 @@ import 'prismjs/components/prism-css'
 import 'prismjs/components/prism-markdown'
 import { isExternalLink, slugify, ANCHOR_ICON } from './utils'
 import htm from 'htm'
-import * as renderer from 'renderer'
 import { render, h } from 'renderer'
+import * as hooks from 'renderer'
 
 const BLOCKQUOTE_TAG_RE = /^<p>(?:<strong>)?(Note|Alert|Info|Warning|Success|Alert)(?:<\/strong>)?\:\s*/i
 
@@ -45,10 +45,10 @@ export function renderMarkdown(text: string, { props }: { props: any }) {
       const index = codeReplacementIndex++
       fns.push(() => {
         const newCode = `${code.replace(/export\s+default\s/, 'return ')}`
-        const getComponent = new Function('html', 'hooks', newCode)
+        const getComponent = new Function('html', 'hooks', `with(hooks){${newCode}}`)
         let Component
         try {
-          Component = getComponent(htm.bind(h), renderer)
+          Component = getComponent(htm.bind(h), hooks)
         } catch (error) {
           console.error(`Error compiling code block`)
           throw error
