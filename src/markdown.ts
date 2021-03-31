@@ -7,9 +7,7 @@ import 'prismjs/components/prism-json'
 import 'prismjs/components/prism-css'
 import 'prismjs/components/prism-markdown'
 import { isExternalLink, slugify, ANCHOR_ICON } from './utils'
-import htm from 'htm'
-import { render, h } from 'renderer'
-import * as hooks from 'renderer'
+import { rewriteImports } from './markdown-component'
 
 const BLOCKQUOTE_TAG_RE = /^<p>(?:<strong>)?(Note|Alert|Info|Warning|Success|Alert)(?:<\/strong>)?\:\s*/i
 
@@ -19,7 +17,7 @@ export interface SidebarMenuItem {
   depth: number
 }
 
-export function renderMarkdown(text: string, { props }: { props: any }) {
+export function renderMarkdown(text: string) {
   const renderer = new marked.Renderer()
   const fns: Array<() => void> = []
 
@@ -40,31 +38,41 @@ export function renderMarkdown(text: string, { props }: { props: any }) {
   let codeReplacementIndex = 0
 
   renderer.code = (code, _lang = '', escaped) => {
-    const [lang, info] = _lang.split(' ')
-    if (info === 'preact' || info === 'fre') {
+    let [lang, info] = _lang.split(' ')
+    let keep: string | boolean = false
+    if (info) {
+      const splits = info.split(',')
+      info = splits[0]
+      keep = splits.includes('keepAbove') ? 'above' : splits.includes('keep')
+    }
+
+    const renderCode = () => originalCode.call(renderer, code, lang, escaped)
+
+    if (
+      info === 'preact' ||
+      info === 'fre' ||
+      info === 'react' ||
+      info === 'vue'
+    ) {
       const index = codeReplacementIndex++
       fns.push(() => {
-        const newCode = `${code.replace(/export\s+default\s/, 'return ')}`
-        const getComponent = new Function(
-          'html',
-          'hooks',
-          `with(hooks){${newCode}}`
-        )
-        setTimeout(() => {
-          let Component
-          try {
-            Component = getComponent(htm.bind(h), hooks)
-          } catch (error) {
-            console.error(`Error compiling code block`)
-            throw error
-          }
-          const el = document.getElementById(`code-replacement-${index}`)
-          if (el) render(h(Component, props), el)
-        }, 0)
+        const componentScript = document.createElement('script')
+        componentScript.type = 'module'
+        componentScript.textContent = `
+        ${rewriteImports(code).replace(
+          /\bexport default\b/,
+          `window._MD_COMPONENTS.${info}_${index}=`
+        )}`
+        setTimeout(() => document.body.append(componentScript))
       })
-      return `<div id="code-replacement-${index}"></div>`
+      return `${
+        keep === 'above' ? renderCode() : ''
+      }<div id="md_components_${index}"></div>${
+        keep === true ? renderCode() : ''
+      }`
     }
-    return originalCode.call(renderer, code, lang, escaped)
+
+    return renderCode()
   }
 
   renderer.link = (href, title, text) => {

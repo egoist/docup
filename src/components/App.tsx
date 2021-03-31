@@ -12,6 +12,7 @@ import {
   throttle,
   getFileUrl,
 } from '../utils'
+import { initMarkdownComponentsProxy, setMdProps } from '../markdown-component'
 
 const handleScroll = throttle(() => {
   const headings = document.querySelectorAll('.content .heading')
@@ -44,6 +45,8 @@ export const App: FC<{ options: InstanceOptions }> = ({ options }) => {
   const toggleSidebar = () => setShowSidebar(!showSidebar)
 
   useEffect(() => {
+    setMdProps(options.props)
+    initMarkdownComponentsProxy()
     Promise.all([
       fetch(getFileUrl(options.root, options.indexFile, location.pathname)),
       options.highlightLanguages && loadLanguages(options.highlightLanguages),
@@ -52,9 +55,7 @@ export const App: FC<{ options: InstanceOptions }> = ({ options }) => {
         return res.text()
       })
       .then((text) => {
-        const { html, menu, fns } = renderMarkdown(text, {
-          props: options.props,
-        })
+        const { html, menu, fns } = renderMarkdown(text)
         setHtml(html)
         setMenu(menu)
         setLoadingState('success')

@@ -138,22 +138,20 @@ docup.init({
 })
 ```
 
-Available languages:
-
 ```js preact
+import { useState, html } from 'docup'
 export default ({ langs }) => {
-  const [showAll, setShowAll] = useState(false)
+  const [show, setShow] = useState(false)
   return html`<div>
-    <ul>
-      ${(showAll ? langs : langs.slice(0, 5)).map(
-        (lang) => html`<li key="{lang}">${lang}</li>`
-      )}
-    </ul>
+    ${show &&
+    html`<ul>
+      ${langs.map((lang) => html`<li key="{lang}">${lang}</li>`)}
+    </ul>`}
     <button
       style="margin-top:20px;border:1px solid; font-size: 14px; padding:5px;"
-      onClick=${() => setShowAll(!showAll)}
+      onClick=${() => setShow(!show)}
     >
-      Show ${showAll ? 'less' : 'all'}..
+      Show ${show ? 'hide languages' : 'all supported languages'}..
     </button>
   </div>`
 }
@@ -161,10 +159,12 @@ export default ({ langs }) => {
 
 ### Inline Component
 
-You can inline Preact components inside Markdown file like this:
+You can inline Preact, React and Vue 3 components inside Markdown file like this:
 
 ````markdown
 ```js preact
+import { useState, html } from 'docup'
+
 export default () => {
   const [count, setCount] = useState(0)
   return html`<button
@@ -180,6 +180,8 @@ export default () => {
 Write `preact` next to the language name and we will render the code as a Preact component in place:
 
 ```js preact
+import { useState, html } from 'docup'
+
 export default () => {
   const [count, setCount] = useState(0)
   return html`<button
@@ -191,11 +193,45 @@ export default () => {
 }
 ```
 
-> Warning: Note that you can't use JSX here, because it's not supported by browsers natively. But you can use the `html` function which is powered by [developit/htm](https://github.com/developit/htm).
+> Warning: Note that you can't use JSX here, because it's not supported by browsers natively. But you can use the `html` function which is powered by [developit/htm](https://github.com/developit/htm). By default `docup` re-exports all functions from `preact` plus a preact-powered `html` function.
+
+See another example with React:
+
+```js react,keep
+import React from 'react'
+import Trend from 'react-trend'
+import htm from 'htm'
+
+const html = htm.bind(React.createElement)
+
+export default () => html`<${Trend}
+  smooth
+  autoDraw
+  autoDrawDuration="{3000}"
+  autoDrawEasing="ease-out"
+  data=${[0, 2, 5, 9, 5, 10, 3, 5, 0, 0, 1, 8, 2, 9, 0]}
+  gradient=${['#00c6ff', '#F0F', '#FF0']}
+  radius=${10}
+  strokeWidth=${2}
+  strokeLinecap=${'butt'}
+/>`
+```
+
+When the code block is recognized as a component, the code itself will be removed from the markdown, if you want to show the code block below the rendered component, you can use the `keep` keyword:
+
+````markdown
+```js react,keep
+export default () => {}
+```
+````
+
+If you want to show the code block above the component, use `keepAbove` instead.
 
 ### CSS Variables
 
 ```js preact
+import { html } from 'docup'
+
 function getAllCSSVariableNames(styleSheets = document.styleSheets) {
   var cssVars = []
   // loop each stylesheet
@@ -436,6 +472,8 @@ export default ({ count }) => {
 ```
 ````
 
+```
+
 #### theme
 
 - Type: `default` or `dark`
@@ -460,3 +498,4 @@ Support this project via [GitHub Sponsors](https://github.com/sponsors/egoist).
 ## License
 
 MIT &copy; EGOIST
+```

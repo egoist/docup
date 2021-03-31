@@ -9,3 +9,14 @@ declare module 'element-in-view' {
   const inView: (el: Element, options?: Options) => boolean
   export default inView
 }
+
+declare interface ImportMeta {
+  env: {
+    DEV: boolean
+  }
+}
+
+interface Window {
+  MD_C_PROPS: any
+  _MD_COMPONENTS: Record<string, any>
+}
