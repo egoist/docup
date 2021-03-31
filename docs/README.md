@@ -470,13 +470,12 @@ Then you can inline component and use props in Markdown:
 
 ````markdown
 ```js preact
+import { html } from 'docup'
 export default ({ count }) => {
   return html`<button>${count}</button>`
 }
 ```
 ````
-
-```
 
 #### theme
 
