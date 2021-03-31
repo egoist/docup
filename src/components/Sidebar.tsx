@@ -1,9 +1,8 @@
-import { h, FunctionComponent } from 'preact'
+import { h, FC, useEffect, useState, useRef, setHtml } from 'renderer'
 import { SidebarMenuItem } from '../markdown'
-import { useEffect, useState, useRef } from 'preact/hooks'
 import { NavLink } from '../docup'
 
-export const Sidebar: FunctionComponent<{
+export const Sidebar: FC<{
   menu: SidebarMenuItem[]
   title: string
   base: string
@@ -81,7 +80,7 @@ export const Sidebar: FunctionComponent<{
               key={index}
               data-depth={item.depth}
               href={`#${item.slug}`}
-              dangerouslySetInnerHTML={{ __html: item.text }}
+              {...setHtml(item.text)}
             ></a>
           )
         })}

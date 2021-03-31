@@ -6,14 +6,17 @@ dependencies:
   prismjs: 1.23.0
 devDependencies:
   '@prefresh/vite': 2.1.1_c9376b4c3d4a42f913703c014bd70d0e
+  '@rollup/plugin-alias': 3.1.2_rollup@2.42.4
   '@rollup/plugin-commonjs': 17.1.0_rollup@2.42.4
   '@rollup/plugin-node-resolve': 11.2.0_rollup@2.42.4
   '@types/debug': 4.1.5
   '@types/marked': 1.2.2
   '@types/prismjs': 1.16.4
   clean-css: 5.1.2
+  cross-env: 7.0.3
   debug: 4.3.1
   esbuild: 0.10.0
+  fre: 2.0.4
   prettier: 2.2.1
   rollup: 2.42.4
   rollup-plugin-dts: 3.0.1_rollup@2.42.4+typescript@4.2.3
@@ -260,6 +263,17 @@ packages:
       vite: '>=2.0.0-beta.3'
     resolution:
       integrity: sha512-E/nSPUVJL3GBXSDFZimmS+fafx04Clb1bjqP/ZYNL+fVWTYo+dFMwd8VUUXJrrYzpBVwtq1EUz80u03iRcr12A==
+  /@rollup/plugin-alias/3.1.2_rollup@2.42.4:
+    dependencies:
+      rollup: 2.42.4
+      slash: 3.0.0
+    dev: true
+    engines:
+      node: '>=8.0.0'
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0
+    resolution:
+      integrity: sha512-wzDnQ6v7CcoRzS0qVwFPrFdYA4Qlr+ookA217Y2Z3DPZE1R8jrFNM3jvGgOf6o6DMjbnQIn5lCIJgHPe1Bt3uw==
   /@rollup/plugin-commonjs/17.1.0_rollup@2.42.4:
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.42.4
@@ -473,6 +487,27 @@ packages:
     dev: true
     resolution:
       integrity: sha512-4FJkXzKXEDB1snCFZlLP4gpC3JILicCpGbzG9f9G7tGqGCzETQ2hWPrcinA9oU4wtf2biUaEH5065UnMeR33oA==
+  /cross-env/7.0.3:
+    dependencies:
+      cross-spawn: 7.0.3
+    dev: true
+    engines:
+      node: '>=10.14'
+      npm: '>=6'
+      yarn: '>=1'
+    hasBin: true
+    resolution:
+      integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
+  /cross-spawn/7.0.3:
+    dependencies:
+      path-key: 3.1.1
+      shebang-command: 2.0.0
+      which: 2.0.2
+    dev: true
+    engines:
+      node: '>= 8'
+    resolution:
+      integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
   /debug/4.3.1:
     dependencies:
       ms: 2.1.2
@@ -577,6 +612,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==
+  /fre/2.0.4:
+    dev: true
+    resolution:
+      integrity: sha512-4PhECDE2LC7WGxKEIeY/1fnQ6mGVGSGwy2IR42WL/w4iq16Z/rGmFuwkBnKEWyLHZEieZg1oqUVUPSDzLbBzSA==
   /fs.realpath/1.0.0:
     dev: true
     resolution:
@@ -697,6 +736,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==
+  /isexe/2.0.0:
+    dev: true
+    resolution:
+      integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
   /joycon/3.0.1:
     dev: true
     engines:
@@ -820,6 +863,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
+  /path-key/3.1.1:
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==
   /path-parse/1.0.6:
     dev: true
     resolution:
@@ -941,6 +990,26 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
+  /shebang-command/2.0.0:
+    dependencies:
+      shebang-regex: 3.0.0
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==
+  /shebang-regex/3.0.0:
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
+  /slash/3.0.0:
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
   /source-map/0.5.7:
     dev: true
     engines:
@@ -1054,6 +1123,15 @@ packages:
       fsevents: 2.3.2
     resolution:
       integrity: sha512-bUzArZIUwADVJS/3ywCr4KKFn3a7izs4M87ZDlAlY2V34E4g1kH6p3sVNAh8/IXCn/56fwgMh3rRavPUW7qEQQ==
+  /which/2.0.2:
+    dependencies:
+      isexe: 2.0.0
+    dev: true
+    engines:
+      node: '>= 8'
+    hasBin: true
+    resolution:
+      integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==
   /windicss/2.5.5:
     dev: true
     engines:
@@ -1067,15 +1145,18 @@ packages:
       integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 specifiers:
   '@prefresh/vite': ^2.1.0
+  '@rollup/plugin-alias': ^3.1.2
   '@rollup/plugin-commonjs': ^17.1.0
   '@rollup/plugin-node-resolve': ^11.2.0
   '@types/debug': ^4.1.5
   '@types/marked': ^1.2.2
   '@types/prismjs': ^1.16.3
   clean-css: ^5.1.0
+  cross-env: 7.0.3
   debug: ^4.3.1
   element-in-view: ^0.1.0
   esbuild: ^0.10.0
+  fre: ^2.0.4
   htm: ^3.0.4
   marked: ^2.0.0
   preact: ^10.5.12

@@ -26,6 +26,14 @@ const config: UserConfig = {
     jsxFactory: 'h',
     jsxFragment: 'Fragment',
   },
+  resolve: {
+    alias: {
+      renderer:
+        process.env.NODE_ENV === 'fre'
+          ? path.resolve('src/renderer/fre.ts')
+          : path.resolve('src/renderer/preact.ts'),
+    },
+  },
   plugins: [
     prefresh(),
     windicss({
