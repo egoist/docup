@@ -1,4 +1,4 @@
-import { h, useEffect, useRef } from 'fre'
+import { useEffect, useRef } from 'fre'
 
 export const Main = ({ html, loadingState }) => {
   const t = useRef(null)

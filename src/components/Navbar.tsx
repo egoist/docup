@@ -1,5 +1,3 @@
-import { h } from 'fre'
-
 export const Navbar = ({ title, base, navLinks, toggleSidebar }) => {
   return (
     <header class="fixed w-full top-0 left-0 h-12 navbar flex items-center justify-between px-5">

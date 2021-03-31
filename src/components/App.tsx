@@ -1,6 +1,5 @@
-import { h,useEffect, useState } from 'fre'
+import { useEffect, useState } from 'fre'
 import inView from 'element-in-view'
-import { InstanceOptions } from '../docup'
 import { Navbar } from './Navbar'
 import { Sidebar } from './Sidebar'
 import { Main } from './Main'

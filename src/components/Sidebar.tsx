@@ -1,4 +1,4 @@
-import { h, useEffect, useState, useRef } from 'fre'
+import { useEffect, useState, useRef } from 'fre'
 
 export const Sidebar = ({ menu, title, base, showSidebar, navLinks }) => {
   const [hash, setHash] = useState('')
