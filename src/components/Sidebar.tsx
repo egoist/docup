@@ -13,7 +13,8 @@ export const Sidebar: FC<{
   const sidebarRef = useRef<HTMLDivElement | null>(null)
   let sidebarItemClicked = false
 
-  const handleSidebarItemClick = () => {
+  const handleSidebarItemClick = (hash: string) => {
+    setHash(location.hash)
     sidebarItemClicked = true
   }
 
@@ -21,7 +22,6 @@ export const Sidebar: FC<{
     setHash(location.hash)
     const onHashChange = () => {
       setHash(location.hash)
-
       // Don't change scroll position when the hashchange is triggered click, that's bad user experience
       if (location.hash && !sidebarItemClicked) {
         const el: HTMLAnchorElement | null = document.querySelector(
@@ -75,7 +75,7 @@ export const Sidebar: FC<{
                 `block px-5 py-1 menu_item` +
                 (item.slug === hash.slice(1) ? ' menu_item__active' : '')
               }
-              onClick={handleSidebarItemClick}
+              onClick={handleSidebarItemClick.bind(null, `#${item.slug}`)}
               data-slug={item.slug}
               key={index}
               data-depth={item.depth}
