@@ -42,7 +42,7 @@
     "@prefresh/vite": "^2.1.0",
     "@rollup/plugin-alias": "^3.1.2",
     "@rollup/plugin-commonjs": "^17.1.0",
-    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
     "@types/debug": "^4.1.5",
     "@types/marked": "^1.2.2",
     "@types/prismjs": "^1.16.3",
