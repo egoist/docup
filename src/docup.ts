@@ -1,4 +1,4 @@
-import 'windi.css'
+import './css/tailwind.css'
 import './css/prism.css'
 import './css/main.css'
 import './css/content.css'
