@@ -5,13 +5,11 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-  issue_comment:
-    types: [created]
 
 jobs:
   test:
     # skip "ci skip" unless a issue comment explictly asks
-    if: "!contains(github.event.head_commit.message, 'ci skip') || (github.event.issue && startsWith(github.event.issue.comment.body, '/please_release'))"
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
 
     strategy:
       matrix:
@@ -50,8 +48,7 @@ jobs:
         run: npm run test
 
       - name: Release
-        run: pnpx semantic-release --branches main
-        if: "contains(github.event.head_commit.message, 'publish release') || github.event.issue"
+        run: pnpx -y semantic-release --branches main
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
