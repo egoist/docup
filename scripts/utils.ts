@@ -19,7 +19,8 @@ function getPrismLanguages() {
 
 export const createConfig = (
   renderer: 'preact' | 'fre',
-  minify?: boolean
+  minify?: boolean,
+  isWebsite?: boolean
 ): UserConfig => {
   return {
     esbuild: {
@@ -38,28 +39,30 @@ export const createConfig = (
       sourcemap: true,
 
       rollupOptions: {
-        // plugins: [
-        //   // @ts-expect-error
-        //   minify && minifyPlugin(),
-        // ],
-        input: ['./src/docup.ts'],
         preserveEntrySignatures: 'strict',
+        input: isWebsite
+          ? [path.resolve('./docs/index.html'), path.resolve('./docs/main.ts')]
+          : ['./src/docup.ts'],
         output: {
           format: 'esm',
           manualChunks: undefined,
 
-          entryFileNames() {
-            return (renderer === 'fre'
-              ? 'docup.fre.js'
-              : 'docup.js'
-            ).replace(/\.js$/, () => (minify ? '.min.js' : '.js'))
-          },
-          assetFileNames(chunk) {
-            if (chunk.name === 'docup.css') {
-              return `docup${minify ? '.min' : ''}.css`
-            }
-            return chunk.name!
-          },
+          ...(isWebsite
+            ? {}
+            : {
+                entryFileNames() {
+                  return (renderer === 'fre'
+                    ? 'docup.fre.js'
+                    : 'docup.js'
+                  ).replace(/\.js$/, () => (minify ? '.min.js' : '.js'))
+                },
+                assetFileNames(chunk) {
+                  if (chunk.name === 'docup.css') {
+                    return `docup${minify ? '.min' : ''}.css`
+                  }
+                  return chunk.name!
+                },
+              }),
         },
       },
     },
