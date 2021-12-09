@@ -2,9 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   pull_request:
-    branches: [main]
+    branches: [main, dev]
 
 jobs:
   test:
@@ -48,6 +48,7 @@ jobs:
         run: npm run test
 
       - name: Release
+        if: "github.event_name != 'pull_request'"
         run: pnpx -y semantic-release --branches main
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
