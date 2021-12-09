@@ -16,6 +16,7 @@ specifiers:
   esbuild-register: ^3.2.0
   fre: ^2.0.4
   htm: ^3.0.4
+  magic-string: ^0.25.7
   marked: ^2.0.0
   preact: ^10.5.12
   prettier: ^2.2.1
@@ -30,6 +31,7 @@ specifiers:
 dependencies:
   element-in-view: 0.1.0
   htm: 3.0.4
+  magic-string: 0.25.7
   marked: 2.0.1
   preact: 10.5.13
   prismjs: 1.23.0
@@ -1379,7 +1381,6 @@ packages:
     resolution: {integrity: sha512-4CrMT5DOHTDk4HYDlzmwu4FVCcIYI8gauveasrdCu2IKIFOJ3f0v/8MDGJCDL9oD2ppz/Av1b0Nj345H9M+XIA==}
     dependencies:
       sourcemap-codec: 1.4.8
-    dev: true
 
   /marked/2.0.1:
     resolution: {integrity: sha512-5+/fKgMv2hARmMW7DOpykr2iLhl0NgjyELk5yn92iE7z8Se1IS9n3UsFm86hFXIkvMBmVxki8+ckcpjBeyo/hw==}
@@ -1725,7 +1726,6 @@ packages:
 
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
-    dev: true
 
   /supports-color/5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}

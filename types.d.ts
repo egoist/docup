@@ -20,3 +20,5 @@ interface Window {
   MD_C_PROPS: any
   _MD_COMPONENTS: Record<string, any>
 }
+
+declare const import_meta_url: string

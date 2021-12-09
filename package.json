@@ -31,6 +31,7 @@
   "dependencies": {
     "element-in-view": "^0.1.0",
     "htm": "^3.0.4",
+    "magic-string": "^0.25.7",
     "marked": "^2.0.0",
     "preact": "^10.5.12",
     "prismjs": "^1.23.0"

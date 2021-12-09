@@ -1,5 +1,6 @@
 export const MD_PROPS_KEY = `MD_C_PROPS`
 
+// prevent vite from shimming import.meta.url
 let docupUrl = import.meta.url
 if (import.meta.env.DEV) {
   // During dev it's not bundled
