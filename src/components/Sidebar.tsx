@@ -44,7 +44,7 @@ export const Sidebar: FC<{
     <div
       ref={sidebarRef}
       class={
-        `fixed md:pt-12 sidebar left-0 top-0 bottom-0` +
+        `fixed md:pt-12 sidebar left-0 top-0 bottom-0 border-r` +
         (showSidebar ? ' sidebar_show' : '')
       }
     >

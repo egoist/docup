@@ -8,10 +8,7 @@ export const Navbar: FC<{
   toggleSidebar: () => void
 }> = ({ title, base, navLinks, toggleSidebar }) => {
   return (
-    <header
-      style={{ borderColor: 'var(--navbar-border-fg)' }}
-      class="fixed w-full top-0 left-0 h-12 navbar flex items-center justify-between px-5 border-b"
-    >
+    <header class="fixed w-full top-0 left-0 h-12 navbar flex items-center justify-between px-5 border-b">
       <div class="flex items-center">
         <h1 class="mr-8 text-2xl">
           <a href={base}>{title}</a>

@@ -8,6 +8,9 @@ module.exports = {
       colors: {
         ...colors,
       },
+      borderColor: {
+        border: 'var(--border-fg)',
+      },
     },
   },
   variants: {},

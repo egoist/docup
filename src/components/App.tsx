@@ -1,4 +1,4 @@
-import { h, FC, useEffect, useState } from 'renderer'
+import { h, FC, useEffect, useState, useCallback } from 'renderer'
 import inView from 'element-in-view'
 import { InstanceOptions } from '../docup'
 import { Navbar } from './Navbar'
@@ -103,14 +103,32 @@ export const App: FC<{ options: InstanceOptions }> = ({ options }) => {
   }, [])
 
   useEffect(() => {
-    if (options.useSystemTheme !== false) {
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark')
-      }
-    }
     // Update location.hash on scrolling
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const mediaQuery = '(prefers-color-scheme: dark)'
+  const updateDarkModeClass = useCallback(() => {
+    if (options.useSystemTheme === false) return
+
+    if (window.matchMedia(mediaQuery).matches) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [options.useSystemTheme])
+
+  useEffect(() => {
+    updateDarkModeClass()
+
+    const listener = () => updateDarkModeClass()
+    const m = window.matchMedia(mediaQuery)
+    m.addEventListener('change', listener)
+
+    return () => {
+      m.removeEventListener('change', listener)
+    }
   }, [])
 
   return (

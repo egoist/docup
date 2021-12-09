@@ -1,9 +1,9 @@
 :root {
   --fg: #000;
   --bg: #fff;
+  --border-fg: rgb(218, 218, 218);
   --navbar-bg: #ffffff;
   --navbar-fg: inherit;
-  --navbar-border-fg: rgb(218, 218, 218);
   --navlink-fg: inherit;
   --navlink-hover-fg: inherit;
   --navlink-hover-bg: #d8d8d8;
@@ -33,8 +33,8 @@
 .dark {
   --bg: #121212;
   --fg: #eaeaea;
+  --border-fg: rgb(68, 68, 68);
   --navbar-bg: var(--bg);
-  --navbar-border-fg: rgb(68, 68, 68);
   --sidebar-bg: var(--bg);
   --sidebar-text-fg: var(--fg);
   --code-block-fg: rgb(182, 182, 182);
@@ -48,6 +48,12 @@
 
   --loader-start-bg: #2b2c2e;
   --loader-end-bg: #252525;
+}
+
+*,
+*::before,
+*::after {
+  border-color: var(--border-fg);
 }
 
 body {
