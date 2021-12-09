@@ -18,14 +18,15 @@ export const Sidebar: FC<{
   }
 
   useEffect(() => {
-    setHash(location.hash)
+    setHash(decodeURIComponent(location.hash))
     const onHashChange = () => {
-      setHash(location.hash)
+      const decodedHash = decodeURIComponent(location.hash)
+      setHash(decodedHash)
 
       // Don't change scroll position when the hashchange is triggered click, that's bad user experience
       if (location.hash && !sidebarItemClicked) {
         const el: HTMLAnchorElement | null = document.querySelector(
-          `.sidebar .menu_item[href="${location.hash}"]`
+          `.sidebar .menu_item[href="${decodedHash}"]`
         )
         if (el) {
           if (sidebarRef.current) {

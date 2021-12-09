@@ -18,7 +18,7 @@ export const ANCHOR_ICON = `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden=
 `
 
 export function scrollToHash(hash: string) {
-  const el = document.querySelector(hash) as HTMLDivElement
+  const el = document.querySelector(decodeURIComponent(hash)) as HTMLDivElement
   if (el) {
     window.scrollTo({
       top: el.offsetTop - 60,
