@@ -501,4 +501,3 @@ Support this project via [GitHub Sponsors](https://github.com/sponsors/egoist).
 ## License
 
 MIT &copy; EGOIST
-```
