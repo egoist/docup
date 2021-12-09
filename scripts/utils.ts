@@ -4,7 +4,6 @@ import { rollup } from 'rollup'
 import dts from 'rollup-plugin-dts'
 import tsResolve from '@egoist/rollup-plugin-ts-resolve'
 import { UserConfig } from 'vite'
-import MagicString from 'magic-string'
 
 const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
 
@@ -34,27 +33,7 @@ export const createConfig = (
       PRISM_VERSION: JSON.stringify(require('prismjs/package').version),
       PRISM_LANGUAGES: JSON.stringify(getPrismLanguages()),
     },
-    // plugins: [
-    //   {
-    //     name: 'import_meta_url',
-    //     enforce: 'post',
-    //     renderChunk(code) {
-    //       const index = code.indexOf('import_meta_url')
 
-    //       if (index === -1) return
-    //       const s = new MagicString(code)
-    //       s.overwrite(
-    //         index,
-    //         index + 'import_meta_url'.length,
-    //         'import.meta.url'
-    //       )
-    //       return {
-    //         code: s.toString(),
-    //         map: s.generateMap({ hires: true }),
-    //       }
-    //     },
-    //   },
-    // ],
     build: {
       emptyOutDir: false,
       minify,
@@ -68,7 +47,6 @@ export const createConfig = (
         output: {
           format: 'esm',
           manualChunks: undefined,
-
           ...(isWebsite
             ? {}
             : {

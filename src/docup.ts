@@ -22,13 +22,7 @@ export interface Options {
   props?: any
   font?: string
   base?: string
-  /**
-   * @alpha
-   * Use a custom theme
-   *
-   * the `dark` theme is now very experimental, expected many bugs
-   */
-  theme?: 'default' | 'dark'
+  useSystemTheme?: boolean
 }
 
 export type InstanceOptions = SetRequired<
@@ -51,6 +45,11 @@ export class Docup {
   }
 
   init() {
+    // const isDark = window.matchMedia('(prefers-color-scheme: dark)')
+    // if (isDark) {
+    //   document.body.dataset.theme = 'dark'
+    // }
+
     const font = this.options.font || 'Lato'
     const link = document.createElement('link')
     link.rel = 'stylesheet'

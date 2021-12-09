@@ -168,7 +168,7 @@ import { useState, html } from 'docup'
 export default () => {
   const [count, setCount] = useState(0)
   return html`<button
-    style="width:100px;background:#ccc;padding:5px"
+    style="width:100px;border:1px solid;padding:5px"
     onClick=${() => setCount(count + 1)}
   >
     ${count}
@@ -185,7 +185,7 @@ import { useState, html } from 'docup'
 export default () => {
   const [count, setCount] = useState(0)
   return html`<button
-    style="width:100px;background:#ccc;padding:5px"
+    style="width:100px;border:1px solid; padding:5px"
     onClick=${() => setCount(count + 1)}
   >
     ${count}
@@ -299,7 +299,6 @@ export default () => {
             ${isColor
               ? html`<div
                   style=${{
-                    background: value,
                     display: 'inline-flex',
                     border: '1px solid #000',
                     fontSize: '.875rem',
@@ -307,14 +306,13 @@ export default () => {
                 >
                   <span
                     style=${{
+                      background: value,
                       padding: '0 5px',
                       width: '20px',
                       borderRight: '1px solid #000',
                     }}
                   ></span
-                  ><span style=${{ background: 'white', padding: '0 5px' }}
-                    >${value}</span
-                  >
+                  ><span style=${{ padding: '0 5px' }}>${value}</span>
                 </div>`
               : html`<code>${value}</code>`}
           </td>
@@ -477,12 +475,12 @@ export default ({ count }) => {
 ```
 ````
 
-#### theme
+#### useSystemTheme
 
-- Type: `default` or `dark`
-- Default: `default`
+- Type: `boolean`
+- Default: `true`
 
-Choose a CSS theme.
+Follow system theme, i.e. use dark theme when system theme is dark.
 
 ## Browser support
 

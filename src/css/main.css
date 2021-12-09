@@ -1,47 +1,50 @@
 :root {
   --fg: #000;
   --bg: #fff;
-  --navbar-bg: #3e2723;
-  --navbar-fg: white;
-  --navlink-fg: rgba(255,255,255,.5);
-  --navlink-hover-fg: rgba(255,255,255,.75);
-  --navlink-hover-bg: #4e342e;
+  --navbar-bg: #ffffff;
+  --navbar-fg: inherit;
+  --navbar-border-fg: rgb(218, 218, 218);
+  --navlink-fg: inherit;
+  --navlink-hover-fg: inherit;
+  --navlink-hover-bg: #d8d8d8;
 
-  --sidebar-bg: #efebe9;
+  --sidebar-bg: #ffffff;
   --sidebar-width: 300px;
   --sidebar-text-fg: #6b6867;
 
   --sidebar-menu-item-active-fg: #3e2723;
 
-  --code-block-bg: #2f2625;
+  --code-block-bg: #f8f8f8;
+  --code-block-border-fg: rgb(201, 201, 201);
   --code-span-bg: #f8f3f0;
-  --code-block-fg: #ccc;
+  --code-block-fg: rgb(94, 94, 94);
   --code-span-fg: inherit;
-  --code-font:  Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --code-font: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 
   --content-link-fg: rgb(20, 121, 20);
   --content-link-hover-decoration: underline;
 
-  --table-header-border-fg: var(--navbar-bg);
-  --table-body-border-fg: var(--sidebar-bg);
+  --table-border-fg: #e2e2e2;
 
   --loader-start-bg: #eeeeee;
   --loader-end-bg: #e4e2e1;
 }
 
-.theme-dark {
-  --bg: #131415;
+.dark {
+  --bg: #121212;
   --fg: #eaeaea;
   --navbar-bg: var(--bg);
+  --navbar-border-fg: rgb(68, 68, 68);
   --sidebar-bg: var(--bg);
   --sidebar-text-fg: var(--fg);
-  --code-block-bg: #1a1a1a;
-  --code-span-bg: #1a1a1a;
+  --code-block-fg: rgb(182, 182, 182);
+  --code-block-bg: rgb(30, 30, 30);
+  --code-block-border-fg: rgb(42, 42, 42);
+  --code-span-bg: #3b3b3b;
   --navlink-hover-bg: rgba(103, 103, 103, 0.29);
   --sidebar-menu-item-active-fg: #ffe77a;
   --content-link-fg: #ffe77a;
-  --table-header-border-fg: rgb(88, 88, 88);
-  --table-body-border-fg: rgba(88, 88, 88, 0.78);
+  --table-border-fg: rgb(59, 59, 59);
 
   --loader-start-bg: #2b2c2e;
   --loader-end-bg: #252525;
@@ -146,15 +149,15 @@ body {
   font-weight: bold;
 }
 
-.menu_item[data-depth="3"] {
+.menu_item[data-depth='3'] {
   @apply pl-8;
 }
 
-.menu_item[data-depth="4"] {
+.menu_item[data-depth='4'] {
   @apply pl-8;
 }
 
-.menu_item[data-depth="4"]:before {
+.menu_item[data-depth='4']:before {
   content: '-';
   @apply opacity-25;
   @apply pr-2;

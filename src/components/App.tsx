@@ -103,9 +103,11 @@ export const App: FC<{ options: InstanceOptions }> = ({ options }) => {
   }, [])
 
   useEffect(() => {
-    // Add theme class
-    document.documentElement.className = `theme-${options.theme}`
-
+    if (options.useSystemTheme !== false) {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark')
+      }
+    }
     // Update location.hash on scrolling
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)

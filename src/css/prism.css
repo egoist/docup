@@ -4,127 +4,183 @@
  * @author Rose Pritchard
  */
 
- pre {
-   color: var(--code-block-fg);
-   background: none;
-   font-family: var(--code-font);
-   font-size: 1rem;
-   text-align: left;
-   white-space: pre;
-   word-spacing: normal;
-   word-break: normal;
-   word-wrap: normal;
-   line-height: 1.5;
+pre {
+  color: var(--code-block-fg);
+  border: 1px solid var(--code-block-border-fg);
+  background: none;
+  font-family: var(--code-font);
+  font-size: 1rem;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
 
-   -moz-tab-size: 4;
-   -o-tab-size: 4;
-   tab-size: 4;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
 
-   -webkit-hyphens: none;
-   -moz-hyphens: none;
-   -ms-hyphens: none;
-   hyphens: none;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
 
- }
+/* Code blocks */
+pre {
+  @apply rounded-lg;
+  @apply p-5;
+  margin: 0.5em 0;
+  overflow: auto;
+}
 
- /* Code blocks */
- pre {
-   @apply rounded-lg;
-   @apply p-5;
-   margin: .5em 0;
-   overflow: auto;
- }
-
- :not(pre) > code {
+:not(pre) > code {
   background: var(--code-span-bg);
   font-family: var(--code-font);
   color: var(--code-span-fg);
   padding: 2px 4px;
   @apply rounded;
   @apply text-sm;
- }
+}
 
- pre {
-   background: var(--code-block-bg);
- }
+pre {
+  background: var(--code-block-bg);
+}
 
- /* Inline code */
- :not(pre) > code[class*="language-"] {
-   padding: .1em;
-   border-radius: .3em;
-   white-space: normal;
- }
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  padding: 0.1em;
+  border-radius: 0.4em;
+  white-space: normal;
+}
 
- .token.comment,
- .token.block-comment,
- .token.prolog,
- .token.doctype,
- .token.cdata {
-   color: #999;
- }
+.token.comment,
+.token.prolog,
+.token.cdata {
+  color: hsl(230, 4%, 64%);
+}
 
- .token.punctuation {
-   color: #ccc;
- }
+.token.doctype,
+.token.punctuation,
+.token.entity {
+  color: hsl(230, 8%, 24%);
+}
 
- .token.tag,
- .token.attr-name,
- .token.namespace,
- .token.deleted {
-   color: #e2777a;
- }
+.token.attr-name,
+.token.class-name,
+.token.boolean,
+.token.constant,
+.token.number,
+.token.atrule {
+  color: hsl(35, 99%, 36%);
+}
 
- .token.function-name {
-   color: #6196cc;
- }
+.token.keyword {
+  color: hsl(301, 63%, 40%);
+}
 
- .token.boolean,
- .token.number,
- .token.function {
-   color: #f08d49;
- }
+.token.property,
+.token.tag,
+.token.symbol,
+.token.deleted,
+.token.important {
+  color: hsl(5, 74%, 59%);
+}
 
- .token.property,
- .token.class-name,
- .token.constant,
- .token.symbol {
-   color: #f8c555;
- }
+.token.selector,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted,
+.token.regex,
+.token.attr-value,
+.token.attr-value > .token.punctuation {
+  color: hsl(119, 34%, 47%);
+}
 
- .token.selector,
- .token.important,
- .token.atrule,
- .token.keyword,
- .token.builtin {
-   color: #cc99cd;
- }
+.token.variable,
+.token.operator,
+.token.function {
+  color: hsl(221, 87%, 60%);
+}
 
- .token.string,
- .token.char,
- .token.attr-value,
- .token.regex,
- .token.variable {
-   color: #7ec699;
- }
+.token.url {
+  color: hsl(198, 99%, 37%);
+}
 
- .token.operator,
- .token.entity,
- .token.url {
-   color: #67cdcc;
- }
+.dark {
+  .token.comment,
+  .token.block-comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #999;
+  }
 
- .token.important,
- .token.bold {
-   font-weight: bold;
- }
- .token.italic {
-   font-style: italic;
- }
+  .token.punctuation {
+    color: #ccc;
+  }
 
- .token.entity {
-   cursor: help;
- }
+  .token.tag,
+  .token.attr-name,
+  .token.namespace,
+  .token.deleted {
+    color: #e2777a;
+  }
 
- .token.inserted {
-   color: green;
- }
+  .token.function-name {
+    color: #6196cc;
+  }
+
+  .token.boolean,
+  .token.number,
+  .token.function {
+    color: #f08d49;
+  }
+
+  .token.property,
+  .token.class-name,
+  .token.constant,
+  .token.symbol {
+    color: #f8c555;
+  }
+
+  .token.selector,
+  .token.important,
+  .token.atrule,
+  .token.keyword,
+  .token.builtin {
+    color: #cc99cd;
+  }
+
+  .token.string,
+  .token.char,
+  .token.attr-value,
+  .token.regex,
+  .token.variable {
+    color: #7ec699;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url {
+    color: #67cdcc;
+  }
+
+  .token.important,
+  .token.bold {
+    font-weight: bold;
+  }
+  .token.italic {
+    font-style: italic;
+  }
+
+  .token.entity {
+    cursor: help;
+  }
+
+  .token.inserted {
+    color: green;
+  }
+}

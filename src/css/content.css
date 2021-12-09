@@ -18,6 +18,7 @@
 .content > *:first-child,
 .content > *:first-child > *:first-child {
   @apply mt-0;
+  @apply pt-0;
 }
 
 .content > *:last-child,
@@ -34,18 +35,24 @@
 }
 
 .content h2 {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   font-weight: 700;
-  @apply my-8;
+  @apply border-b-2;
+  @apply border-yellow-300;
+  @apply pb-1;
+  @apply pt-10;
+  @apply mb-8;
 }
 
 .content h3 {
   @apply font-normal;
+  @apply pt-10;
   font-size: 2rem;
 }
 
 .content h4 {
   font-size: 1.5rem;
+  @apply pt-10;
 }
 
 .content h5 {
@@ -82,26 +89,31 @@ blockquote p:not(:first-child),
   color: #4a4a4a;
   padding: 1em 1.25em;
   margin: 25px 0;
+  @apply dark:text-gray-200 dark:border-gray-600 dark:bg-gray-500 dark:bg-opacity-25;
 }
 .message.message_type__alert {
   background: #fff5f7;
   border-color: #ff3860;
   color: #cd0930;
+  @apply dark:border-red-900 dark:bg-red-700 dark:bg-opacity-25;
 }
 .message.message_type__info {
   background: #f6fbfe;
   border-color: #209cee;
   color: #12537e;
+  @apply dark:text-blue-500 dark:border-blue-800 dark:bg-blue-600 dark:bg-opacity-25;
 }
 .message.message_type__warning {
   background: #fffdf5;
   border-color: #ffdd57;
   color: #3b3108;
+  @apply dark:text-yellow-500 dark:border-yellow-700 dark:bg-yellow-500 dark:bg-opacity-25;
 }
 .message.message_type__success {
   background: #f6fef9;
   border-color: #23d160;
   color: #0e301a;
+  @apply dark:text-green-300 dark:border-green-900 dark:bg-green-800 dark:bg-opacity-25;
 }
 
 .anchor {
@@ -131,27 +143,21 @@ blockquote p:not(:first-child),
   @apply list-none;
 }
 
-.task_list__item input[type=checkbox]:first-child {
+.task_list__item input[type='checkbox']:first-child {
   @apply mr-2;
 }
 
-/** Stolen from https://github.com/arackaf/micro-graphql-react/blob/3f2420265ad88360d61472d4e79da43fa743d8bb/docs/overrides.css */
 table {
-  font-size: .95rem;
+  font-size: 0.95rem;
 }
 table code {
-  font-size: .85rem;
+  font-size: 0.85rem;
 }
 
-table > thead > tr > th {
-  border-bottom: 2px solid var(--table-header-border-fg);
-}
-
-table > tbody > tr > td {
-  border-bottom: 1px solid var(--table-body-border-fg);
-}
-table > tbody > tr > td:not(:last-child) {
-  border-right: 1px solid var(--table-body-border-fg);
+table td,
+table th {
+  border: 1px solid var(--table-border-fg);
+  padding: 7px 10px;
 }
 
 table > tbody > tr > td:first-child {
