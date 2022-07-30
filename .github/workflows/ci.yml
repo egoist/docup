@@ -49,7 +49,7 @@ jobs:
 
       - name: Release
         if: "github.event_name != 'pull_request'"
-        run: pnpx -y semantic-release --branches main
+        run: pnpx semantic-release --branches main
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
