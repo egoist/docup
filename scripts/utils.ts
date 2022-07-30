@@ -57,7 +57,7 @@ export const createConfig = (
                   ).replace(/\.js$/, () => (minify ? '.min.js' : '.js'))
                 },
                 assetFileNames(chunk) {
-                  if (chunk.name === 'docup.css') {
+                  if (chunk.name?.endsWith('docup.css')) {
                     return `docup${minify ? '.min' : ''}.css`
                   }
                   return chunk.name!
