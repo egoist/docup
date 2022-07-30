@@ -170,3 +170,7 @@ table code {
   background: unset;
   padding: unset;
 }
+
+.content select {
+  @apply border rounded;
+}

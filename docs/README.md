@@ -138,22 +138,14 @@ docup.init({
 })
 ```
 
+Available languages:
+
 ```js preact
 import { useState, html } from 'docup'
 export default ({ langs }) => {
-  const [show, setShow] = useState(false)
-  return html`<div>
-    ${show &&
-    html`<ul>
-      ${langs.map((lang) => html`<li key="{lang}">${lang}</li>`)}
-    </ul>`}
-    <button
-      style="margin-top:20px;border:1px solid; font-size: 14px; padding:5px;"
-      onClick=${() => setShow(!show)}
-    >
-      Show ${show ? 'hide languages' : 'all supported languages'}..
-    </button>
-  </div>`
+  return html`<select>
+    ${langs.map((lang) => html`<option key="{lang}">${lang}</option>`)}
+  </select>`
 }
 ```
 
@@ -481,6 +473,12 @@ export default ({ count }) => {
 - Default: `true`
 
 Follow system theme, i.e. use dark theme when system theme is dark.
+
+#### beforeSidebar
+
+- Type: `string`
+
+HTML string to display before sidebar.
 
 ## Browser support
 

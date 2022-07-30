@@ -151,6 +151,7 @@ export const App: FC<{ options: InstanceOptions }> = ({ options }) => {
         base={options.base}
         menu={menu}
         showSidebar={showSidebar}
+        beforeSidebar={options.beforeSidebar}
       />
       <Main html={html} loadingState={loadingState} />
     </div>

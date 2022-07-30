@@ -8,7 +8,8 @@ export const Sidebar: FC<{
   base: string
   showSidebar: boolean
   navLinks: NavLink[]
-}> = ({ menu, title, base, showSidebar, navLinks }) => {
+  beforeSidebar?: string
+}> = ({ menu, title, base, showSidebar, navLinks, beforeSidebar }) => {
   const [hash, setHash] = useState('')
   const sidebarRef = useRef<HTMLDivElement | null>(null)
   let sidebarItemClicked = false
@@ -68,6 +69,11 @@ export const Sidebar: FC<{
           </ul>
         </div>
       </div>
+      {beforeSidebar && (
+        <div>
+          <div {...setHtml(beforeSidebar)}></div>
+        </div>
+      )}
       <div class="my-5">
         {menu.map((item, index) => {
           return (

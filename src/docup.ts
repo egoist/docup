@@ -23,6 +23,7 @@ export interface Options {
   font?: string
   base?: string
   useSystemTheme?: boolean
+  beforeSidebar?: string
 }
 
 export type InstanceOptions = SetRequired<

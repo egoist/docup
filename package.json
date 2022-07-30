@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@egoist/rollup-plugin-ts-resolve": "^0.1.0",
-    "@prefresh/vite": "^2.2.4",
+    "@prefresh/vite": "^2.2.8",
     "@rollup/plugin-alias": "^3.1.2",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
@@ -46,16 +46,16 @@
     "@types/prismjs": "^1.16.3",
     "cross-env": "7.0.3",
     "debug": "^4.3.1",
-    "esbuild": "^0.14.2",
+    "esbuild": "^0.14.51",
     "esbuild-register": "^3.2.0",
     "fre": "^2.0.4",
     "postcss-nested": "^5.0.6",
     "prettier": "^2.2.1",
     "rollup": "^2.61.0",
     "rollup-plugin-dts": "^4.0.1",
-    "tailwindcss": "^2.2.19",
+    "tailwindcss": "^3.1.7",
     "type-fest": "^0.21.2",
     "typescript": "^4.2.3",
-    "vite": "^2.7.1"
+    "vite": "^3.0.4"
   }
 }
